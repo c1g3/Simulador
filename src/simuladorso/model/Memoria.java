@@ -97,18 +97,15 @@ public class Memoria {
         }
     }
     
-    public void MemoriaLibre(){
-        
-    }
-    
-    public void BestFit(ColaListo colaNuevo){
+    public void BestFit(List<Proceso> colaNuevo,List<Proceso> colaListo){
         Collections.sort(listParticion);
-        for (Iterator<Proceso> itr = colaNuevo.getListProceso().iterator(); itr.hasNext();){
+        for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
             for (Particion particion : listParticion){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
                     particion.addProceso(proceso);
                     particion.setEstado(true);
+                    colaListo.add(proceso);
                     itr.remove();
                     break;
                 }
@@ -116,13 +113,14 @@ public class Memoria {
         }
     }
     
-    public void FirstFit(ColaListo colaNuevo){
-        for (Iterator<Proceso> itr = colaNuevo.getListProceso().iterator(); itr.hasNext();){
+    public void FirstFit(List<Proceso> colaNuevo, List<Proceso> colaListo){
+        for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
             for (Particion particion : listParticion){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
                     particion.addProceso(proceso);
                     particion.setEstado(true);
+                    colaListo.add(proceso);
                     itr.remove();
                     break;
                 }
@@ -130,14 +128,15 @@ public class Memoria {
         }   
     }
     
-    public void WorstFit(ColaListo colaNuevo){
-        for (Iterator<Proceso> itr = colaNuevo.getListProceso().iterator(); itr.hasNext();){
+    public void WorstFit(List<Proceso> colaNuevo,List<Proceso> colaListo){
+        for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
             Collections.reverse(listParticion);
-            System.out.println("Lista Particiones: " + this.listParticion);
+            //System.out.println("Lista Particiones: " + this.listParticion);
             for (Particion particion : listParticion){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
                     crearParticionVariable(particion, proceso);
+                    colaListo.add(proceso);
                     itr.remove();
                     break;
                 }
@@ -145,13 +144,14 @@ public class Memoria {
         }   
     }
     
-    public void FirstFitVariable(ColaListo colaNuevo){
-        for (Iterator<Proceso> itr = colaNuevo.getListProceso().iterator(); itr.hasNext();){
+    public void FirstFitVariable(List<Proceso> colaNuevo,List<Proceso> colaListo){
+        for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
-            System.out.println("Lista Particiones: " + this.listParticion);
+            //System.out.println("Lista Particiones: " + this.listParticion);
             for (Particion particion : listParticion){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
                     crearParticionVariable(particion, proceso);
+                    colaListo.add(proceso);
                     itr.remove();
                     break;
                 }

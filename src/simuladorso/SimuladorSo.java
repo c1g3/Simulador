@@ -6,22 +6,24 @@
 package simuladorso;
 
 import simuladorso.model.Proceso;
-import simuladorso.model.ColaListo;
 import simuladorso.model.Memoria;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Iterator;
 /**
  *
  * @author Amadeo
  */
 public class SimuladorSo {
-    private int reloj = 0;
+    private static int clock;
 
     private static Proceso pro1;
     private static Proceso pro2;
     private static Proceso pro3;
-    private static ColaListo colaListo;
+    private static List<Proceso> colaProcesos;
+    private static List<Proceso> colaNuevo;
+    private static List<Proceso> colaListo;
     private static Memoria memoria;
     private static Scanner teclado;
 
@@ -29,6 +31,9 @@ public class SimuladorSo {
         pro1 = new Proceso();
         pro2 = new Proceso();
         pro3 = new Proceso();
+        colaProcesos.add(pro1);
+        colaProcesos.add(pro2);
+        colaProcesos.add(pro3);
     }
 
     private static void crearParticionesFijas() {
@@ -57,18 +62,28 @@ public class SimuladorSo {
         memoria.crearParticion(tamanio,dirComienzo);
     }
     
-    private static void setUpColaListo() {
-        colaListo = new ColaListo();
-        colaListo.addProceso(pro1);
-        colaListo.addProceso(pro2);
-        colaListo.addProceso(pro3);
+    private static void setUpColas() {
+        colaProcesos = new ArrayList<Proceso>();
+        colaNuevo = new ArrayList<Proceso>();
+        colaListo = new ArrayList<Proceso>();
     }
-
+    
+    private static void cargarColaNuevo(){
+        for(Iterator<Proceso> itr = colaProcesos.iterator(); itr.hasNext();){
+            Proceso proceso = itr.next();
+            if (proceso.getTiempoArribo() == clock){
+                colaNuevo.add(proceso);
+                itr.remove();
+            }
+        }
+    }
+    
     private static void setUpMemoria() {
         memoria = new Memoria();
     }
 
     public static void main(String[] args) {
+        clock = 0;
         setUpMemoria();
         if (memoria.getTipoParticion())
         {
@@ -78,27 +93,36 @@ public class SimuladorSo {
         {
             crearParticionesVariables();
         }
+        setUpColas();
         initialProcesses();
-        System.out.println("Lista Particion " + memoria.getListParticion());
-        setUpColaListo();
-        if (memoria.getTipoParticion())
-        {
-            if (memoria.getMetodoIntercambio() == 1){
-                memoria.BestFit(colaListo);
+        while (colaProcesos.isEmpty() == false){
+            cargarColaNuevo();
+            //System.out.println("COLA NUEVO: "+colaNuevo);
+            //System.out.println("COLA LISTO: "+colaListo);
+            //System.out.println("Lista Particion " + memoria.getListParticion());     
+            if (memoria.getTipoParticion())
+            {
+                if (memoria.getMetodoIntercambio() == 1){
+                    memoria.BestFit(colaNuevo,colaListo);
+                }
+                else{
+                    memoria.FirstFit(colaNuevo,colaListo);
+                }
             }
             else{
-                memoria.FirstFit(colaListo);
+                if (memoria.getMetodoIntercambio() == 2){
+                    memoria.FirstFitVariable(colaNuevo,colaListo);
+                }
+                else{
+                    memoria.WorstFit(colaNuevo,colaListo);
+                }
             }
+            System.out.println("Clock: "+clock);
+            memoria.imprimirProcesoPorConsola();
+            //System.out.println("COLA NUEVO: "+colaNuevo);
+            //System.out.println("COLA LISTO: "+colaListo);
+            //System.out.println("Lista Particion " + memoria.getListParticion());
+            clock++;
         }
-        else{
-            if (memoria.getMetodoIntercambio() == 2){
-                memoria.FirstFitVariable(colaListo);
-            }
-            else{
-                memoria.WorstFit(colaListo);
-            }
-        }
-        memoria.imprimirProcesoPorConsola();
-        System.out.println("Lista Particion " + memoria.getListParticion());
     }
 }
