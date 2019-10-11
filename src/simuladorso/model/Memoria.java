@@ -212,6 +212,15 @@ public class Memoria {
 
     }
     
+    public void liberarMemoria(Proceso proceso){
+        for (Particion particion : listParticion){
+            if (particion.getProceso() == proceso){
+                particion.removeProceso();
+                break;
+            }
+        }
+    }
+    
     public static void main(String[] args){
 
     }

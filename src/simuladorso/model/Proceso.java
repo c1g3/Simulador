@@ -15,20 +15,19 @@ public class Proceso {
     private int idProceso;
     private int tamProceso;
     private int tiempoArribo;
+    private int rafaga;
     private String prioridad;
     static int cont = 1;
     private String estadoProceso;
     
-    public Proceso(){
+    public Proceso(int tamProceso, int tiempoArribo, int rafaga){
         teclado = new Scanner(System.in);
         idProceso = cont;
         cont++;
-        System.out.println("Ingrese tamanio: ");
-        tamProceso = teclado.nextInt();
-        System.out.println("Ingrese TA: ");
-        tiempoArribo = teclado.nextInt();
-        System.out.println("Ingrese prioridad: ");
-        prioridad = teclado.next();
+        this.tamProceso = tamProceso;
+        this.tiempoArribo = tiempoArribo;
+        this.rafaga = rafaga;
+        this.prioridad = "baja";
         this.estadoProceso = "nuevo";
     }
     
@@ -68,7 +67,12 @@ public class Proceso {
         return this.tamProceso;
     }
     
+    public int getRafaga(){
+        return this.rafaga;
+    }
+    
     public static void main(String[] args){
 
     }
+        
 }
