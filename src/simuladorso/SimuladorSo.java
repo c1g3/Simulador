@@ -8,6 +8,8 @@ package simuladorso;
 import simuladorso.model.Proceso;
 import simuladorso.model.Memoria;
 import simuladorso.model.Procesador;
+import simuladorso.model.EntradaSalida;
+import simuladorso.model.Planificador;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,14 +30,19 @@ public class SimuladorSo {
     private static List<Proceso> colaBloqueado;
     private static List<Proceso> colaTerminado;
     private static Procesador procesador;
+    private static EntradaSalida es;
     private static Memoria memoria;
     private static Scanner teclado;
+    private static Planificador planificador;
     private static int cantProcesos;
 
     private static void initialProcedures() {
-        pro1 = new Proceso(10,0,3);
-        pro2 = new Proceso(5,1,2);
-        pro3 = new Proceso(60,3,1);
+        Integer[] a1 = {2 ,1 ,2};
+        Integer[] a2 = {1, 1, 1};
+        Integer[] a3 = {3, 2, 1}; 
+        pro1 = new Proceso(10,0, a1);
+        pro2 = new Proceso(5,1,a2);
+        pro3 = new Proceso(60,3,a3);
         colaProcesos.add(pro1);
         colaProcesos.add(pro2);
         colaProcesos.add(pro3);
@@ -75,6 +82,8 @@ public class SimuladorSo {
         colaBloqueado = new ArrayList<Proceso>();
         colaTerminado = new ArrayList<Proceso>();
         procesador = new Procesador();
+        es = new EntradaSalida();
+        planificador = new Planificador();
     }
     
     private static void cargarColaNuevo(){
@@ -91,71 +100,136 @@ public class SimuladorSo {
         memoria = new Memoria();
     }
     
-    private static void FCFS(){
+    private static void cargarES(){
         Proceso proceso;
         int tiempo;
-        proceso = colaListo.get(0);
-        procesador.setProceso(proceso);
-        tiempo = proceso.getRafaga();
-        procesador.setTimer(tiempo);
+        proceso = colaBloqueado.get(0);
+        es.setProceso(proceso);
+        tiempo = proceso.getRafaga().get(proceso.getIndice());
+        es.setTimer(tiempo);
+        colaBloqueado.remove(es.getProceso());
     }
     
-    public static void main(String[] args) {
-        clock = 0;
-        setUpMemoria();
+    private static void imprimir(){
+        System.out.println("Clock: "+clock);
+        memoria.imprimirProcesoPorConsola();
+        System.out.println("Procesador" + procesador.getProceso());
+        System.out.println("E/S" + es.getProceso());
+        System.out.println("COLA NUEVO: "+colaNuevo);
+        System.out.println("COLA LISTO: "+colaListo);
+        System.out.println("COLA BLOQUEADOS: "+colaBloqueado);
+        System.out.println("COLA TERMINADOS: "+colaTerminado);
+    }
+    
+    private static void intercambio(){
         if (memoria.getTipoParticion())
         {
-            crearParticionesFijas();
+            if (memoria.getMetodoIntercambio() == 1){
+                memoria.BestFit(colaNuevo,colaListo);
+            }
+            else{
+                memoria.FirstFit(colaNuevo,colaListo);
+            }
+        }
+        else{
+            if (memoria.getMetodoIntercambio() == 2){
+                memoria.FirstFitVariable(colaNuevo,colaListo);
+            }
+            else{
+                memoria.WorstFit(colaNuevo,colaListo);
+            }
+        }
+    }
+    
+    private static void controlES(){
+        if (es.procesoIsNotNull()){
+            es.ejecutar();
+            if (es.timeout() && clock != 0){
+                es.getProceso().setIndice(es.getProceso().getIndice()+1);
+                colaListo.add(es.getProceso());
+                es.removeProceso();
+            }
+        }
+    }
+    
+    private static void procesoTermino(){
+        procesador.getProceso().setIndice(procesador.getProceso().getIndice() + 1);
+        if (procesador.getProceso().getRafaga().size() > procesador.getProceso().getIndice()){
+            colaBloqueado.add(procesador.getProceso());
+        }
+        else{
+            memoria.liberarMemoria(procesador.getProceso());
+            colaTerminado.add(procesador.getProceso());
+        }
+        procesador.removeProceso();    
+    }
+    
+    private static void procesoNoTermino(int comparativa){
+        procesador.getProceso().setRafaga(procesador.getProceso().getIndice(),comparativa);
+        colaListo.add(procesador.getProceso());
+        procesador.removeProceso();
+    }
+    
+    public static void controlProcesador(){
+        int comparativa;
+        if (procesador.procesoIsNotNull()){
+            procesador.ejecutar();
+            if (clock != 0){
+                comparativa = procesador.getProceso().getRafaga().get(procesador.getProceso().getIndice()) - procesador.getOriginalTimer();
+                if (comparativa == 0 && procesador.timeout()){
+                    procesoTermino();
+                }
+                else{
+                    if (procesador.timeout()){
+                        procesoNoTermino(comparativa);
+                    }
+                    if (comparativa == 0){
+                        procesoTermino();
+                    }
+                }
+            }
+        }
+    }
+    
+    private static void setUpParticiones(){
+        if (memoria.getTipoParticion())
+        {
+           crearParticionesFijas();
         }
         else
         {
             crearParticionesVariables();
         }
+    }
+    
+    public static void planificacion(){
+        if (procesador.procesoIsNull() && colaListo.size()!=0){
+            switch (planificador.getAlgoritmoPlanificacion()){
+                case 1: planificador.FCFS(colaListo,procesador); 
+                        break;
+                case 2: planificador.roundRobin(colaListo, procesador);
+                        break;
+            }              
+        }
+    }
+    
+    public static void main(String[] args) {
+        clock = 0;
+        setUpMemoria();
+        setUpParticiones();
         setUpColas();
         initialProcedures();
         while (colaTerminado.size() != cantProcesos){
-            cargarColaNuevo();
-            //System.out.println("COLA NUEVO: "+colaNuevo);
-            //System.out.println("COLA LISTO: "+colaListo);
-            //System.out.println("Lista Particion " + memoria.getListParticion());     
-            if (memoria.getTipoParticion())
-            {
-                if (memoria.getMetodoIntercambio() == 1){
-                    memoria.BestFit(colaNuevo,colaListo);
-                }
-                else{
-                    memoria.FirstFit(colaNuevo,colaListo);
-                }
+            cargarColaNuevo();    
+            intercambio();
+            controlES();
+            controlProcesador();
+            planificacion();
+            if (es.procesoIsNull() && colaBloqueado.size()!=0){
+               cargarES(); 
             }
-            else{
-                if (memoria.getMetodoIntercambio() == 2){
-                    memoria.FirstFitVariable(colaNuevo,colaListo);
-                }
-                else{
-                    memoria.WorstFit(colaNuevo,colaListo);
-                }
-            }
-            if (procesador.timeout() && clock != 0){
-                colaListo.remove(procesador.getProceso());
-                memoria.liberarMemoria(procesador.getProceso());
-                colaTerminado.add(procesador.getProceso());
-                procesador.removeProceso();
-            }
-            else
-            {
-                procesador.ejecutar();
-            }
-            if (procesador.procesoIsNull() && colaListo.size()!=0){
-               FCFS(); 
-            }
-            System.out.println("Clock: "+clock);
-            memoria.imprimirProcesoPorConsola();
-            System.out.println(procesador.getProceso());
-            //System.out.println("COLA NUEVO: "+colaNuevo);
-            //System.out.println("COLA LISTO: "+colaListo);
-            //System.out.println("Lista Particion " + memoria.getListParticion());
+            imprimir();
             clock++;
         }
-        System.out.println("Cant Procesos: " +cantProcesos);
     }
 }

@@ -6,6 +6,8 @@
 package simuladorso.model;
 import java.util.Scanner;
 import java.util.List;
+import java.util.ArrayList;
+import java.util.Arrays;
 /**
  *
  * @author Amadeo
@@ -15,18 +17,20 @@ public class Proceso {
     private int idProceso;
     private int tamProceso;
     private int tiempoArribo;
-    private int rafaga;
+    private List<Integer> rafaga;
+    private int indice;
     private String prioridad;
     static int cont = 1;
     private String estadoProceso;
     
-    public Proceso(int tamProceso, int tiempoArribo, int rafaga){
+    public Proceso(int tamProceso, int tiempoArribo, Integer[] rafaga){
         teclado = new Scanner(System.in);
         idProceso = cont;
         cont++;
         this.tamProceso = tamProceso;
         this.tiempoArribo = tiempoArribo;
-        this.rafaga = rafaga;
+        this.rafaga = new ArrayList<Integer>(Arrays.asList(rafaga));
+        this.indice = 0;
         this.prioridad = "baja";
         this.estadoProceso = "nuevo";
     }
@@ -67,8 +71,20 @@ public class Proceso {
         return this.tamProceso;
     }
     
-    public int getRafaga(){
+    public List<Integer> getRafaga(){
         return this.rafaga;
+    }
+    
+    public void setRafaga(int index,int number){
+        this.rafaga.set(index, number);
+    }
+    
+    public void setIndice(int indice){
+        this.indice = indice;
+    }
+    
+    public int getIndice(){
+        return this.indice;
     }
     
     public static void main(String[] args){

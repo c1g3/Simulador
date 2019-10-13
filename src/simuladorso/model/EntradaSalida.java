@@ -9,44 +9,37 @@ package simuladorso.model;
  *
  * @author Juan
  */
-public class Procesador {
-    private Proceso procesoEnEjecucion;
+public class EntradaSalida {
+    private Proceso proceso;
     private int timer;
-    private int originalTimer;
     
-    public Procesador(){
-        procesoEnEjecucion = null;
+    public EntradaSalida(){
+        proceso = null;
         timer = 0;
-        originalTimer = 0;
     }
     
     public void setProceso(Proceso proceso){
-        this.procesoEnEjecucion = proceso;
+        this.proceso = proceso;
     }
     
     public Proceso getProceso(){
-        return procesoEnEjecucion;
+        return proceso;
     }
     
      public Boolean procesoIsNull(){
-        if(this.procesoEnEjecucion==null){
+        if(this.proceso==null){
             return true;
         }else{return false;}
     }
     
     public Boolean procesoIsNotNull(){
-        if(this.procesoEnEjecucion==null){
+        if(this.proceso==null){
             return false;
         }else{return true;}
     }
     
     public void setTimer(int tiempo){
         this.timer = tiempo;
-        this.originalTimer = 0;
-    }
-    
-    public int getTimer(){
-        return this.timer;
     }
     
     public Boolean timeout(){
@@ -59,15 +52,10 @@ public class Procesador {
     }
     
     public void removeProceso(){
-        this.procesoEnEjecucion = null;
+        this.proceso = null;
     }
     
     public void ejecutar(){
         timer--;
-        originalTimer++;
-    }
-    
-    public int getOriginalTimer(){
-        return this.originalTimer;
     }
 }
