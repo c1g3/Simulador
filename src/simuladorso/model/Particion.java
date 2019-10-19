@@ -19,7 +19,9 @@ public class Particion implements Comparable<Particion>{
     private Proceso proceso;
     private int fragmentacionInterna;
     static int cont = 1;
-    
+ 
+ //-----------constructores
+
     public Particion(int tamParticion, int direccionInicial){
         teclado = new Scanner(System.in);
         this.idParticion = cont;
@@ -29,6 +31,19 @@ public class Particion implements Comparable<Particion>{
         this.estado = false;
         this.proceso = null;       
     }
+    public Particion(Integer tamParticion, Integer direccionInicial) {
+        this.estado = true;
+        this.tamParticion = tamParticion;
+        this.direccionInicial = direccionInicial;
+    }
+
+    public Particion(Integer tamParticion) {
+        this.tamParticion = tamParticion;
+        this.estado = true;
+        this.proceso=null;
+    }
+
+//******************************    
     
     public Boolean procesoIsNull(){
         if(this.proceso==null){
@@ -54,8 +69,9 @@ public class Particion implements Comparable<Particion>{
         return 0;
     }  
     
-    public void addProceso(Proceso p) {
-        this.proceso = p;
+     public void addProceso(Proceso proceso) {
+        this.proceso = proceso;
+        this.estado = true;
     }
 
     public void removeProceso() {
@@ -90,8 +106,4 @@ public class Particion implements Comparable<Particion>{
         this.estado = estado;
     }
   
-    
-    public static void main(String[] args){
-        
-    }
 }

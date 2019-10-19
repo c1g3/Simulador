@@ -18,6 +18,7 @@ public class Proceso {
     private String prioridad;
     static int cont = 1;
     private String estadoProceso;
+    private String nombreProceso;
     
     public Proceso(){
         teclado = new Scanner(System.in);
@@ -31,7 +32,20 @@ public class Proceso {
         prioridad = teclado.next();
         this.estadoProceso = "nuevo";
     }
-    
+        public Proceso(Integer tamProceso, Integer tiempoArribo, String prioridad) {
+        this.tamProceso = tamProceso;
+        this.tiempoArribo = tiempoArribo;
+        this.prioridad = prioridad;
+        this.estadoProceso = "listo";
+    }
+
+    public Proceso(String nombreProceso, Integer tiempoArribo, Integer tamProceso) {
+        this.nombreProceso = nombreProceso;
+        this.tamProceso = tamProceso;
+        this.tiempoArribo = tiempoArribo;
+        this.estadoProceso = "listo";
+    }
+//******************************************************************************
     public String getEstadoProceso() {
         return estadoProceso;
     }
@@ -68,7 +82,10 @@ public class Proceso {
         return this.tamProceso;
     }
     
-    public static void main(String[] args){
-
+      public void upgradeTiempoArribo() {
+        if (this.tiempoArribo != 0) {
+            this.tiempoArribo -= 1;
+        }
     }
+
 }
