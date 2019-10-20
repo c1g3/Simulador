@@ -69,10 +69,14 @@ public class Algorithms extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Simulador SO");
+        setBounds(new java.awt.Rectangle(100, 100, 100, 100));
 
         boton_procesos.setText("PROCESOS");
+        boton_procesos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         boton_algoritmos.setText("ALGORITMOS");
+        boton_algoritmos.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         boton_algoritmos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 boton_algoritmosActionPerformed(evt);
@@ -80,8 +84,12 @@ public class Algorithms extends javax.swing.JFrame {
         });
 
         boton_memoria.setText("MEMORIA");
+        boton_memoria.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         boton_simular.setText("SIMULAR");
+        boton_simular.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+
+        jSeparator1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         jLabel1.setText("Algoritmos de planificacion");
 
@@ -130,7 +138,9 @@ public class Algorithms extends javax.swing.JFrame {
 
         jLabel9.setText("Envejecimiento:");
 
-        jLabel10.setText("No puede ser negativo");
+        jLabel10.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel10.setText("*No puede ser negativo.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,13 +153,13 @@ public class Algorithms extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jSeparator1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(boton_memoria, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                                .addComponent(boton_memoria, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(boton_procesos, javax.swing.GroupLayout.DEFAULT_SIZE, 176, Short.MAX_VALUE)
+                                .addComponent(boton_procesos, javax.swing.GroupLayout.DEFAULT_SIZE, 172, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(boton_algoritmos, javax.swing.GroupLayout.DEFAULT_SIZE, 188, Short.MAX_VALUE)
+                                .addComponent(boton_algoritmos, javax.swing.GroupLayout.DEFAULT_SIZE, 182, Short.MAX_VALUE)
                                 .addGap(18, 18, 18)
-                                .addComponent(boton_simular, javax.swing.GroupLayout.DEFAULT_SIZE, 167, Short.MAX_VALUE))
+                                .addComponent(boton_simular, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addGap(0, 0, Short.MAX_VALUE)))
@@ -164,7 +174,7 @@ public class Algorithms extends javax.swing.JFrame {
                                         .addComponent(jLabel2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(jLabel10))
                                     .addComponent(bot_apro)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -267,7 +277,10 @@ public class Algorithms extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
