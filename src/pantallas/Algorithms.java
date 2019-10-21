@@ -122,15 +122,15 @@ public class Algorithms extends javax.swing.JFrame {
 
         jLabel4.setText("Cola de prioridad media:");
 
-        cola_alta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cola_alta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FCFS", "Round Robin" }));
 
         jLabel5.setText("Quantum:");
 
-        cola_media.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cola_media.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FCFS", "Round Robin" }));
 
         jLabel6.setText("Quantum:");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "FCFS", "Round Robin" }));
 
         jLabel7.setText("Cola de prioridad baja:");
 
