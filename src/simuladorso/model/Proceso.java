@@ -8,18 +8,23 @@ import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 /**
  *
  * @author Amadeo
  */
-public class Proceso {
+public class Proceso implements Comparable<Proceso>{
     private Scanner teclado;
     private int idProceso;
     private int tamProceso;
     private int tiempoArribo;
     private List<Integer> rafaga;
     private int indice;
+    enum Prioridad implements Comparable<Prioridad>{
+        ALTA,MEDIA,BAJA;
+    }
     private String prioridad;
+    private Prioridad prioridadd;
     static int cont = 1;
     private String estadoProceso;
     
@@ -31,7 +36,16 @@ public class Proceso {
         this.tiempoArribo = tiempoArribo;
         this.rafaga = new ArrayList<Integer>(Arrays.asList(rafaga));
         this.indice = 0;
-        this.prioridad = "baja";
+        System.out.println("Ingrese la prioridad: ");
+        this.prioridad = teclado.next();
+        switch(prioridad){
+            case "BAJA": this.prioridadd = Prioridad.BAJA;
+                         break;
+            case "MEDIA": this.prioridadd = Prioridad.MEDIA;
+                         break;
+            case "ALTA": this.prioridadd = Prioridad.ALTA;
+                         break;           
+        }
         this.estadoProceso = "nuevo";
     }
     
@@ -42,7 +56,16 @@ public class Proceso {
     public void setEstadoProceso(String estadoProceso) {
         this.estadoProceso = estadoProceso;
     }
-
+    
+    @Override
+    public int compareTo(Proceso proceso) {
+        return (this.getPrioridadd()).compareTo(proceso.getPrioridadd());
+    }
+   
+    public Prioridad getPrioridadd(){
+        return this.prioridadd;
+    }
+    
     public Integer getTiempoArribo() {
         return tiempoArribo;
     }
@@ -88,7 +111,26 @@ public class Proceso {
     }
     
     public static void main(String[] args){
-
+        Proceso pro1,pro2,pro3,pro4,pro5;
+        List<Proceso> lista;
+        Integer[] a1 = {2 ,1 ,2};
+        Integer[] a2 = {1, 1, 1};
+        Integer[] a3 = {3, 2, 1}; 
+        pro1 = new Proceso(10,0, a1);
+        pro2 = new Proceso(5,1,a2);
+        pro3 = new Proceso(60,3,a3);
+        pro4 = new Proceso (23,3,a2);
+        pro5 = new Proceso (45,2,a3);
+        lista = new ArrayList<Proceso>();
+        lista.add(pro1);
+        lista.add(pro2);
+        lista.add(pro3);
+        lista.add(pro4);
+        lista.add(pro5);
+        System.out.println(lista);
+        //System.out.println("P1 :"+pro1.getPrioridadd());
+        Collections.sort(lista);
+        System.out.println(lista);
     }
         
 }

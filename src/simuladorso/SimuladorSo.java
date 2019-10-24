@@ -41,8 +41,11 @@ public class SimuladorSo {
         Integer[] a2 = {1, 1, 1};
         Integer[] a3 = {3, 2, 1}; 
         pro1 = new Proceso(10,0, a1);
-        pro2 = new Proceso(5,1,a2);
-        pro3 = new Proceso(60,3,a3);
+        pro2 = new Proceso(5,0,a2);
+        pro3 = new Proceso(60,1,a3);
+        System.out.println(pro1);
+        System.out.println(pro2);
+        System.out.println(pro3);
         colaProcesos.add(pro1);
         colaProcesos.add(pro2);
         colaProcesos.add(pro3);
@@ -208,6 +211,8 @@ public class SimuladorSo {
                 case 1: planificador.FCFS(colaListo,procesador); 
                         break;
                 case 2: planificador.roundRobin(colaListo, procesador);
+                        break;
+                case 3: planificador.prioridades(colaListo, procesador);
                         break;
             }              
         }

@@ -7,6 +7,7 @@ package simuladorso.model;
 
 import java.util.List;
 import java.util.Scanner;
+import java.util.Collections;
 /**
  *
  * @author Juan
@@ -18,7 +19,7 @@ public class Planificador {
     
     public Planificador(){
         teclado = new Scanner(System.in);
-        System.out.println("[1] FCFS [2] Round Robin ");
+        System.out.println("[1] FCFS [2] Round Robin [3]Prioridades");
         this.algoritmoPlanificacion = teclado.nextInt();
         if (this.algoritmoPlanificacion == 2){
             System.out.println("Ingrese el quantum: ");
@@ -44,6 +45,17 @@ public class Planificador {
         proceso = colaListo.get(0);
         procesador.setProceso(proceso);
         procesador.setTimer(quantum);
+        colaListo.remove(procesador.getProceso());
+    }
+    
+    public void prioridades(List<Proceso> colaListo, Procesador procesador){
+        Collections.sort(colaListo);
+        Proceso proceso;
+        int tiempo;
+        proceso = colaListo.get(0);
+        procesador.setProceso(proceso);
+        tiempo = proceso.getRafaga().get(proceso.getIndice());
+        procesador.setTimer(tiempo);
         colaListo.remove(procesador.getProceso());
     }
     

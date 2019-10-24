@@ -43,21 +43,6 @@ public class Memoria {
         this.listParticion = new ArrayList<Particion>();
         this.listProceso = new ArrayList<Proceso>();
     }
-    
-  /* public void cargarParticion(int tamañoParticion) {
-        int tamParticion;
-        if (tamañoParticion > calcularMemoriaLibre() && calcularMemoriaLibre() != 0) {
-            tamParticion = calcularMemoriaLibre();
-            Particion particion = new Particion(tamañoParticion);
-            this.listParticion.add(particion);
-        } else {
-            if (tamañoParticion < calcularMemoriaLibre()) {
-                tamParticion = tamañoParticion;
-                Particion particion = new Particion(tamañoParticion);
-                this.listParticion.add(particion);
-            }
-        }
-    }*/
 
     public void addParticion(Particion particion) {
         if (particion.getTamParticion() > calcularMemoriaLibre() && calcularMemoriaLibre() != 0) {
@@ -78,34 +63,18 @@ public class Memoria {
         return cantidadMemoriaLibre;
     }
     
-    public void imprimir(){
-        System.out.println(this.tamMemoria);
-        if (tipoParticion == true){
-            System.out.println("Particiones Fijas");
-        }
-        else{
-            System.out.println("Particiones Variables");
-        }
-        if (metodo_Intercambio == 1){
-            System.out.println("Best-Fit");
-        }
-        if (metodo_Intercambio == 2){
-            System.out.println("First-Fit");
-        }
-        if (metodo_Intercambio == 3){
-            System.out.println("Worst-Fit");
-        }
-    }
-    
     public void BestFit(List<Proceso> colaNuevo,List<Proceso> colaListo){
-        Collections.sort(listParticion);
+        List<Particion> listaPart = new ArrayList<Particion>();
+        listaPart = this.listParticion; 
+        Collections.sort(listaPart);
         for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
-            for (Particion particion : listParticion){
+            for (Particion particion : listaPart){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
                     particion.addProceso(proceso);
                     particion.setEstado(true);
                     colaListo.add(proceso);
+                    listParticion.remove(proceso);
                     itr.remove();
                     break;
                 }
@@ -129,14 +98,19 @@ public class Memoria {
     }
     
     public void WorstFit(List<Proceso> colaNuevo,List<Proceso> colaListo){
+        List<Particion> listaPart = new ArrayList<Particion>();
+        listaPart = this.listParticion; 
         for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
-            Collections.reverse(listParticion);
+            Collections.sort(listaPart);
+            Collections.reverse(listaPart);
+
             //System.out.println("Lista Particiones: " + this.listParticion);
-            for (Particion particion : listParticion){
+            for (Particion particion : listaPart){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
                     crearParticionVariable(particion, proceso);
                     colaListo.add(proceso);
+                    listParticion.remove(proceso);
                     itr.remove();
                     break;
                 }
@@ -219,9 +193,33 @@ public class Memoria {
                 break;
             }
         }
+        if (this.tipoParticion == false){
+           juntarParticionesVariables();
+        }
+    }
+    
+    public void juntarParticionesVariables(){
+        int index = 0;
+        int acumulador = 0;
+        Collections.reverse(this.listParticion);
+        for (Iterator<Particion> itr = listParticion.iterator(); itr.hasNext();){
+            Particion particion = itr.next();
+            particion.setTamParticion(particion.getTamParticion()+acumulador);
+            if (particion.procesoIsNull() && index+1 < listParticion.size() && listParticion.get(index+1).procesoIsNull()){
+                acumulador = 0;
+                acumulador = acumulador + particion.getTamParticion();
+                itr.remove();
+                index--;
+            }
+            else{
+                acumulador = 0;
+            }
+            index++;
+        }
+        Collections.reverse(this.listParticion);
     }
     
     public static void main(String[] args){
-
+        
     }
 }

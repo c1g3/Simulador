@@ -44,7 +44,6 @@ public class Particion implements Comparable<Particion>{
     
     @Override
     public int compareTo(Particion particion) {
-       
         if (tamParticion < particion.tamParticion) {
             return -1;
         }
