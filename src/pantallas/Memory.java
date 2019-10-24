@@ -5,6 +5,8 @@
  */
 package pantallas;
 
+import simuladorso.model.Memoria;
+
 /**
  *
  * @author Juan
@@ -15,14 +17,17 @@ public class Memory extends javax.swing.JFrame {
      * Creates new form PantallaPrueba
      */
     public Memory() {
+        
+        
+        
         initComponents();
         
-        botones_part.add(bot_fijas);
-        botones_part.add(bot_var);
+        botones_part.add(btnMemoriaFijas);
+        botones_part.add(btnMVariable);
         
-        botones_algo.add(bot_ff);
-        botones_algo.add(bot_bf);
-        botones_algo.add(bot_wf);
+        botones_algo.add(btnFirstFit);
+        botones_algo.add(btnBestFit);
+        botones_algo.add(btnWorstFit);
     }
 
     /**
@@ -43,15 +48,15 @@ public class Memory extends javax.swing.JFrame {
         boton_simular = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        tamanio_memoria = new javax.swing.JTextField();
+        inputTamMemoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        bot_fijas = new javax.swing.JRadioButton();
-        bot_var = new javax.swing.JRadioButton();
+        btnMemoriaFijas = new javax.swing.JRadioButton();
+        btnMVariable = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        bot_ff = new javax.swing.JRadioButton();
-        bot_bf = new javax.swing.JRadioButton();
-        bot_wf = new javax.swing.JRadioButton();
+        btnFirstFit = new javax.swing.JRadioButton();
+        btnBestFit = new javax.swing.JRadioButton();
+        btnWorstFit = new javax.swing.JRadioButton();
         jSeparator2 = new javax.swing.JSeparator();
         panel_particiones = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -76,9 +81,9 @@ public class Memory extends javax.swing.JFrame {
 
         jLabel1.setText("Tamaño de memoria:");
 
-        tamanio_memoria.addActionListener(new java.awt.event.ActionListener() {
+        inputTamMemoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tamanio_memoriaActionPerformed(evt);
+                inputTamMemoriaActionPerformed(evt);
             }
         });
 
@@ -86,32 +91,32 @@ public class Memory extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo de particionamiento:");
 
-        bot_fijas.setText("Fijas");
-        bot_fijas.addActionListener(new java.awt.event.ActionListener() {
+        btnMemoriaFijas.setText("Fijas");
+        btnMemoriaFijas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bot_fijasActionPerformed(evt);
+                btnMemoriaFijasActionPerformed(evt);
             }
         });
 
-        bot_var.setText("Variables");
-        bot_var.addActionListener(new java.awt.event.ActionListener() {
+        btnMVariable.setText("Variables");
+        btnMVariable.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bot_varActionPerformed(evt);
+                btnMVariableActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Algoritmo de Intercambio:");
 
-        bot_ff.setText("First-Fit");
-        bot_ff.addActionListener(new java.awt.event.ActionListener() {
+        btnFirstFit.setText("First-Fit");
+        btnFirstFit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bot_ffActionPerformed(evt);
+                btnFirstFitActionPerformed(evt);
             }
         });
 
-        bot_bf.setText("Best-Fit");
+        btnBestFit.setText("Best-Fit");
 
-        bot_wf.setText("Worst-Fit");
+        btnWorstFit.setText("Worst-Fit");
 
         jLabel6.setText("PARTICIONES");
 
@@ -122,7 +127,7 @@ public class Memory extends javax.swing.JFrame {
             .addGroup(panel_particionesLayout.createSequentialGroup()
                 .addGap(193, 193, 193)
                 .addComponent(jLabel6)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(196, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_particionesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -133,7 +138,7 @@ public class Memory extends javax.swing.JFrame {
             .addGroup(panel_particionesLayout.createSequentialGroup()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, 184, Short.MAX_VALUE)
+                .addComponent(jScrollBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -168,29 +173,29 @@ public class Memory extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(bot_ff)
-                            .addComponent(bot_bf)
-                            .addComponent(bot_wf)
+                            .addComponent(btnFirstFit)
+                            .addComponent(btnBestFit)
+                            .addComponent(btnWorstFit)
                             .addComponent(jLabel3)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(tamanio_memoria, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(inputTamMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jLabel2))
-                            .addComponent(bot_fijas)
-                            .addComponent(bot_var))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 72, Short.MAX_VALUE)
+                            .addComponent(btnMemoriaFijas)
+                            .addComponent(btnMVariable))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(panel_particiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(boton_memoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boton_memoria, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(boton_procesos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boton_procesos, javax.swing.GroupLayout.DEFAULT_SIZE, 181, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(boton_algoritmos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boton_algoritmos, javax.swing.GroupLayout.DEFAULT_SIZE, 193, Short.MAX_VALUE)
                         .addGap(18, 18, 18)
-                        .addComponent(boton_simular, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(boton_simular, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
@@ -206,27 +211,27 @@ public class Memory extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(tamanio_memoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(inputTamMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_fijas)
+                        .addComponent(btnMemoriaFijas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_var)
+                        .addComponent(btnMVariable)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_ff)
+                        .addComponent(btnFirstFit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_bf)
+                        .addComponent(btnBestFit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_wf))
-                    .addComponent(panel_particiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnWorstFit))
+                    .addComponent(panel_particiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -254,26 +259,27 @@ public class Memory extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    //cabecera***********************************************************
     private void boton_algoritmosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton_algoritmosActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_algoritmosActionPerformed
 
-    private void tamanio_memoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamanio_memoriaActionPerformed
+    private void inputTamMemoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputTamMemoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tamanio_memoriaActionPerformed
+    }//GEN-LAST:event_inputTamMemoriaActionPerformed
 
-    private void bot_fijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bot_fijasActionPerformed
+    private void btnMemoriaFijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMemoriaFijasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bot_fijasActionPerformed
+    }//GEN-LAST:event_btnMemoriaFijasActionPerformed
 
-    private void bot_varActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bot_varActionPerformed
+    private void btnMVariableActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMVariableActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bot_varActionPerformed
+    }//GEN-LAST:event_btnMVariableActionPerformed
 
-    private void bot_ffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bot_ffActionPerformed
+    private void btnFirstFitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFirstFitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bot_ffActionPerformed
-
+    }//GEN-LAST:event_btnFirstFitActionPerformed
+//*********************************************************************
     
     private int tamanio_memoria(int t){
         return t;
@@ -283,31 +289,8 @@ public class Memory extends javax.swing.JFrame {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Memory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Memory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Memory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Memory.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        Memoria memoria = new Memoria();
+        
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -318,17 +301,18 @@ public class Memory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton bot_bf;
-    private javax.swing.JRadioButton bot_ff;
-    private javax.swing.JRadioButton bot_fijas;
-    private javax.swing.JRadioButton bot_var;
-    private javax.swing.JRadioButton bot_wf;
     private javax.swing.JButton boton_algoritmos;
     private javax.swing.JButton boton_memoria;
     private javax.swing.JButton boton_procesos;
     private javax.swing.JButton boton_simular;
     private javax.swing.ButtonGroup botones_algo;
     private javax.swing.ButtonGroup botones_part;
+    private javax.swing.JRadioButton btnBestFit;
+    private javax.swing.JRadioButton btnFirstFit;
+    private javax.swing.JRadioButton btnMVariable;
+    private javax.swing.JRadioButton btnMemoriaFijas;
+    private javax.swing.JRadioButton btnWorstFit;
+    private javax.swing.JTextField inputTamMemoria;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -341,6 +325,5 @@ public class Memory extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JPanel panel_particiones;
-    private javax.swing.JTextField tamanio_memoria;
     // End of variables declaration//GEN-END:variables
 }

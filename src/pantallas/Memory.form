@@ -60,32 +60,32 @@
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_ff" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_bf" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_wf" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnFirstFit" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnBestFit" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnWorstFit" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="tamanio_memoria" min="-2" pref="72" max="-2" attributes="0"/>
+                                  <Component id="inputTamMemoria" min="-2" pref="72" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="bot_fijas" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_var" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnMemoriaFijas" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="btnMVariable" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="72" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Component id="panel_particiones" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jSeparator1" max="32767" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="boton_memoria" max="32767" attributes="0"/>
+                          <Component id="boton_memoria" pref="171" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="boton_procesos" max="32767" attributes="0"/>
+                          <Component id="boton_procesos" pref="181" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="boton_algoritmos" max="32767" attributes="0"/>
+                          <Component id="boton_algoritmos" pref="193" max="32767" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="boton_simular" max="32767" attributes="0"/>
+                          <Component id="boton_simular" pref="170" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jSeparator2" alignment="1" max="32767" attributes="0"/>
                   </Group>
@@ -106,29 +106,29 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator1" min="-2" pref="11" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tamanio_memoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="inputTamMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_fijas" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnMemoriaFijas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_var" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnMVariable" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_ff" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnFirstFit" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_bf" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnBestFit" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_wf" min="-2" max="-2" attributes="0"/>
+                          <Component id="btnWorstFit" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="panel_particiones" min="-2" max="-2" attributes="0"/>
+                      <Component id="panel_particiones" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
@@ -170,9 +170,9 @@
             <Property name="text" type="java.lang.String" value="Tama&#xf1;o de memoria:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tamanio_memoria">
+        <Component class="javax.swing.JTextField" name="inputTamMemoria">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tamanio_memoriaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputTamMemoriaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -185,20 +185,20 @@
             <Property name="text" type="java.lang.String" value="Tipo de particionamiento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_fijas">
+        <Component class="javax.swing.JRadioButton" name="btnMemoriaFijas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fijas"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bot_fijasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMemoriaFijasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_var">
+        <Component class="javax.swing.JRadioButton" name="btnMVariable">
           <Properties>
             <Property name="text" type="java.lang.String" value="Variables"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bot_varActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMVariableActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -206,20 +206,20 @@
             <Property name="text" type="java.lang.String" value="Algoritmo de Intercambio:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_ff">
+        <Component class="javax.swing.JRadioButton" name="btnFirstFit">
           <Properties>
             <Property name="text" type="java.lang.String" value="First-Fit"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bot_ffActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnFirstFitActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_bf">
+        <Component class="javax.swing.JRadioButton" name="btnBestFit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Best-Fit"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_wf">
+        <Component class="javax.swing.JRadioButton" name="btnWorstFit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Worst-Fit"/>
           </Properties>
@@ -234,7 +234,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="197" max="32767" attributes="0"/>
+                      <EmptySpace pref="196" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -248,7 +248,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollBar1" pref="184" max="32767" attributes="0"/>
+                      <Component id="jScrollBar1" max="32767" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
