@@ -17,12 +17,12 @@ public class Memory extends javax.swing.JFrame {
     public Memory() {
         initComponents();
         
-        botones_part.add(bot_fijas);
-        botones_part.add(bot_var);
+        botones_part.add(radiobtn_fijas);
+        botones_part.add(radiobtn_variables);
         
-        botones_algo.add(bot_ff);
-        botones_algo.add(bot_bf);
-        botones_algo.add(bot_wf);
+        botones_algo.add(radiobtn_firstfit);
+        botones_algo.add(radiobtn_bestfit);
+        botones_algo.add(radiobtn_worstfit);
     }
 
     /**
