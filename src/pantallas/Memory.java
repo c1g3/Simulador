@@ -46,12 +46,12 @@ public class Memory extends javax.swing.JFrame {
         tamanio_memoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        bot_fijas = new javax.swing.JRadioButton();
-        bot_var = new javax.swing.JRadioButton();
+        radiobtn_fijas = new javax.swing.JRadioButton();
+        radiobtn_variables = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        bot_ff = new javax.swing.JRadioButton();
-        bot_bf = new javax.swing.JRadioButton();
-        bot_wf = new javax.swing.JRadioButton();
+        radiobtn_firstfit = new javax.swing.JRadioButton();
+        radiobtn_bestfit = new javax.swing.JRadioButton();
+        radiobtn_worstfit = new javax.swing.JRadioButton();
         jSeparator2 = new javax.swing.JSeparator();
         panel_particiones = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
@@ -90,32 +90,32 @@ public class Memory extends javax.swing.JFrame {
 
         jLabel3.setText("Tipo de particionamiento:");
 
-        bot_fijas.setText("Fijas");
-        bot_fijas.addActionListener(new java.awt.event.ActionListener() {
+        radiobtn_fijas.setText("Fijas");
+        radiobtn_fijas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bot_fijasActionPerformed(evt);
+                radiobtn_fijasActionPerformed(evt);
             }
         });
 
-        bot_var.setText("Variables");
-        bot_var.addActionListener(new java.awt.event.ActionListener() {
+        radiobtn_variables.setText("Variables");
+        radiobtn_variables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bot_varActionPerformed(evt);
+                radiobtn_variablesActionPerformed(evt);
             }
         });
 
         jLabel4.setText("Algoritmo de Intercambio:");
 
-        bot_ff.setText("First-Fit");
-        bot_ff.addActionListener(new java.awt.event.ActionListener() {
+        radiobtn_firstfit.setText("First-Fit");
+        radiobtn_firstfit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bot_ffActionPerformed(evt);
+                radiobtn_firstfitActionPerformed(evt);
             }
         });
 
-        bot_bf.setText("Best-Fit");
+        radiobtn_bestfit.setText("Best-Fit");
 
-        bot_wf.setText("Worst-Fit");
+        radiobtn_worstfit.setText("Worst-Fit");
 
         jLabel6.setText("PARTICIONES");
 
@@ -157,7 +157,7 @@ public class Memory extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel5)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(94, Short.MAX_VALUE))
         );
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -178,12 +178,12 @@ public class Memory extends javax.swing.JFrame {
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(bot_ff)
-                            .addComponent(bot_bf)
-                            .addComponent(bot_wf)
+                            .addComponent(radiobtn_firstfit)
+                            .addComponent(radiobtn_bestfit)
+                            .addComponent(radiobtn_worstfit)
                             .addComponent(jLabel3)
-                            .addComponent(bot_fijas)
-                            .addComponent(bot_var)
+                            .addComponent(radiobtn_fijas)
+                            .addComponent(radiobtn_variables)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -222,6 +222,8 @@ public class Memory extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(panel_particiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jSeparator3)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
@@ -232,20 +234,18 @@ public class Memory extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_fijas)
+                        .addComponent(radiobtn_fijas)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_var)
+                        .addComponent(radiobtn_variables)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_ff)
+                        .addComponent(radiobtn_firstfit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_bf)
+                        .addComponent(radiobtn_bestfit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bot_wf))
-                    .addComponent(panel_particiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(radiobtn_worstfit)))
+                .addGap(45, 45, 45)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -280,17 +280,17 @@ public class Memory extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tamanio_memoriaActionPerformed
 
-    private void bot_fijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bot_fijasActionPerformed
+    private void radiobtn_fijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_fijasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bot_fijasActionPerformed
+    }//GEN-LAST:event_radiobtn_fijasActionPerformed
 
-    private void bot_varActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bot_varActionPerformed
+    private void radiobtn_variablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_variablesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bot_varActionPerformed
+    }//GEN-LAST:event_radiobtn_variablesActionPerformed
 
-    private void bot_ffActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bot_ffActionPerformed
+    private void radiobtn_firstfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_firstfitActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_bot_ffActionPerformed
+    }//GEN-LAST:event_radiobtn_firstfitActionPerformed
 
     
     private int tamanio_memoria(int t){
@@ -336,11 +336,6 @@ public class Memory extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JRadioButton bot_bf;
-    private javax.swing.JRadioButton bot_ff;
-    private javax.swing.JRadioButton bot_fijas;
-    private javax.swing.JRadioButton bot_var;
-    private javax.swing.JRadioButton bot_wf;
     private javax.swing.JButton boton_algoritmos;
     private javax.swing.JButton boton_memoria;
     private javax.swing.JButton boton_procesos;
@@ -361,6 +356,11 @@ public class Memory extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JPanel panel_particiones;
+    private javax.swing.JRadioButton radiobtn_bestfit;
+    private javax.swing.JRadioButton radiobtn_fijas;
+    private javax.swing.JRadioButton radiobtn_firstfit;
+    private javax.swing.JRadioButton radiobtn_variables;
+    private javax.swing.JRadioButton radiobtn_worstfit;
     private javax.swing.JTextField tamanio_memoria;
     // End of variables declaration//GEN-END:variables
 }

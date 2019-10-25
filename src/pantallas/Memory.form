@@ -64,12 +64,12 @@
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_ff" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_bf" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_wf" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radiobtn_firstfit" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radiobtn_bestfit" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radiobtn_worstfit" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_fijas" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="bot_var" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radiobtn_fijas" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <Component id="radiobtn_variables" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Group type="102" alignment="0" attributes="0">
                                   <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace max="-2" attributes="0"/>
@@ -118,7 +118,9 @@
                   <Component id="jSeparator1" min="-2" pref="11" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Group type="102" attributes="0">
+                      <Component id="panel_particiones" max="32767" attributes="0"/>
+                      <Component id="jSeparator3" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="tamanio_memoria" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -129,26 +131,24 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_fijas" min="-2" max="-2" attributes="0"/>
+                          <Component id="radiobtn_fijas" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_var" min="-2" max="-2" attributes="0"/>
+                          <Component id="radiobtn_variables" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_ff" min="-2" max="-2" attributes="0"/>
+                          <Component id="radiobtn_firstfit" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_bf" min="-2" max="-2" attributes="0"/>
+                          <Component id="radiobtn_bestfit" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="bot_wf" min="-2" max="-2" attributes="0"/>
+                          <Component id="radiobtn_worstfit" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="panel_particiones" max="32767" attributes="0"/>
-                      <Component id="jSeparator3" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -199,20 +199,20 @@
             <Property name="text" type="java.lang.String" value="Tipo de particionamiento:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_fijas">
+        <Component class="javax.swing.JRadioButton" name="radiobtn_fijas">
           <Properties>
             <Property name="text" type="java.lang.String" value="Fijas"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bot_fijasActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiobtn_fijasActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_var">
+        <Component class="javax.swing.JRadioButton" name="radiobtn_variables">
           <Properties>
             <Property name="text" type="java.lang.String" value="Variables"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bot_varActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiobtn_variablesActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel4">
@@ -220,20 +220,20 @@
             <Property name="text" type="java.lang.String" value="Algoritmo de Intercambio:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_ff">
+        <Component class="javax.swing.JRadioButton" name="radiobtn_firstfit">
           <Properties>
             <Property name="text" type="java.lang.String" value="First-Fit"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bot_ffActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiobtn_firstfitActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_bf">
+        <Component class="javax.swing.JRadioButton" name="radiobtn_bestfit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Best-Fit"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JRadioButton" name="bot_wf">
+        <Component class="javax.swing.JRadioButton" name="radiobtn_worstfit">
           <Properties>
             <Property name="text" type="java.lang.String" value="Worst-Fit"/>
           </Properties>
@@ -295,7 +295,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="127" max="32767" attributes="0"/>
+                      <EmptySpace pref="94" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
