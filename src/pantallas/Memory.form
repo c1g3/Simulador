@@ -63,29 +63,44 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="10" pref="10" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="radiobtn_firstfit" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="radiobtn_bestfit" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="radiobtn_worstfit" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="radiobtn_fijas" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Component id="radiobtn_variables" alignment="0" min="-2" max="-2" attributes="0"/>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                              <Group type="102" attributes="0">
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Group type="102" attributes="0">
-                                          <Component id="tamanio_memoria" min="-2" pref="72" max="-2" attributes="0"/>
-                                          <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="radiobtn_firstfit" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="radiobtn_bestfit" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Component id="radiobtn_variables" min="-2" max="-2" attributes="0"/>
+                                          <EmptySpace type="separate" max="-2" attributes="0"/>
+                                          <Component id="radiobtn_fijas" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                      <Group type="102" alignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                              <Component id="jLabel_tamparticion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          </Group>
+                                          <EmptySpace max="-2" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <Component id="jTextField_tamMemoria" min="-2" pref="72" max="-2" attributes="0"/>
+                                                  <EmptySpace max="-2" attributes="0"/>
+                                                  <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                              </Group>
+                                              <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                              <Group type="102" alignment="0" attributes="0">
+                                                  <Component id="jTextField_tamParticion" min="-2" pref="72" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jButton_addParticion" pref="83" max="32767" attributes="0"/>
+                                              </Group>
+                                          </Group>
+                                      </Group>
                                   </Group>
+                                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                                  <Component id="jSeparator3" min="-2" pref="12" max="-2" attributes="0"/>
                               </Group>
                           </Group>
-                          <EmptySpace pref="35" max="32767" attributes="0"/>
-                          <Component id="jSeparator3" min="-2" pref="12" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                           <Component id="panel_particiones" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jSeparator1" max="32767" attributes="0"/>
@@ -118,22 +133,34 @@
                   <Component id="jSeparator1" min="-2" pref="11" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="panel_particiones" max="32767" attributes="0"/>
-                      <Component id="jSeparator3" max="32767" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="panel_particiones" max="32767" attributes="0"/>
+                              <Component id="jSeparator3" max="32767" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
+                      </Group>
                       <Group type="102" alignment="1" attributes="0">
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="tamanio_memoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField_tamMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="jLabel_tamparticion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jTextField_tamParticion" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="jButton_addParticion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                           <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="radiobtn_fijas" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="radiobtn_variables" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
+                          <Group type="103" groupAlignment="3" attributes="0">
+                              <Component id="radiobtn_variables" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="radiobtn_fijas" alignment="3" min="-2" max="-2" attributes="0"/>
+                          </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -142,9 +169,9 @@
                           <Component id="radiobtn_bestfit" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="radiobtn_worstfit" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace min="45" pref="45" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
@@ -184,9 +211,9 @@
             <Property name="text" type="java.lang.String" value="Tama&#xf1;o de memoria:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tamanio_memoria">
+        <Component class="javax.swing.JTextField" name="jTextField_tamMemoria">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tamanio_memoriaActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_tamMemoriaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
@@ -248,7 +275,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="193" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace pref="197" max="32767" attributes="0"/>
+                      <EmptySpace pref="143" max="32767" attributes="0"/>
                   </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
@@ -323,6 +350,21 @@
             </Property>
             <Property name="text" type="java.lang.String" value="*No puede ser negativo"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel_tamparticion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Tama&#xf1;o de particion:"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JTextField" name="jTextField_tamParticion">
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton_addParticion">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="Agregar"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton_addParticionActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

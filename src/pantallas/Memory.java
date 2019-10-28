@@ -43,7 +43,7 @@ public class Memory extends javax.swing.JFrame {
         boton_simular = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel1 = new javax.swing.JLabel();
-        tamanio_memoria = new javax.swing.JTextField();
+        jTextField_tamMemoria = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         radiobtn_fijas = new javax.swing.JRadioButton();
@@ -60,6 +60,9 @@ public class Memory extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel7 = new javax.swing.JLabel();
+        jLabel_tamparticion = new javax.swing.JLabel();
+        jTextField_tamParticion = new javax.swing.JTextField();
+        jButton_addParticion = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Simulador SO");
@@ -80,9 +83,9 @@ public class Memory extends javax.swing.JFrame {
 
         jLabel1.setText("Tamaño de memoria:");
 
-        tamanio_memoria.addActionListener(new java.awt.event.ActionListener() {
+        jTextField_tamMemoria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tamanio_memoriaActionPerformed(evt);
+                jTextField_tamMemoriaActionPerformed(evt);
             }
         });
 
@@ -126,7 +129,7 @@ public class Memory extends javax.swing.JFrame {
             .addGroup(panel_particionesLayout.createSequentialGroup()
                 .addGap(193, 193, 193)
                 .addComponent(jLabel6)
-                .addContainerGap(197, Short.MAX_VALUE))
+                .addContainerGap(143, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_particionesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,6 +169,15 @@ public class Memory extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 51, 51));
         jLabel7.setText("*No puede ser negativo");
 
+        jLabel_tamparticion.setText("Tamaño de particion:");
+
+        jButton_addParticion.setText("Agregar");
+        jButton_addParticion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton_addParticionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -177,25 +189,35 @@ public class Memory extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4)
-                            .addComponent(radiobtn_firstfit)
-                            .addComponent(radiobtn_bestfit)
                             .addComponent(radiobtn_worstfit)
-                            .addComponent(jLabel3)
-                            .addComponent(radiobtn_fijas)
-                            .addComponent(radiobtn_variables)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(radiobtn_firstfit)
+                                    .addComponent(radiobtn_bestfit)
+                                    .addComponent(jLabel3)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(tamanio_memoria, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(radiobtn_variables)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(radiobtn_fijas))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel1)
+                                            .addComponent(jLabel_tamparticion))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel2))
-                                    .addComponent(jLabel7))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                        .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jTextField_tamMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel2))
+                                            .addComponent(jLabel7)
+                                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                                .addComponent(jTextField_tamParticion, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGap(18, 18, 18)
+                                                .addComponent(jButton_addParticion, javax.swing.GroupLayout.DEFAULT_SIZE, 83, Short.MAX_VALUE)))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addComponent(panel_particiones, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jSeparator1)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -222,21 +244,29 @@ public class Memory extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(panel_particiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jSeparator3)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(panel_particiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jSeparator3))
+                        .addGap(45, 45, 45))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
-                            .addComponent(tamanio_memoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTextField_tamMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(16, 16, 16)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel_tamparticion)
+                            .addComponent(jTextField_tamParticion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jButton_addParticion))
+                        .addGap(41, 41, 41)
                         .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(radiobtn_fijas)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(radiobtn_variables)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(radiobtn_variables)
+                            .addComponent(radiobtn_fijas))
                         .addGap(18, 18, 18)
                         .addComponent(jLabel4)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -244,8 +274,8 @@ public class Memory extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(radiobtn_bestfit)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(radiobtn_worstfit)))
-                .addGap(45, 45, 45)
+                        .addComponent(radiobtn_worstfit)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -276,9 +306,9 @@ public class Memory extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_boton_algoritmosActionPerformed
 
-    private void tamanio_memoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamanio_memoriaActionPerformed
+    private void jTextField_tamMemoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_tamMemoriaActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tamanio_memoriaActionPerformed
+    }//GEN-LAST:event_jTextField_tamMemoriaActionPerformed
 
     private void radiobtn_fijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_fijasActionPerformed
         // TODO add your handling code here:
@@ -291,6 +321,10 @@ public class Memory extends javax.swing.JFrame {
     private void radiobtn_firstfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_firstfitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radiobtn_firstfitActionPerformed
+
+    private void jButton_addParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton_addParticionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton_addParticionActionPerformed
 
     
     private int tamanio_memoria(int t){
@@ -342,6 +376,7 @@ public class Memory extends javax.swing.JFrame {
     private javax.swing.JButton boton_simular;
     private javax.swing.ButtonGroup botones_algo;
     private javax.swing.ButtonGroup botones_part;
+    private javax.swing.JButton jButton_addParticion;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -349,18 +384,20 @@ public class Memory extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel_tamparticion;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollBar jScrollBar1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextField jTextField_tamMemoria;
+    private javax.swing.JTextField jTextField_tamParticion;
     private javax.swing.JPanel panel_particiones;
     private javax.swing.JRadioButton radiobtn_bestfit;
     private javax.swing.JRadioButton radiobtn_fijas;
     private javax.swing.JRadioButton radiobtn_firstfit;
     private javax.swing.JRadioButton radiobtn_variables;
     private javax.swing.JRadioButton radiobtn_worstfit;
-    private javax.swing.JTextField tamanio_memoria;
     // End of variables declaration//GEN-END:variables
 }
