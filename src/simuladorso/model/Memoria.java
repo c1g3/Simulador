@@ -42,17 +42,17 @@ public class Memoria {
         this.listProceso = new ArrayList<Proceso>();
     }
 
-    public Memoria(Integer tamaño) {
+    public Memoria(Integer tamMemoria) {
 
-        if (tamaño > this.tamMaximo) {
+        if (tamMemoria > this.tamMaximo) {
             this.tamMemoria = this.tamMaximo;
         }
 
-        if (tamaño < this.tamMinimo) {
+        if (tamMemoria < this.tamMinimo) {
             this.tamMemoria = this.tamMinimo;
         }
 
-        this.tamMemoria = tamaño;
+        this.tamMemoria = tamMemoria;
 
         this.tamanoSo = (int) (this.tamMemoria * 0.10);
 
@@ -61,16 +61,16 @@ public class Memoria {
     }
 //***************************************************************
 
-    public void cargarParticion(int tamañoParticion) {
-        int tamParticion;
-        if (tamañoParticion > calcularMemoriaLibre() && calcularMemoriaLibre() != 0) {
-            tamParticion = calcularMemoriaLibre();
-            Particion particion = new Particion(tamañoParticion);
+    public void cargarParticion(int tamaParticion) {
+        int tamParticionn;
+        if (tamaParticion > calcularMemoriaLibre() && calcularMemoriaLibre() != 0) {
+            tamParticionn = calcularMemoriaLibre();
+            Particion particion = new Particion(tamaParticion);
             this.listParticion.add(particion);
         } else {
-            if (tamañoParticion < calcularMemoriaLibre()) {
-                tamParticion = tamañoParticion;
-                Particion particion = new Particion(tamañoParticion);
+            if (tamaParticion < calcularMemoriaLibre()) {
+                tamParticionn = tamaParticion;
+                Particion particion = new Particion(tamaParticion);
                 this.listParticion.add(particion);
             }
         }
@@ -85,12 +85,12 @@ public class Memoria {
 
     public int calcularMemoriaLibre() {
         int cantidadMemoriaLibre = 0;
-        int acumuladorTamañoParticiones = 0;
+        int acumuladorTamParticiones = 0;
         if (this.listParticion.isEmpty()) {
             cantidadMemoriaLibre += this.tamMemoria - this.tamanoSo;
         } else {
-            acumuladorTamañoParticiones = this.listParticion.stream().map((p) -> p.getTamParticion()).reduce(acumuladorTamañoParticiones, Integer::sum);
-            cantidadMemoriaLibre += (this.tamMemoria - acumuladorTamañoParticiones - tamanoSo);
+            acumuladorTamParticiones = this.listParticion.stream().map((p) -> p.getTamParticion()).reduce(acumuladorTamParticiones, Integer::sum);
+            cantidadMemoriaLibre += (this.tamMemoria - acumuladorTamParticiones - tamanoSo);
         }
         return cantidadMemoriaLibre;
     }
@@ -232,12 +232,12 @@ public class Memoria {
 
     public int calcularDirComienzo() {
         int dirComienzo = 0;
-        int acumuladorTamañoParticiones = 0;
+        int acumuladorTamParticiones = 0;
         if (this.listParticion.isEmpty()) {
             dirComienzo += this.tamanoSo;
         } else {
-            acumuladorTamañoParticiones = this.listParticion.stream().map((p) -> p.getTamParticion()).reduce(acumuladorTamañoParticiones, Integer::sum);
-            dirComienzo += (acumuladorTamañoParticiones + tamanoSo);
+            acumuladorTamParticiones = this.listParticion.stream().map((p) -> p.getTamParticion()).reduce(acumuladorTamParticiones, Integer::sum);
+            dirComienzo += (acumuladorTamParticiones + tamanoSo);
         }
         return dirComienzo;
     }
