@@ -9,12 +9,12 @@ package pantallas;
  *
  * @author erick
  */
-public class jFramePrincipal extends javax.swing.JFrame {
+public class Principal extends javax.swing.JFrame {
 
     /**
      * Creates new form jFramePrincipal
      */
-    public jFramePrincipal() {
+    public Principal() {
         initComponents();
         setTitle("Simulador SO");
     }
@@ -61,7 +61,6 @@ public class jFramePrincipal extends javax.swing.JFrame {
         bot_prio = new javax.swing.JRadioButton();
         bot_apro = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         ing_envej = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
         bot_coop = new javax.swing.JRadioButton();
@@ -359,13 +358,20 @@ public class jFramePrincipal extends javax.swing.JFrame {
         buttonGroup2.add(bot_apro);
         bot_apro.setText("Apropiativo");
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 2, 10)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel10.setText("*No puede ser negativo.");
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField1KeyTyped(evt);
+            }
+        });
 
         ing_envej.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ing_envejActionPerformed(evt);
+            }
+        });
+        ing_envej.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                ing_envejKeyTyped(evt);
             }
         });
 
@@ -374,19 +380,19 @@ public class jFramePrincipal extends javax.swing.JFrame {
         buttonGroup2.add(bot_coop);
         bot_coop.setText("Cooperativo");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "FCFS", "Round Robin" }));
 
         jLabel11.setText("Quantum:");
 
         jLabel12.setText("Quantum:");
 
-        cola_media.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cola_media.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "FCFS", "Round Robin" }));
 
         jLabel13.setText("Cola de prioridad baja:");
 
         jLabel14.setText("Quantum:");
 
-        cola_alta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cola_alta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "FCFS", "Round Robin" }));
 
         jLabel15.setText("Cola de prioridad media:");
 
@@ -440,9 +446,7 @@ public class jFramePrincipal extends javax.swing.JFrame {
                                         .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
                                             .addComponent(jLabel8)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel10))
+                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addComponent(bot_apro)
                                         .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
                                             .addComponent(bot_coop)
@@ -464,8 +468,7 @@ public class jFramePrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(bot_prio)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -641,6 +644,18 @@ public class jFramePrincipal extends javax.swing.JFrame {
         if (c<'0'||c>'9') evt.consume();
     }//GEN-LAST:event_jTextField_tamParticionKeyTyped
 
+    private void jTextField1KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyTyped
+        char c = evt.getKeyChar();
+        
+        if (c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_jTextField1KeyTyped
+
+    private void ing_envejKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ing_envejKeyTyped
+        char c = evt.getKeyChar();
+        
+        if (c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_ing_envejKeyTyped
+
     /**
      * @param args the command line arguments
      */
@@ -658,20 +673,21 @@ public class jFramePrincipal extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(jFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(jFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(jFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(jFramePrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new jFramePrincipal().setVisible(true);
+                new Principal().setVisible(true);
             }
         });
     }
@@ -694,7 +710,6 @@ public class jFramePrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
