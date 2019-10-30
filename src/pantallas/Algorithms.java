@@ -11,6 +11,10 @@ package pantallas;
  */
 public class Algorithms extends javax.swing.JFrame {
 
+    static void main(String asdf) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     /**
      * Creates new form Algorithms
      */
