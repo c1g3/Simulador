@@ -27,6 +27,7 @@ public class Memory extends javax.swing.JFrame {
 
         botones_part = new javax.swing.ButtonGroup();
         botones_algo = new javax.swing.ButtonGroup();
+        jFrame1 = new javax.swing.JFrame();
         jPanel1 = new javax.swing.JPanel();
         boton_procesos = new javax.swing.JButton();
         boton_algoritmos = new javax.swing.JButton();
@@ -53,6 +54,17 @@ public class Memory extends javax.swing.JFrame {
         inputTamParticion = new javax.swing.JTextField();
         jButton_agregarParticion = new javax.swing.JButton();
         okMemory = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
+        jFrame1.getContentPane().setLayout(jFrame1Layout);
+        jFrame1Layout.setHorizontalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jFrame1Layout.setVerticalGroup(
+            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -163,13 +175,6 @@ public class Memory extends javax.swing.JFrame {
                 inputTamParticionActionPerformed(evt);
             }
         });
-        inputTamParticion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                inputTamParticion(evt);
-              
-            }
-        });
-
         jButton_agregarParticion.setText("Agregar");
         jButton_agregarParticion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -387,6 +392,7 @@ public class Memory extends javax.swing.JFrame {
     private javax.swing.JTextField inputTamMemoria;
     private javax.swing.JTextField inputTamParticion;
     private javax.swing.JButton jButton_agregarParticion;
+    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
