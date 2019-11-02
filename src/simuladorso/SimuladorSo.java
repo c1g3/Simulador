@@ -24,6 +24,10 @@ public class SimuladorSo {
     private static Proceso pro1;
     private static Proceso pro2;
     private static Proceso pro3;
+    private static Proceso pro4;
+    private static Proceso pro5;
+    private static Proceso pro6;
+    private static Proceso pro7;
     private static List<Proceso> colaProcesos;
     private static List<Proceso> colaNuevo;
     private static List<Proceso> colaListo;
@@ -40,15 +44,31 @@ public class SimuladorSo {
         Integer[] a1 = {2 ,1 ,2};
         Integer[] a2 = {1, 1, 1};
         Integer[] a3 = {3, 2, 1}; 
+        Integer[] a4 = {1, 2, 1};
+        Integer[] a5 = {2, 1, 1};
+        Integer[] a6 = {1, 2, 3};
+        Integer[] a7 = {1, 1, 1};
         pro1 = new Proceso(10,0, a1);
         pro2 = new Proceso(5,0,a2);
         pro3 = new Proceso(60,1,a3);
+        pro4 = new Proceso(15,1,a4);
+        pro5 = new Proceso(3,1,a5);
+        pro6 = new Proceso(30,2,a6);
+        pro7 = new Proceso(21,2,a7);
         System.out.println(pro1);
         System.out.println(pro2);
         System.out.println(pro3);
+        System.out.println(pro4);
+        System.out.println(pro5);
+        System.out.println(pro6);
+        System.out.println(pro7);
         colaProcesos.add(pro1);
         colaProcesos.add(pro2);
         colaProcesos.add(pro3);
+        colaProcesos.add(pro4);
+        colaProcesos.add(pro5);
+        colaProcesos.add(pro6);
+        colaProcesos.add(pro7);
         cantProcesos = colaProcesos.size();
     }
 
@@ -149,6 +169,7 @@ public class SimuladorSo {
             es.ejecutar();
             if (es.timeout() && clock != 0){
                 es.getProceso().setIndice(es.getProceso().getIndice()+1);
+                es.getProceso().setTiempoActual(es.getProceso().getRafaga().get(es.getProceso().getIndice()));
                 colaListo.add(es.getProceso());
                 es.removeProceso();
             }
@@ -179,6 +200,7 @@ public class SimuladorSo {
             procesador.ejecutar();
             if (clock != 0){
                 comparativa = procesador.getProceso().getRafaga().get(procesador.getProceso().getIndice()) - procesador.getOriginalTimer();
+                procesador.getProceso().setTiempoActual(procesador.getProceso().getRafaga().get(procesador.getProceso().getIndice()));
                 if (comparativa == 0 && procesador.timeout()){
                     procesoTermino();
                 }
@@ -210,9 +232,13 @@ public class SimuladorSo {
             switch (planificador.getAlgoritmoPlanificacion()){
                 case 1: planificador.FCFS(colaListo,procesador); 
                         break;
-                case 2: planificador.roundRobin(colaListo, procesador);
+                case 2: planificador.roundRobin(colaListo, procesador, planificador.getQuantum());
                         break;
                 case 3: planificador.prioridades(colaListo, procesador);
+                        break;
+                case 4: planificador.SJF(colaListo, procesador);
+                        break;
+                case 5: planificador.colasMultinivel(colaListo, procesador);
                         break;
             }              
         }
@@ -225,7 +251,7 @@ public class SimuladorSo {
         setUpColas();
         initialProcedures();
         while (colaTerminado.size() != cantProcesos){
-            cargarColaNuevo();    
+            cargarColaNuevo(); 
             intercambio();
             controlES();
             controlProcesador();

@@ -27,6 +27,7 @@ public class Proceso implements Comparable<Proceso>{
     private Prioridad prioridadd;
     static int cont = 1;
     private String estadoProceso;
+    private int tiempoActual;
     
     public Proceso(int tamProceso, int tiempoArribo, Integer[] rafaga){
         teclado = new Scanner(System.in);
@@ -46,6 +47,7 @@ public class Proceso implements Comparable<Proceso>{
             case "ALTA": this.prioridadd = Prioridad.ALTA;
                          break;           
         }
+        this.tiempoActual = this.rafaga.get(indice);
         this.estadoProceso = "nuevo";
     }
     
@@ -71,7 +73,7 @@ public class Proceso implements Comparable<Proceso>{
     }
 
     public String getPrioridad() {
-        return prioridad;
+        return this.prioridad;
     }
 
     public void setTamProceso(Integer tamaño) {
@@ -110,27 +112,16 @@ public class Proceso implements Comparable<Proceso>{
         return this.indice;
     }
     
+    public void setTiempoActual(int tiempo){
+        this.tiempoActual = tiempo;
+    }
+    
+    public int getTiempoActual(){
+        return this.tiempoActual;
+    }
+    
     public static void main(String[] args){
-        Proceso pro1,pro2,pro3,pro4,pro5;
-        List<Proceso> lista;
-        Integer[] a1 = {2 ,1 ,2};
-        Integer[] a2 = {1, 1, 1};
-        Integer[] a3 = {3, 2, 1}; 
-        pro1 = new Proceso(10,0, a1);
-        pro2 = new Proceso(5,1,a2);
-        pro3 = new Proceso(60,3,a3);
-        pro4 = new Proceso (23,3,a2);
-        pro5 = new Proceso (45,2,a3);
-        lista = new ArrayList<Proceso>();
-        lista.add(pro1);
-        lista.add(pro2);
-        lista.add(pro3);
-        lista.add(pro4);
-        lista.add(pro5);
-        System.out.println(lista);
-        //System.out.println("P1 :"+pro1.getPrioridadd());
-        Collections.sort(lista);
-        System.out.println(lista);
+
     }
         
 }

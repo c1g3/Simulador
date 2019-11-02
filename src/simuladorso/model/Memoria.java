@@ -190,6 +190,7 @@ public class Memoria {
         for (Particion particion : listParticion){
             if (particion.getProceso() == proceso){
                 particion.removeProceso();
+                particion.setEstado(false);
                 break;
             }
         }
