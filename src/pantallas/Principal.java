@@ -36,7 +36,6 @@ public class Principal extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        panel_particiones = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         panel_configuracionMemoria = new javax.swing.JPanel();
@@ -61,24 +60,18 @@ public class Principal extends javax.swing.JFrame {
         radioBtn_roundRobin = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         radioBtn_Prioridades = new javax.swing.JRadioButton();
-        radioBtn_apropiativo = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
-        textField_envejecimiento = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        radioBtn_cooperativo = new javax.swing.JRadioButton();
-        box_colaPrioridadBaja = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         textField_QuantumColaBaja = new javax.swing.JTextField();
         textField_QuantumColaMedia = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        box_colaPrioridadMedia = new javax.swing.JComboBox<>();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
         textField_QuantumColaAlta = new javax.swing.JTextField();
-        box_colaPrioridadAlta = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         radioBtn_colasMultinivel = new javax.swing.JRadioButton();
+        jRadiobtn_sjf = new javax.swing.JRadioButton();
         jPanelProcesos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -87,7 +80,7 @@ public class Principal extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_procesos = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu_file = new javax.swing.JMenu();
+        jMenu_Archivo = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -114,44 +107,23 @@ public class Principal extends javax.swing.JFrame {
         ));
         jScrollPane1.setViewportView(jTable1);
 
-        javax.swing.GroupLayout panel_particionesLayout = new javax.swing.GroupLayout(panel_particiones);
-        panel_particiones.setLayout(panel_particionesLayout);
-        panel_particionesLayout.setHorizontalGroup(
-            panel_particionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(panel_particionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_particionesLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-        );
-        panel_particionesLayout.setVerticalGroup(
-            panel_particionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(panel_particionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panel_particionesLayout.createSequentialGroup()
-                    .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(29, Short.MAX_VALUE)))
-        );
-
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 477, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(panel_particiones, javax.swing.GroupLayout.PREFERRED_SIZE, 453, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addComponent(jLabel6)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panel_particiones, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panel_configuracionMemoria.setBackground(new java.awt.Color(102, 102, 102));
@@ -190,9 +162,19 @@ public class Principal extends javax.swing.JFrame {
 
         btn_addParticion.setForeground(java.awt.Color.black);
         btn_addParticion.setText("Agregar");
+        btn_addParticion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btn_addParticionMouseClicked(evt);
+            }
+        });
         btn_addParticion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_addParticionActionPerformed(evt);
+            }
+        });
+        btn_addParticion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                btn_addParticionKeyTyped(evt);
             }
         });
 
@@ -297,7 +279,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(radiobtn_bestfit)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(radiobtn_worstfit)
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         panej_gantt.setBackground(new java.awt.Color(102, 102, 102));
@@ -334,13 +316,13 @@ public class Principal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(panel_configuracionMemoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(18, 27, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(panel_configuracionMemoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panej_gantt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelMemoriaLayout = new javax.swing.GroupLayout(jPanelMemoria);
@@ -378,34 +360,13 @@ public class Principal extends javax.swing.JFrame {
         jLabel8.setText("Quantum");
 
         buttonGroup1.add(radioBtn_Prioridades);
-        radioBtn_Prioridades.setText("Prioridades");
-
-        buttonGroup2.add(radioBtn_apropiativo);
-        radioBtn_apropiativo.setText("Apropiativo");
+        radioBtn_Prioridades.setText("Prioridades (cooperativo)");
 
         jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 jTextField1KeyTyped(evt);
             }
         });
-
-        textField_envejecimiento.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                textField_envejecimientoActionPerformed(evt);
-            }
-        });
-        textField_envejecimiento.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textField_envejecimientoKeyTyped(evt);
-            }
-        });
-
-        jLabel9.setText("Envejecimiento:");
-
-        buttonGroup2.add(radioBtn_cooperativo);
-        radioBtn_cooperativo.setText("Cooperativo");
-
-        box_colaPrioridadBaja.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "FCFS", "Round Robin" }));
 
         jLabel11.setText("Quantum:");
 
@@ -423,9 +384,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel12.setText("Quantum:");
 
-        box_colaPrioridadMedia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "FCFS", "Round Robin" }));
-
-        jLabel13.setText("Cola de prioridad baja:");
+        jLabel13.setText("Cola de prioridad baja: (FCFS)");
 
         jLabel14.setText("Quantum:");
 
@@ -435,14 +394,15 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        box_colaPrioridadAlta.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione", "FCFS", "Round Robin" }));
+        jLabel15.setText("Cola de prioridad media: (Round Robin)");
 
-        jLabel15.setText("Cola de prioridad media:");
-
-        jLabel16.setText("Cola de prioridad alta:");
+        jLabel16.setText("Cola de prioridad alta: (Round Robin)");
 
         buttonGroup1.add(radioBtn_colasMultinivel);
         radioBtn_colasMultinivel.setText("Colas multinivel");
+
+        buttonGroup1.add(jRadiobtn_sjf);
+        jRadiobtn_sjf.setText("SJF");
 
         javax.swing.GroupLayout jPanelAlgoritmosLayout = new javax.swing.GroupLayout(jPanelAlgoritmos);
         jPanelAlgoritmos.setLayout(jPanelAlgoritmosLayout);
@@ -451,57 +411,44 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel7)
+                    .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(548, 548, 548))
                     .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(radioBtn_roundRobin)
                             .addComponent(radioBtn_fcfs)
                             .addComponent(radioBtn_Prioridades)
-                            .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jRadiobtn_sjf)
+                            .addComponent(radioBtn_colasMultinivel)
+                            .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
+                                .addGap(21, 21, 21)
                                 .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
-                                        .addGap(21, 21, 21)
-                                        .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jLabel16)
-                                            .addComponent(jLabel13)
-                                            .addComponent(box_colaPrioridadBaja, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(box_colaPrioridadAlta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(box_colaPrioridadMedia, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jLabel8)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
                                         .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(jLabel15)
+                                            .addComponent(jLabel16)
+                                            .addComponent(jLabel13))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
                                                 .addComponent(jLabel12)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField_QuantumColaMedia, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE))
+                                                .addComponent(textField_QuantumColaMedia))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlgoritmosLayout.createSequentialGroup()
+                                                .addComponent(jLabel11)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(textField_QuantumColaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
-                                                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                                    .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
-                                                        .addComponent(jLabel11)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(textField_QuantumColaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                                    .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
-                                                        .addComponent(jLabel14)
-                                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                        .addComponent(textField_QuantumColaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                                .addGap(0, 0, Short.MAX_VALUE))))
-                                    .addComponent(radioBtn_colasMultinivel))
-                                .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
-                                    .addGap(21, 21, 21)
-                                    .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
-                                            .addComponent(jLabel8)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addComponent(radioBtn_apropiativo)
-                                        .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
-                                            .addComponent(radioBtn_cooperativo)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jLabel9)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(textField_envejecimiento, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))))))))
-                .addGap(548, 548, 548))
+                                                .addComponent(jLabel14)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(textField_QuantumColaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                        .addGap(0, 533, Short.MAX_VALUE))))
         );
         jPanelAlgoritmosLayout.setVerticalGroup(
             jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -518,40 +465,33 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(radioBtn_Prioridades)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(radioBtn_apropiativo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radioBtn_cooperativo)
-                    .addComponent(textField_envejecimiento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel9))
+                .addGap(18, 18, 18)
+                .addComponent(jRadiobtn_sjf)
                 .addGap(18, 18, 18)
                 .addComponent(radioBtn_colasMultinivel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel16)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(box_colaPrioridadAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel16)
                     .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
                         .addComponent(textField_QuantumColaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel15)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(box_colaPrioridadMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel15))
                     .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
                         .addComponent(textField_QuantumColaMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(box_colaPrioridadBaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(jLabel13))
                     .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel11)
                         .addComponent(textField_QuantumColaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
 
         jPanelTabs.addTab("Algoritmos", jPanelAlgoritmos);
@@ -608,7 +548,7 @@ public class Principal extends javax.swing.JFrame {
             jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProcesosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -616,8 +556,8 @@ public class Principal extends javax.swing.JFrame {
 
         jMenuBar1.setToolTipText("");
 
-        jMenu_file.setText("Archivo");
-        jMenuBar1.add(jMenu_file);
+        jMenu_Archivo.setText("Archivo");
+        jMenuBar1.add(jMenu_Archivo);
 
         jMenu2.setText("Editar");
         jMenuBar1.add(jMenu2);
@@ -630,14 +570,13 @@ public class Principal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelTabs)
-                .addContainerGap())
+                .addComponent(jPanelTabs))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanelTabs, javax.swing.GroupLayout.DEFAULT_SIZE, 516, Short.MAX_VALUE)
+                .addComponent(jPanelTabs)
                 .addContainerGap())
         );
 
@@ -672,10 +611,6 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_radioBtn_fcfsActionPerformed
 
-    private void textField_envejecimientoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField_envejecimientoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_textField_envejecimientoActionPerformed
-
     private void jTextField_tamMemoriaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField_tamMemoriaKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
         
@@ -689,10 +624,6 @@ public class Principal extends javax.swing.JFrame {
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
     }//GEN-LAST:event_jTextField1KeyTyped
 
-    private void textField_envejecimientoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_envejecimientoKeyTyped
-        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_textField_envejecimientoKeyTyped
-
     private void textField_QuantumColaAltaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaAltaKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
     }//GEN-LAST:event_textField_QuantumColaAltaKeyTyped
@@ -704,6 +635,16 @@ public class Principal extends javax.swing.JFrame {
     private void textField_QuantumColaBajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaBajaKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
     }//GEN-LAST:event_textField_QuantumColaBajaKeyTyped
+    int i = 0;
+    private void btn_addParticionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addParticionMouseClicked
+         
+        i = i + 1;
+        jLabel5.setText("veces que clickeo: " + i);
+    }//GEN-LAST:event_btn_addParticionMouseClicked
+
+    private void btn_addParticionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btn_addParticionKeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btn_addParticionKeyTyped
 
     /**
      * @param args the command line arguments
@@ -742,9 +683,6 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> box_colaPrioridadAlta;
-    private javax.swing.JComboBox<String> box_colaPrioridadBaja;
-    private javax.swing.JComboBox<String> box_colaPrioridadMedia;
     private javax.swing.JButton btn_addParticion;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -765,11 +703,10 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_tamparticion;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenu jMenu_file;
+    private javax.swing.JMenu jMenu_Archivo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -778,6 +715,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelMemoria;
     private javax.swing.JPanel jPanelProcesos;
     private javax.swing.JTabbedPane jPanelTabs;
+    private javax.swing.JRadioButton jRadiobtn_sjf;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable1;
@@ -786,11 +724,8 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField_tamParticion;
     private javax.swing.JPanel panej_gantt;
     private javax.swing.JPanel panel_configuracionMemoria;
-    private javax.swing.JPanel panel_particiones;
     private javax.swing.JRadioButton radioBtn_Prioridades;
-    private javax.swing.JRadioButton radioBtn_apropiativo;
     private javax.swing.JRadioButton radioBtn_colasMultinivel;
-    private javax.swing.JRadioButton radioBtn_cooperativo;
     private javax.swing.JRadioButton radioBtn_fcfs;
     private javax.swing.JRadioButton radioBtn_roundRobin;
     private javax.swing.JRadioButton radiobtn_bestfit;
@@ -802,6 +737,5 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JTextField textField_QuantumColaAlta;
     private javax.swing.JTextField textField_QuantumColaBaja;
     private javax.swing.JTextField textField_QuantumColaMedia;
-    private javax.swing.JTextField textField_envejecimiento;
     // End of variables declaration//GEN-END:variables
 }
