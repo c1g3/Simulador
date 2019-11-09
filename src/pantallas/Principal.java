@@ -633,7 +633,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_textField_QuantumColaMediaKeyTyped
 
     private void textField_QuantumColaBajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaBajaKeyTyped
-        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
+        char c = evt.getKeyChar(); if (c<'a'||c>'z') evt.consume();
     }//GEN-LAST:event_textField_QuantumColaBajaKeyTyped
     int i = 0;
     private void btn_addParticionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addParticionMouseClicked
