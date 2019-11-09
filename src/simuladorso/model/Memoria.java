@@ -258,6 +258,12 @@ public class Memoria {
         return tipoParticion;
     }
 
+    public void setTipoParticion(boolean tipoParticion) {
+        this.tipoParticion = tipoParticion;
+    }
+    
+    
+
     public void ordenarListaParticiones() {
         Collections.sort(listParticion);
     }

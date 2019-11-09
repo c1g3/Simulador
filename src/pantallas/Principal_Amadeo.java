@@ -1,10 +1,14 @@
 package pantallas;
 
+import simuladorso.model.Memoria;
+
 /**
  *
  * @author erick
  */
 public class Principal_Amadeo extends javax.swing.JFrame {
+
+    private Memoria memoria;
 
     /**
      * Creates new form jFramePrincipal
@@ -640,19 +644,20 @@ public class Principal_Amadeo extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jTextField_tamMemoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_tamMemoriaActionPerformed
-        // TODO add your handling code here:
+       int tamMemoria = Integer.parseInt(evt.paramString());
+        this.memoria = new Memoria(tamMemoria);
     }//GEN-LAST:event_jTextField_tamMemoriaActionPerformed
-
+    
     private void btn_addParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addParticionActionPerformed
             // TODO add your handling code here:
     }//GEN-LAST:event_btn_addParticionActionPerformed
 
     private void radiobtn_variablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_variablesActionPerformed
-        // TODO add your handling code here:
+        this.memoria.setTipoParticion(false);
     }//GEN-LAST:event_radiobtn_variablesActionPerformed
 
     private void radiobtn_fijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_fijasActionPerformed
-        // TODO add your handling code here:
+        this.memoria.setTipoParticion(true);
     }//GEN-LAST:event_radiobtn_fijasActionPerformed
 
     private void radiobtn_firstfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_firstfitActionPerformed
@@ -660,7 +665,9 @@ public class Principal_Amadeo extends javax.swing.JFrame {
     }//GEN-LAST:event_radiobtn_firstfitActionPerformed
 
     private void jTextField_tamParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField_tamParticionActionPerformed
-        // TODO add your handling code here:
+        if(this.memoria.getTipoParticion()){
+            crearParticionesFijas(Integer.parseInt(evt.paramString()));
+        }
     }//GEN-LAST:event_jTextField_tamParticionActionPerformed
 
     private void radioBtn_fcfsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtn_fcfsActionPerformed
@@ -700,6 +707,23 @@ public class Principal_Amadeo extends javax.swing.JFrame {
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
     }//GEN-LAST:event_textField_QuantumColaBajaKeyTyped
 
+//*************************************************************************
+// Algoritmos de los programadores    
+//*************************************************************************
+     private void crearParticionesFijas(int tamanio) {
+        
+        int dirComienzo;
+        dirComienzo = this.memoria.calcularDirComienzo();
+        this.memoria.crearParticion(tamanio,dirComienzo);
+        }
+     
+     private  void crearParticionesVariables(){
+        int tamanio = memoria.calcularMemoriaLibre();
+        int dirComienzo = memoria.calcularDirComienzo();
+        memoria.crearParticion(tamanio,dirComienzo);
+    }
+    
+//*************************************************************************    
     /**
      * @param args the command line arguments
      */
