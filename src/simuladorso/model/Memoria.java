@@ -20,11 +20,12 @@ public class Memoria {
     private boolean tipoParticion;//true=fijas, false=variables
     private int metodo_Intercambio;
     private List<Particion> listParticion;
-    private List<Proceso> listProceso;
+    private List<Proceso> listProceso; 
     private final int tamMaximo = 1000;
-    private final int tamMinimo = 50;
+    private final int tamMinimo = 100;
     private final int tamanoSo;
             
+    //La memoria necesita tamaño, tipo de particionamiento y algortimo de intercambio.
     public Memoria(){
         teclado=new Scanner(System.in);
         System.out.print("ingrese tamanio de la memoria: ");
@@ -43,7 +44,8 @@ public class Memoria {
         this.listParticion = new ArrayList<Particion>();
         this.listProceso = new ArrayList<Proceso>();
     }
-
+    
+    //Añade una particion fija a memoria.
     public void addParticion(Particion particion) {
         if (particion.getTamParticion() > calcularMemoriaLibre() && calcularMemoriaLibre() != 0) {
             particion.setTamParticion(calcularMemoriaLibre());
@@ -51,7 +53,8 @@ public class Memoria {
         this.listParticion.add(particion);
     }
 
-    public int calcularMemoriaLibre() {
+    //Calcula la memoria libre para añadir particiones
+    public int calcularMemoriaLibre() { 
         int cantidadMemoriaLibre = 0;
         int acumuladorTamañoParticiones = 0;
         if (this.listParticion.isEmpty()) {
@@ -63,9 +66,9 @@ public class Memoria {
         return cantidadMemoriaLibre;
     }
     
+    //Ejecuta el algoritmo de intercambio best-fit.
     public void BestFit(List<Proceso> colaNuevo,List<Proceso> colaListo){
-        List<Particion> listaPart = new ArrayList<Particion>();
-        listaPart = this.listParticion; 
+        List<Particion> listaPart = this.listParticion; 
         Collections.sort(listaPart);
         for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
@@ -82,6 +85,7 @@ public class Memoria {
         }
     }
     
+    //Ejecuta el algoritmo de intercambio first-fit para particiones fijas.
     public void FirstFit(List<Proceso> colaNuevo, List<Proceso> colaListo){
         for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
@@ -97,14 +101,13 @@ public class Memoria {
         }   
     }
     
+    //Ejecuta el algoritmo de intercambio worst-fit.
     public void WorstFit(List<Proceso> colaNuevo,List<Proceso> colaListo){
-        List<Particion> listaPart = new ArrayList<Particion>();
-        listaPart = this.listParticion; 
+        List<Particion> listaPart = this.listParticion; 
         for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
             Collections.sort(listaPart);
             Collections.reverse(listaPart);
-
             //System.out.println("Lista Particiones: " + this.listParticion);
             for (Particion particion : listaPart){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
@@ -118,6 +121,7 @@ public class Memoria {
         }   
     }
     
+    //Ejecuta el algoritmo de intercambio first-fit variable.
     public void FirstFitVariable(List<Proceso> colaNuevo,List<Proceso> colaListo){
         for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
@@ -133,10 +137,12 @@ public class Memoria {
         }   
     }
     
+    
     public void crearParticion(int tamParticion, int direccionInicial){
         this.listParticion.add(new Particion(tamParticion, direccionInicial));
     }
     
+    //Crea particiones variables.
     public void crearParticionVariable(Particion particion,Proceso proceso){
         int indice = listParticion.indexOf(particion);
         int tamParticion;
@@ -150,6 +156,7 @@ public class Memoria {
         nuevaParticion.setEstado(true);
     }
     
+    //Calcula de direccion de comienzo de una particion.
     public int calcularDirComienzo(){
         int dirComienzo = 0;
         int acumuladorTamañoParticiones = 0;
@@ -183,9 +190,9 @@ public class Memoria {
   
             }
         });
-
     }
     
+    //Remueve los procesos de memoria.
     public void liberarMemoria(Proceso proceso){
         for (Particion particion : listParticion){
             if (particion.getProceso() == proceso){
@@ -199,6 +206,7 @@ public class Memoria {
         }
     }
     
+    //Junta dos particiones variables si estan contiguas.
     public void juntarParticionesVariables(){
         int index = 0;
         int acumulador = 0;
@@ -220,7 +228,4 @@ public class Memoria {
         Collections.reverse(this.listParticion);
     }
     
-    public static void main(String[] args){
-        
-    }
 }

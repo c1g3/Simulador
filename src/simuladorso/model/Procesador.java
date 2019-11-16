@@ -11,8 +11,8 @@ package simuladorso.model;
  */
 public class Procesador {
     private Proceso procesoEnEjecucion;
-    private int timer;
-    private int originalTimer;
+    private int timer; //Descontador que sirve calcular el tiempo remanente del proceso en ejecucion
+    private int originalTimer; //Contador que cuenta el tiempo de ejecucion de un proceso. Se necesita en otra parte.
     
     public Procesador(){
         procesoEnEjecucion = null;
@@ -28,18 +28,19 @@ public class Procesador {
         return procesoEnEjecucion;
     }
     
-     public Boolean procesoIsNull(){
-        if(this.procesoEnEjecucion==null){
-            return true;
-        }else{return false;}
+    //retorna Verdadero si no hay proceso en ejecucion. Falso en caso contrario.
+    public Boolean procesoIsNull(){ 
+        return this.procesoEnEjecucion==null;
     }
     
+    //retorna Falso si no hay proceso en ejecucion. Verdadero en caso contrario.
     public Boolean procesoIsNotNull(){
         if(this.procesoEnEjecucion==null){
             return false;
         }else{return true;}
     }
     
+    //Inicializamos el timer con el quantum/rafaga de cpu.
     public void setTimer(int tiempo){
         this.timer = tiempo;
         this.originalTimer = 0;
@@ -49,22 +50,22 @@ public class Procesador {
         return this.timer;
     }
     
+    //Retorna Verdadero si el proceso termino su ejecucion. Falso en caso contrario.
     public Boolean timeout(){
-        if (this.timer == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.timer == 0;
     }
     
+    //Remueve el proceso en ejecucion.
     public void removeProceso(){
         this.procesoEnEjecucion = null;
     }
     
+    //"Ejecuta" el proceso decrementando su tiempo de ejecucion. 
     public void ejecutar(){
         timer--;
         originalTimer++;
+        //Incrementa el tiempo de retorno.
+        procesoEnEjecucion.incTiempoRetorno(); 
     }
     
     public int getOriginalTimer(){

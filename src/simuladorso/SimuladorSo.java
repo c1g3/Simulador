@@ -39,7 +39,10 @@ public class SimuladorSo {
     private static Scanner teclado;
     private static Planificador planificador;
     private static int cantProcesos;
-
+    private static int tiempoEsperaPromedio;
+    private static int tiempoRetornoPromedio;
+    
+    //Inicializa los procesos.
     private static void initialProcedures() {
         Integer[] a1 = {2 ,1 ,2};
         Integer[] a2 = {1, 1, 1};
@@ -71,7 +74,8 @@ public class SimuladorSo {
         colaProcesos.add(pro7);
         cantProcesos = colaProcesos.size();
     }
-
+    
+    //Crea las particiones fijas.
     private static void crearParticionesFijas() {
         int tamanio;
         int dirComienzo;
@@ -92,12 +96,14 @@ public class SimuladorSo {
         }
     }
     
+    //Crea la primera particion.
     private static void crearParticionesVariables(){
         int tamanio = memoria.calcularMemoriaLibre();
         int dirComienzo = memoria.calcularDirComienzo();
         memoria.crearParticion(tamanio,dirComienzo);
     }
     
+    //Crea las colas.
     private static void setUpColas() {
         colaProcesos = new ArrayList<Proceso>();
         colaNuevo = new ArrayList<Proceso>();
@@ -109,6 +115,7 @@ public class SimuladorSo {
         planificador = new Planificador();
     }
     
+    //Carga la cola de nuevo con los procesos que arriban.
     private static void cargarColaNuevo(){
         for(Iterator<Proceso> itr = colaProcesos.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
@@ -119,10 +126,12 @@ public class SimuladorSo {
         }
     }
     
+    //Crea la memoria.
     private static void setUpMemoria() {
         memoria = new Memoria();
     }
     
+    //Carga un proceso en entrada/salida.
     private static void cargarES(){
         Proceso proceso;
         int tiempo;
@@ -144,6 +153,7 @@ public class SimuladorSo {
         System.out.println("COLA TERMINADOS: "+colaTerminado);
     }
     
+    //Selecciona el algoritmo de intercambio a ejecutar.
     private static void intercambio(){
         if (memoria.getTipoParticion())
         {
@@ -164,6 +174,7 @@ public class SimuladorSo {
         }
     }
     
+    //Controla si termino el proceso en entrada/salida.
     private static void controlES(){
         if (es.procesoIsNotNull()){
             es.ejecutar();
@@ -176,6 +187,7 @@ public class SimuladorSo {
         }
     }
     
+    //Revisa cuando el proceso termina una rafaga y decide que hacer..
     private static void procesoTermino(){
         procesador.getProceso().setIndice(procesador.getProceso().getIndice() + 1);
         if (procesador.getProceso().getRafaga().size() > procesador.getProceso().getIndice()){
@@ -188,12 +200,14 @@ public class SimuladorSo {
         procesador.removeProceso();    
     }
     
+    //Revisa cuando el proceso no termino de ejecutarse por un limite de tiempo maximo establecido.
     private static void procesoNoTermino(int comparativa){
         procesador.getProceso().setRafaga(procesador.getProceso().getIndice(),comparativa);
         colaListo.add(procesador.getProceso());
         procesador.removeProceso();
     }
     
+    //Controla si un proceso termino de ejecutarse.
     public static void controlProcesador(){
         int comparativa;
         if (procesador.procesoIsNotNull()){
@@ -216,6 +230,7 @@ public class SimuladorSo {
         }
     }
     
+    //Inicializa las particiones.
     private static void setUpParticiones(){
         if (memoria.getTipoParticion())
         {
@@ -227,6 +242,7 @@ public class SimuladorSo {
         }
     }
     
+    //Selecciona el algoritmo de planificacion a ejecutar.
     public static void planificacion(){
         if (procesador.procesoIsNull() && colaListo.size()!=0){
             switch (planificador.getAlgoritmoPlanificacion()){
@@ -244,12 +260,31 @@ public class SimuladorSo {
         }
     }
     
+    //Incrementa el tiempo de retorno y espera de los procesos en estado listo.
+    public static void tiempoColaListo(){
+        for (Proceso proceso : colaListo){
+            proceso.incTiempoRetorno();
+            if (proceso.getPrimeraEjecucion()){
+                proceso.incTiempoEspera();  
+            }
+        }
+    }
+    
+    //Incrementa el tiempo de retorno de los procesos en estado bloqueado.
+    public static void tiempoColaBloqueado(){
+        for (Proceso proceso : colaBloqueado){
+            proceso.incTiempoRetorno();
+        }
+    }
+    
     public static void main(String[] args) {
         clock = 0;
         setUpMemoria();
         setUpParticiones();
         setUpColas();
         initialProcedures();
+        tiempoEsperaPromedio = 0;
+        tiempoRetornoPromedio = 0;
         while (colaTerminado.size() != cantProcesos){
             cargarColaNuevo(); 
             intercambio();
@@ -259,8 +294,18 @@ public class SimuladorSo {
             if (es.procesoIsNull() && colaBloqueado.size()!=0){
                cargarES(); 
             }
+            tiempoColaListo();
+            tiempoColaBloqueado();
             imprimir();
             clock++;
         }
+        for (Proceso proceso : colaTerminado){
+            System.out.println("TE:  "+proceso.getTiempoEspera()+" TR:  "+proceso.getTiempoRetorno());
+            tiempoEsperaPromedio += proceso.getTiempoEspera();
+            tiempoRetornoPromedio += proceso.getTiempoRetorno();
+        }
+        tiempoEsperaPromedio /= cantProcesos;
+        tiempoRetornoPromedio /= cantProcesos;
+        System.out.println("TEP: "+tiempoEsperaPromedio+" TRP: "+tiempoRetornoPromedio);
     }
 }

@@ -11,7 +11,7 @@ package simuladorso.model;
  */
 public class EntradaSalida {
     private Proceso proceso;
-    private int timer;
+    private int timer; //tiempo para controlar la ejecucion de entrada/salida.
     
     public EntradaSalida(){
         proceso = null;
@@ -26,12 +26,12 @@ public class EntradaSalida {
         return proceso;
     }
     
-     public Boolean procesoIsNull(){
-        if(this.proceso==null){
-            return true;
-        }else{return false;}
+    //retorna Verdadero si no hay proceso en la entrada/salida. Falso en caso contrario.
+    public Boolean procesoIsNull(){
+        return this.proceso==null;
     }
     
+    //retorna Falso si no hay proceso en la entrada/salida. Verdadero en caso contrario.
     public Boolean procesoIsNotNull(){
         if(this.proceso==null){
             return false;
@@ -42,20 +42,19 @@ public class EntradaSalida {
         this.timer = tiempo;
     }
     
+    //Retorna Verdadero si el proceso termino su entrada/saldia. Falso en caso contrario.
     public Boolean timeout(){
-        if (this.timer == 0){
-            return true;
-        }
-        else{
-            return false;
-        }
+        return this.timer == 0;
     }
     
+    //Remueve el proceso de entrada/salida.
     public void removeProceso(){
         this.proceso = null;
     }
     
+    //"Ejecuta" la entrada salida de un proceso.
     public void ejecutar(){
         timer--;
+        proceso.incTiempoRetorno(); //Incrementa el tiempo de retorno.
     }
 }

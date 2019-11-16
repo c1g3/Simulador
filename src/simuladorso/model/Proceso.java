@@ -13,22 +13,27 @@ import java.util.Collections;
  *
  * @author Amadeo
  */
+
 public class Proceso implements Comparable<Proceso>{
     private Scanner teclado;
     private int idProceso;
-    private int tamProceso;
-    private int tiempoArribo;
+    private int tamProceso; //Tamaño del proceso.
+    private int tiempoArribo; 
     private List<Integer> rafaga;
-    private int indice;
+    private int indice; //Indice para saber en que lugar de la rafaga estamos.
+    private String prioridad;
     enum Prioridad implements Comparable<Prioridad>{
         ALTA,MEDIA,BAJA;
     }
-    private String prioridad;
     private Prioridad prioridadd;
-    static int cont = 1;
+    static int cont = 1; 
     private String estadoProceso;
     private int tiempoActual;
+    private int tiempoEspera;
+    private int tiempoRetorno;
+    private boolean primeraEjecucion; //Guarda Falso si el proceso ya se ejecuto una vez. Se utiliza para calcular el tiempo de espera.
     
+    //Un proceso necesita tamaño, tiempo de arribo, rafaga y prioridad como entrada.
     public Proceso(int tamProceso, int tiempoArribo, Integer[] rafaga){
         teclado = new Scanner(System.in);
         idProceso = cont;
@@ -49,6 +54,9 @@ public class Proceso implements Comparable<Proceso>{
         }
         this.tiempoActual = this.rafaga.get(indice);
         this.estadoProceso = "nuevo";
+        primeraEjecucion = true;
+        tiempoEspera = 0;
+        tiempoRetorno = 0;
     }
     
     public String getEstadoProceso() {
@@ -120,8 +128,30 @@ public class Proceso implements Comparable<Proceso>{
         return this.tiempoActual;
     }
     
-    public static void main(String[] args){
-
+    public boolean getPrimeraEjecucion(){
+        return this.primeraEjecucion;
     }
-        
+    
+    public void setPrimeraEjecucion(){
+        this.primeraEjecucion = false;
+    }
+    
+    public int getTiempoEspera(){
+        return this.tiempoEspera;
+    }
+    
+    public int getTiempoRetorno(){
+        return this.tiempoRetorno;
+    }
+     
+    //Incrementa el tiempo de espera
+    public void incTiempoEspera(){
+        this.tiempoEspera++; 
+    }
+    
+    //Incrementa el tiempo de retorno
+    public void incTiempoRetorno(){
+        this.tiempoRetorno++; 
+    }
+
 }

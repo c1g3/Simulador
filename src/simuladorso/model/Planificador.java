@@ -24,6 +24,7 @@ public class Planificador {
     private int quantumMedia;
     private Scanner teclado;
     
+    //El planificador necesita el algoritmo de planificacion. Y opcionalmente los quantums.
     public Planificador(){
         teclado = new Scanner(System.in);
         System.out.println("[1] FCFS [2] Round Robin [3] Prioridades [4] SJF [5] Colas Multinivel");
@@ -48,6 +49,7 @@ public class Planificador {
         }
     }
     
+    //Ejecuta el algoritmo FCFS cargando un proceso de la cola de listo a procesador.
     public void FCFS(List<Proceso> colaListo, Procesador procesador){
         Proceso proceso;
         int tiempo;
@@ -55,39 +57,47 @@ public class Planificador {
         procesador.setProceso(proceso);
         tiempo = proceso.getRafaga().get(proceso.getIndice());
         procesador.setTimer(tiempo);
+        procesador.getProceso().setPrimeraEjecucion();
         colaListo.remove(procesador.getProceso());
     }
     
+    //Ejecuta el algoritmo Round Robin cargando un proceso de la cola de listo a procesador.
     public void roundRobin(List<Proceso> colaListo, Procesador procesador, int quantum ){
         Proceso proceso;
         proceso = colaListo.get(0);
         procesador.setProceso(proceso);
         procesador.setTimer(quantum);
+        procesador.getProceso().setPrimeraEjecucion();
         colaListo.remove(procesador.getProceso());
     }
     
+    //Ejecuta el algoritmo de Prioridades cargando el proceso de mayor prioridad de la cola de listo a procesador.
     public void prioridades(List<Proceso> colaListo, Procesador procesador){
-        Collections.sort(colaListo);
+        Collections.sort(colaListo); //Ordenamos por prioridad.
         Proceso proceso;
         int tiempo;
         proceso = colaListo.get(0);
         procesador.setProceso(proceso);
         tiempo = proceso.getRafaga().get(proceso.getIndice());
         procesador.setTimer(tiempo);
+        procesador.getProceso().setPrimeraEjecucion();
         colaListo.remove(procesador.getProceso());
     }
     
+    //Ejecuta el algoritmo SJF cargando el proceso con menor tiempo de ejecucion de la cola de listo a procesador.
     public void SJF(List<Proceso> colaListo, Procesador procesador){
-        colaListo.sort(Comparator.comparing(Proceso::getTiempoActual));
+        colaListo.sort(Comparator.comparing(Proceso::getTiempoActual)); //Ordenamos por tiempo de ejecucion.
         Proceso proceso;
         int tiempo;
         proceso = colaListo.get(0);
         procesador.setProceso(proceso);
         tiempo = proceso.getRafaga().get(proceso.getIndice());
         procesador.setTimer(tiempo);
+        procesador.getProceso().setPrimeraEjecucion();
         colaListo.remove(procesador.getProceso());
     }
     
+    //Ejecuta el algoritmo de colar multinivel.
     public void colasMultinivel(List<Proceso> colaListo, Procesador procesador){
         colaAlta.clear();
         colaMedia.clear();
