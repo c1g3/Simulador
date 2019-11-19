@@ -61,8 +61,6 @@ public class Principal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         radioBtn_Prioridades = new javax.swing.JRadioButton();
         jTextField1 = new javax.swing.JTextField();
-        jLabel11 = new javax.swing.JLabel();
-        textField_QuantumColaBaja = new javax.swing.JTextField();
         textField_QuantumColaMedia = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -368,14 +366,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setText("Quantum:");
-
-        textField_QuantumColaBaja.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                textField_QuantumColaBajaKeyTyped(evt);
-            }
-        });
-
         textField_QuantumColaMedia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 textField_QuantumColaMediaKeyTyped(evt);
@@ -440,10 +430,6 @@ public class Principal extends javax.swing.JFrame {
                                                 .addComponent(jLabel12)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(textField_QuantumColaMedia))
-                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelAlgoritmosLayout.createSequentialGroup()
-                                                .addComponent(jLabel11)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(textField_QuantumColaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                                             .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
                                                 .addComponent(jLabel14)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -475,7 +461,6 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel14)
                         .addComponent(textField_QuantumColaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
                         .addGap(2, 2, 2)
@@ -483,15 +468,9 @@ public class Principal extends javax.swing.JFrame {
                     .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel12)
                         .addComponent(textField_QuantumColaMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanelAlgoritmosLayout.createSequentialGroup()
-                        .addGap(2, 2, 2)
-                        .addComponent(jLabel13))
-                    .addGroup(jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel11)
-                        .addComponent(textField_QuantumColaBaja, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(163, Short.MAX_VALUE))
+                .addGap(2, 2, 2)
+                .addComponent(jLabel13)
+                .addContainerGap(189, Short.MAX_VALUE))
         );
 
         jPanelTabs.addTab("Algoritmos", jPanelAlgoritmos);
@@ -631,10 +610,6 @@ public class Principal extends javax.swing.JFrame {
     private void textField_QuantumColaMediaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaMediaKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
     }//GEN-LAST:event_textField_QuantumColaMediaKeyTyped
-
-    private void textField_QuantumColaBajaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaBajaKeyTyped
-        char c = evt.getKeyChar(); if (c<'a'||c>'z') evt.consume();
-    }//GEN-LAST:event_textField_QuantumColaBajaKeyTyped
     int i = 0;
     private void btn_addParticionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addParticionMouseClicked
          
@@ -690,7 +665,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -735,7 +709,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JRadioButton radiobtn_worstfit;
     private javax.swing.JTable tabla_procesos;
     private javax.swing.JTextField textField_QuantumColaAlta;
-    private javax.swing.JTextField textField_QuantumColaBaja;
     private javax.swing.JTextField textField_QuantumColaMedia;
     // End of variables declaration//GEN-END:variables
 }
