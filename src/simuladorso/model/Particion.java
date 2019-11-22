@@ -1,4 +1,4 @@
-/*
+ /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -13,13 +13,14 @@ import java.util.Scanner;
 public class Particion implements Comparable<Particion>{
     private Scanner teclado;
     private int idParticion;
-    private int tamParticion;
+    private int tamParticion; //Tamaño de la particion.
     private int direccionInicial;
-    private boolean estado;//false=libre true=asignada
+    private boolean estado; //false=libre true=asignada
     private Proceso proceso;
     private int fragmentacionInterna;
     static int cont = 1;
     
+    //La particion necesita tamaño y direccion inicial.
     public Particion(int tamParticion, int direccionInicial){
         teclado = new Scanner(System.in);
         this.idParticion = cont;
@@ -27,15 +28,16 @@ public class Particion implements Comparable<Particion>{
         this.tamParticion = tamParticion;
         this.direccionInicial = direccionInicial;
         this.estado = false;
-        this.proceso = null;       
+        this.proceso = null;    
+        this.fragmentacionInterna = 0;
     }
     
+    //retorna Verdadero si no hay proceso en la particion. Falso en caso contrario.
     public Boolean procesoIsNull(){
-        if(this.proceso==null){
-            return true;
-        }else{return false;}
+        return this.proceso==null;
     }
     
+    //retorna Falso si no hay proceso en la particion. Verdadero en caso contrario.
     public Boolean procesoIsNotNull(){
         if(this.proceso==null){
             return false;
@@ -44,7 +46,6 @@ public class Particion implements Comparable<Particion>{
     
     @Override
     public int compareTo(Particion particion) {
-       
         if (tamParticion < particion.tamParticion) {
             return -1;
         }
@@ -54,10 +55,18 @@ public class Particion implements Comparable<Particion>{
         return 0;
     }  
     
-    public void addProceso(Proceso p) {
-        this.proceso = p;
+    //Carga el proceso en la particion.
+    public void addProceso(Proceso proceso) {
+        this.proceso = proceso;
+        this.calcularFragmentacion(proceso);
     }
 
+    //Calcula la fragmentacion interna.
+    public void calcularFragmentacion(Proceso proceso){
+        this.fragmentacionInterna = this.tamParticion - proceso.getTamProceso();
+    }
+    
+    //Remueve el proceso de la particion.
     public void removeProceso() {
         this.proceso = null;
     }
@@ -89,9 +98,5 @@ public class Particion implements Comparable<Particion>{
     public void setEstado(boolean estado) {
         this.estado = estado;
     }
-  
     
-    public static void main(String[] args){
-        
-    }
 }
