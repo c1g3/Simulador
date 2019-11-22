@@ -11,6 +11,11 @@ import simuladorso.model.Memoria;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
+import pantallas.DatosPantallaMemoria;
+import pantallas.DatosPantallaProcesos;
+import pantallas.Principal_Amadeo;
+
 /**
  *
  * @author Amadeo
@@ -24,6 +29,9 @@ public class SimuladorSo {
     private static ColaListo colaListo;
     private static Memoria memoria;
     private static Scanner teclado;
+    public static DatosPantallaMemoria datosPantallaMemoria = new DatosPantallaMemoria();
+    public static DatosPantallaProcesos datosPantallaProcesos = new DatosPantallaProcesos();
+    
 
     private static void initialProcesses() {
         pro1 = new Proceso();
@@ -32,19 +40,15 @@ public class SimuladorSo {
     }
 
     private static void crearParticionesFijas() {
-        int tamanio;
+           int tamanio;
         int dirComienzo;
-        teclado = new Scanner(System.in);
-        while(memoria.calcularMemoriaLibre() > 0){
-            System.out.println("Ingrese el tamaño de la siguiente particion: ");
-            System.out.println("Memoria libre: " + memoria.calcularMemoriaLibre());
-            tamanio = teclado.nextInt();
+        
+        while(memoria.calcularMemoriaLibre() > 0 && datosPantallaMemoria.isBtnRUN()){
+            
+            tamanio = datosPantallaMemoria.getTamParticion();//Tamaño de la particion
+        
             if (tamanio > memoria.calcularMemoriaLibre()){
-                do {
-                    System.out.println("Ingrese el tamaño de la siguiente particion: ");
-                    System.out.println("Memoria libre: " + memoria.calcularMemoriaLibre());
-                    tamanio = teclado.nextInt();
-                }while (tamanio > memoria.calcularMemoriaLibre());
+                JOptionPane.showMessageDialog(null, "Error el valor Ingresado Supera el tamanio de la memoria libre ", "Cuidado!", JOptionPane.PLAIN_MESSAGE);
             }
             dirComienzo = memoria.calcularDirComienzo();
             memoria.crearParticion(tamanio,dirComienzo);
@@ -65,40 +69,43 @@ public class SimuladorSo {
     }
 
     private static void setUpMemoria() {
-        memoria = new Memoria();
+        memoria = new Memoria(datosPantallaMemoria.getTamMemoria());
+        memoria.setTipoParticion(true);
+                
     }
 
     public static void main(String[] args) {
+        //Instanciamos la Pantalla principal
+        Principal_Amadeo principal_Amadeo = new Principal_Amadeo();
+        principal_Amadeo.setVisible(true);
         setUpMemoria();
-        if (memoria.getTipoParticion())
-        {
+        //Tipo Particion
+        if (datosPantallaMemoria.isPartFija()) {
+            memoria.setTipoParticion(true);
             crearParticionesFijas();
-        }
-        else
-        {
+        } else {
+            memoria.setTipoParticion(false
+            );
             crearParticionesVariables();
         }
-        initialProcesses();
-        System.out.println("Lista Particion " + memoria.getListParticion());
-        setUpColaListo();
-        if (memoria.getTipoParticion())
-        {
-            if (memoria.getMetodoIntercambio() == 1){
-                memoria.BestFit(colaListo);
-            }
-            else{
-                memoria.FirstFit(colaListo);
-            }
+        
+        //++++++++++++++++
+        
+if (memoria.getTipoParticion()){
+    if (memoria.getMetodoIntercambio() == 1){
+        memoria.BestFit(datosPantallaProcesos.getColaListo());
+    }else{
+            memoria.FirstFit(datosPantallaProcesos.getColaListo());
         }
-        else{
-            if (memoria.getMetodoIntercambio() == 2){
-                memoria.FirstFitVariable(colaListo);
+}else{
+       if (memoria.getMetodoIntercambio() == 2){
+            memoria.FirstFitVariable(datosPantallaProcesos.getColaListo());
+        }else{
+                memoria.WorstFit(datosPantallaProcesos.getColaListo());
             }
-            else{
-                memoria.WorstFit(colaListo);
-            }
-        }
-        memoria.imprimirProcesoPorConsola();
-        System.out.println("Lista Particion " + memoria.getListParticion());
+    }
+memoria.imprimirProcesoPorConsola();
+System.out.println("Lista Particion " + memoria.getListParticion());
+        
     }
 }
