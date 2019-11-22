@@ -68,8 +68,8 @@ public class Principal extends javax.swing.JFrame {
         textField_QuantumColaAlta = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        radioBtn_colasMultinivel = new javax.swing.JRadioButton<>();
-        jRadiobtn_sjf = new javax.swing.JRadioButton<>();
+        radioBtn_colasMultinivel = new javax.swing.JRadioButton();
+        jRadiobtn_sjf = new javax.swing.JRadioButton();
         jPanelProcesos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -689,7 +689,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelMemoria;
     private javax.swing.JPanel jPanelProcesos;
     public static javax.swing.JTabbedPane jPanelTabs;
-    private javax.swing.JRadioButton<public static> jRadiobtn_sjf;
+    public static javax.swing.JRadioButton jRadiobtn_sjf;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     public static javax.swing.JTable jTable1;
@@ -699,7 +699,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JPanel panej_gantt;
     private javax.swing.JPanel panel_configuracionMemoria;
     public static javax.swing.JRadioButton radioBtn_Prioridades;
-    private javax.swing.JRadioButton<public static> radioBtn_colasMultinivel;
+    public static javax.swing.JRadioButton radioBtn_colasMultinivel;
     public static javax.swing.JRadioButton radioBtn_fcfs;
     public static javax.swing.JRadioButton radioBtn_roundRobin;
     public static javax.swing.JRadioButton radiobtn_bestfit;
