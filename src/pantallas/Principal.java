@@ -68,8 +68,8 @@ public class Principal extends javax.swing.JFrame {
         textField_QuantumColaAlta = new javax.swing.JTextField();
         jLabel15 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
-        radioBtn_colasMultinivel = new javax.swing.JRadioButton();
-        jRadiobtn_sjf = new javax.swing.JRadioButton();
+        radioBtn_colasMultinivel = new javax.swing.JRadioButton<>();
+        jRadiobtn_sjf = new javax.swing.JRadioButton<>();
         jPanelProcesos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -658,12 +658,12 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btn_addParticion;
+    public static javax.swing.JButton btn_addParticion;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
+    public static javax.swing.JButton jButton2;
+    public static javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -688,27 +688,27 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelAlgoritmos;
     private javax.swing.JPanel jPanelMemoria;
     private javax.swing.JPanel jPanelProcesos;
-    private javax.swing.JTabbedPane jPanelTabs;
-    private javax.swing.JRadioButton jRadiobtn_sjf;
+    public static javax.swing.JTabbedPane jPanelTabs;
+    private javax.swing.JRadioButton<public static> jRadiobtn_sjf;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField_tamMemoria;
-    private javax.swing.JTextField jTextField_tamParticion;
-    private javax.swing.JPanel panej_gantt;
+    public static javax.swing.JTable jTable1;
+    public static javax.swing.JTextField jTextField1;
+    public static javax.swing.JTextField jTextField_tamMemoria;
+    public static javax.swing.JTextField jTextField_tamParticion;
+    public static javax.swing.JPanel panej_gantt;
     private javax.swing.JPanel panel_configuracionMemoria;
-    private javax.swing.JRadioButton radioBtn_Prioridades;
-    private javax.swing.JRadioButton radioBtn_colasMultinivel;
-    private javax.swing.JRadioButton radioBtn_fcfs;
-    private javax.swing.JRadioButton radioBtn_roundRobin;
-    private javax.swing.JRadioButton radiobtn_bestfit;
-    private javax.swing.JRadioButton radiobtn_fijas;
-    private javax.swing.JRadioButton radiobtn_firstfit;
-    private javax.swing.JRadioButton radiobtn_variables;
-    private javax.swing.JRadioButton radiobtn_worstfit;
-    private javax.swing.JTable tabla_procesos;
-    private javax.swing.JTextField textField_QuantumColaAlta;
-    private javax.swing.JTextField textField_QuantumColaMedia;
+    public static javax.swing.JRadioButton radioBtn_Prioridades;
+    private javax.swing.JRadioButton<public static> radioBtn_colasMultinivel;
+    public static javax.swing.JRadioButton radioBtn_fcfs;
+    public static javax.swing.JRadioButton radioBtn_roundRobin;
+    public static javax.swing.JRadioButton radiobtn_bestfit;
+    public static javax.swing.JRadioButton radiobtn_fijas;
+    public static javax.swing.JRadioButton radiobtn_firstfit;
+    public static javax.swing.JRadioButton radiobtn_variables;
+    public static javax.swing.JRadioButton radiobtn_worstfit;
+    public static javax.swing.JTable tabla_procesos;
+    public static javax.swing.JTextField textField_QuantumColaAlta;
+    public static javax.swing.JTextField textField_QuantumColaMedia;
     // End of variables declaration//GEN-END:variables
 }
