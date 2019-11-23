@@ -5,17 +5,24 @@
  */
 package pantallas;
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author erick
  */
 public class Principal extends javax.swing.JFrame {
 
+    DefaultTableModel dtm;
+    Object[] o = new Object[5];
     /**
      * Creates new form jFramePrincipal
      */
     public Principal() {
         initComponents();
+        dtm = (DefaultTableModel) tabla_procesos.getModel();
+        
         setTitle("Simulador SO");
     }
 
@@ -73,10 +80,19 @@ public class Principal extends javax.swing.JFrame {
         jPanelProcesos = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        jBtn_deleteRow = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_procesos = new javax.swing.JTable();
+        jLabel9 = new javax.swing.JLabel();
+        jBtn_addProceso = new javax.swing.JButton();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
+        jTxt_tamanio = new javax.swing.JTextField();
+        jTxt_tiempoArribo = new javax.swing.JTextField();
+        jTxt_cicloVida = new javax.swing.JTextField();
+        jBox_prioridad = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_Archivo = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -478,31 +494,42 @@ public class Principal extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED, java.awt.Color.white, java.awt.Color.gray));
         jPanel2.setLayout(new java.awt.BorderLayout());
 
-        jButton2.setText("ELIMINAR -");
-        jPanel4.add(jButton2);
-
-        jButton3.setText("AGREGAR +");
-        jPanel4.add(jButton3);
+        jBtn_deleteRow.setText("ELIMINAR -");
+        jBtn_deleteRow.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtn_deleteRowMouseClicked(evt);
+            }
+        });
+        jBtn_deleteRow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_deleteRowActionPerformed(evt);
+            }
+        });
+        jPanel4.add(jBtn_deleteRow);
 
         jPanel2.add(jPanel4, java.awt.BorderLayout.PAGE_END);
 
         tabla_procesos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                { new Integer(1), null, null, null, null},
-                { new Integer(2), null, null, null, null},
-                { new Integer(3), null, null, null, null},
-                { new Integer(4), null, null, null, null}
+                {null, null, null, null, null}
             },
             new String [] {
                 "Proceso", "Tamaño", "TA", "Ciclo de vida", "Prioridad"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.String.class, java.lang.String.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tabla_procesos.setToolTipText("");
@@ -511,24 +538,121 @@ public class Principal extends javax.swing.JFrame {
         tabla_procesos.setName("Procesos"); // NOI18N
         tabla_procesos.setRowSelectionAllowed(false);
         jScrollPane2.setViewportView(tabla_procesos);
+        if (tabla_procesos.getColumnModel().getColumnCount() > 0) {
+            tabla_procesos.getColumnModel().getColumn(0).setResizable(false);
+            tabla_procesos.getColumnModel().getColumn(1).setResizable(false);
+            tabla_procesos.getColumnModel().getColumn(2).setResizable(false);
+            tabla_procesos.getColumnModel().getColumn(3).setResizable(false);
+            tabla_procesos.getColumnModel().getColumn(4).setResizable(false);
+        }
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
+
+        jLabel9.setFont(new java.awt.Font("DialogInput", 1, 14)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("AGREGAR PROCESO");
+
+        jBtn_addProceso.setText("AGREGAR PROCESO");
+        jBtn_addProceso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtn_addProcesoMouseClicked(evt);
+            }
+        });
+        jBtn_addProceso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtn_addProcesoActionPerformed(evt);
+            }
+        });
+
+        jLabel10.setText("Tamanio:");
+
+        jLabel11.setText("Tiempo de arribo:");
+
+        jLabel17.setText("Ciclo de vida:");
+
+        jLabel18.setText("Prioridad: ");
+
+        jTxt_tamanio.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxt_tamanioKeyTyped(evt);
+            }
+        });
+
+        jTxt_tiempoArribo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxt_tiempoArriboKeyTyped(evt);
+            }
+        });
+
+        jTxt_cicloVida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxt_cicloVidaActionPerformed(evt);
+            }
+        });
+        jTxt_cicloVida.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxt_cicloVidaKeyTyped(evt);
+            }
+        });
+
+        jBox_prioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BAJA", "MEDIA", "ALTA" }));
 
         javax.swing.GroupLayout jPanelProcesosLayout = new javax.swing.GroupLayout(jPanelProcesos);
         jPanelProcesos.setLayout(jPanelProcesosLayout);
         jPanelProcesosLayout.setHorizontalGroup(
             jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanelProcesosLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProcesosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanelProcesosLayout.createSequentialGroup()
+                        .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jBtn_addProceso, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanelProcesosLayout.createSequentialGroup()
+                                .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel17)
+                                    .addComponent(jLabel18)
+                                    .addComponent(jLabel10))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jBox_prioridad, 0, 90, Short.MAX_VALUE)
+                                    .addComponent(jTxt_cicloVida)
+                                    .addComponent(jTxt_tamanio)
+                                    .addComponent(jTxt_tiempoArribo))))
+                        .addGap(0, 221, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         jPanelProcesosLayout.setVerticalGroup(
             jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanelProcesosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 440, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanelProcesosLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel10)
+                            .addComponent(jTxt_tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel11)
+                            .addComponent(jTxt_tiempoArribo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel17)
+                            .addComponent(jTxt_cicloVida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel18)
+                            .addComponent(jBox_prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(25, 25, 25)
+                        .addComponent(jBtn_addProceso)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE))
+                .addGap(31, 31, 31))
         );
 
         jPanelTabs.addTab("Procesos", jPanelProcesos);
@@ -621,6 +745,56 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_addParticionKeyTyped
 
+    private void jTxt_cicloVidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxt_cicloVidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxt_cicloVidaActionPerformed
+
+    private void jTxt_tamanioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_tamanioKeyTyped
+        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_jTxt_tamanioKeyTyped
+
+    private void jTxt_tiempoArriboKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_tiempoArriboKeyTyped
+        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_jTxt_tiempoArriboKeyTyped
+
+    private void jTxt_cicloVidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_cicloVidaKeyTyped
+        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_jTxt_cicloVidaKeyTyped
+
+    private void jBtn_addProcesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_addProcesoMouseClicked
+        /* Accion al presionar Agregar Proceso (deberia agregarlo a la tabla de 
+        procesos) */
+        
+        
+    }//GEN-LAST:event_jBtn_addProcesoMouseClicked
+
+    private void jBtn_deleteRowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_deleteRowMouseClicked
+       
+        
+        
+    }//GEN-LAST:event_jBtn_deleteRowMouseClicked
+
+    private void jBtn_deleteRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_deleteRowActionPerformed
+        if (tabla_procesos.getSelectedRow() != -1){
+            dtm.removeRow(tabla_procesos.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(null, "No has seleccionado un registro");
+        }
+            
+    }//GEN-LAST:event_jBtn_deleteRowActionPerformed
+
+    private void jBtn_addProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_addProcesoActionPerformed
+        int item = 0;
+        item = item + 1;
+        
+        o[0] = String.valueOf(item);
+        o[1] = jTxt_tamanio.getText();
+        o[2] = jTxt_tiempoArribo.getText();
+        o[3] = jTxt_cicloVida.getText();
+        o[4] = jBox_prioridad.getSelectedItem();
+        dtm.addRow(o);
+    }//GEN-LAST:event_jBtn_addProcesoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -662,14 +836,19 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
-    public static javax.swing.JButton jButton2;
-    public static javax.swing.JButton jButton3;
+    public static javax.swing.JComboBox<String> jBox_prioridad;
+    public static javax.swing.JButton jBtn_addProceso;
+    public static javax.swing.JButton jBtn_deleteRow;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel17;
+    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -677,6 +856,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_tamparticion;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -696,6 +876,9 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JTextField jTextField1;
     public static javax.swing.JTextField jTextField_tamMemoria;
     public static javax.swing.JTextField jTextField_tamParticion;
+    public static javax.swing.JTextField jTxt_cicloVida;
+    public static javax.swing.JTextField jTxt_tamanio;
+    public static javax.swing.JTextField jTxt_tiempoArribo;
     public static javax.swing.JPanel panej_gantt;
     private javax.swing.JPanel panel_configuracionMemoria;
     public static javax.swing.JRadioButton radioBtn_Prioridades;
