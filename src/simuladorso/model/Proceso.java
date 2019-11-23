@@ -27,7 +27,7 @@ public class Proceso implements Comparable<Proceso>{
     }
     private Prioridad prioridadd;
     static int cont = 1; 
-    private String estadoProceso;
+    private String estadoProceso;//NUnca lo ocupo
     private int tiempoActual;
     private int tiempoEspera;
     private int tiempoRetorno;
