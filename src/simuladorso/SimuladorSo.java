@@ -263,12 +263,6 @@ public class SimuladorSo {
     public static void main(String[] args) {
         db = new Connector();
         db.crearTabla();
-        db.insertarProceso(2, 5, 0, "1-1-1" ,"media");
-        db.insertarProceso(3, 60, 1, "3-2-1" ,"alta");
-        db.insertarProceso(4, 15, 1, "1-2-1" ,"alta");
-        db.insertarProceso(5, 3, 1, "2-1-1" ,"media");
-        db.insertarProceso(6, 30, 2, "1-2-3" ,"baja");
-        db.insertarProceso(7, 21, 2, "1-1-1" ,"media"); 
         clock = 0;
         setUpMemoria();
         setUpParticiones();
