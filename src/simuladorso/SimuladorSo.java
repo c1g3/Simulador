@@ -10,8 +10,10 @@ import simuladorso.model.Memoria;
 import simuladorso.model.Procesador;
 import simuladorso.model.EntradaSalida;
 import simuladorso.model.Planificador;
+import simuladorso.model.Connector;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Iterator;
 /**
@@ -20,14 +22,6 @@ import java.util.Iterator;
  */
 public class SimuladorSo {
     private static int clock;
-
-    private static Proceso pro1;
-    private static Proceso pro2;
-    private static Proceso pro3;
-    private static Proceso pro4;
-    private static Proceso pro5;
-    private static Proceso pro6;
-    private static Proceso pro7;
     private static List<Proceso> colaProcesos;
     private static List<Proceso> colaNuevo;
     private static List<Proceso> colaListo;
@@ -38,40 +32,29 @@ public class SimuladorSo {
     private static Memoria memoria;
     private static Scanner teclado;
     private static Planificador planificador;
-    private static int cantProcesos;
+    private static Integer cantProcesos;
     private static int tiempoEsperaPromedio;
     private static int tiempoRetornoPromedio;
+    private static Connector db;
     
     //Inicializa los procesos.
     private static void initialProcedures() {
-        Integer[] a1 = {2 ,1 ,2};
-        Integer[] a2 = {1, 1, 1};
-        Integer[] a3 = {3, 2, 1}; 
-        Integer[] a4 = {1, 2, 1};
-        Integer[] a5 = {2, 1, 1};
-        Integer[] a6 = {1, 2, 3};
-        Integer[] a7 = {1, 1, 1};
-        pro1 = new Proceso(10,0, a1);
-        pro2 = new Proceso(5,0,a2);
-        pro3 = new Proceso(60,1,a3);
-        pro4 = new Proceso(15,1,a4);
-        pro5 = new Proceso(3,1,a5);
-        pro6 = new Proceso(30,2,a6);
-        pro7 = new Proceso(21,2,a7);
-        System.out.println(pro1);
-        System.out.println(pro2);
-        System.out.println(pro3);
-        System.out.println(pro4);
-        System.out.println(pro5);
-        System.out.println(pro6);
-        System.out.println(pro7);
-        colaProcesos.add(pro1);
-        colaProcesos.add(pro2);
-        colaProcesos.add(pro3);
-        colaProcesos.add(pro4);
-        colaProcesos.add(pro5);
-        colaProcesos.add(pro6);
-        colaProcesos.add(pro7);
+        db.getProcesos(colaProcesos);
+        teclado = new Scanner(System.in);
+        String idProceso;
+        String tamProceso;
+        String tiempoArribo;
+        for(Iterator<Proceso> itr = colaProcesos.iterator();itr.hasNext();){
+            Proceso proceso = itr.next();
+            idProceso = proceso.getNombreProceso().toString();
+            tamProceso = proceso.getTamProceso().toString();
+            tiempoArribo = proceso.getTiempoArribo().toString();
+            System.out.println(idProceso+" "+tamProceso+" "+tiempoArribo+" "+proceso.getRafaga().toString()+" "+" "+proceso.getPrioridad());   
+            System.out.println("Utilizar[1]");
+            if (teclado.nextInt() != 1){
+                itr.remove();
+            }
+        }
         cantProcesos = colaProcesos.size();
     }
     
@@ -278,11 +261,20 @@ public class SimuladorSo {
     }
     
     public static void main(String[] args) {
+        db = new Connector();
+        db.crearTabla();
+        db.insertarProceso(2, 5, 0, "1-1-1" ,"media");
+        db.insertarProceso(3, 60, 1, "3-2-1" ,"alta");
+        db.insertarProceso(4, 15, 1, "1-2-1" ,"alta");
+        db.insertarProceso(5, 3, 1, "2-1-1" ,"media");
+        db.insertarProceso(6, 30, 2, "1-2-3" ,"baja");
+        db.insertarProceso(7, 21, 2, "1-1-1" ,"media"); 
         clock = 0;
         setUpMemoria();
         setUpParticiones();
         setUpColas();
         initialProcedures();
+        db.closeConnection();
         tiempoEsperaPromedio = 0;
         tiempoRetornoPromedio = 0;
         while (colaTerminado.size() != cantProcesos){
