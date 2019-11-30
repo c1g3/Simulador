@@ -8,6 +8,8 @@
     </Component>
     <Component class="javax.swing.ButtonGroup" name="buttonGroup3">
     </Component>
+    <Component class="javax.swing.ButtonGroup" name="buttonGroup4">
+    </Component>
     <Menu class="javax.swing.JMenuBar" name="jMenuBar1">
       <Properties>
         <Property name="toolTipText" type="java.lang.String" value=""/>
@@ -91,7 +93,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="114" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -100,7 +102,7 @@
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="32767" attributes="0"/>
+                      <EmptySpace pref="19" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -111,10 +113,10 @@
               <Layout>
                 <DimensionLayout dim="0">
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="panel_configuracionMemoria" max="32767" attributes="0"/>
-                          <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="0" attributes="0">
+                          <Component id="panel_configuracionMemoria" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace pref="38" max="32767" attributes="0"/>
+                          <Component id="jPanel3" min="-2" pref="390" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -128,7 +130,7 @@
                       <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jPanel3" max="32767" attributes="0"/>
-                              <Component id="panel_configuracionMemoria" max="32767" attributes="0"/>
+                              <Component id="panel_configuracionMemoria" pref="294" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
                           <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
@@ -158,10 +160,17 @@
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel6" alignment="1" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
+                              <Component id="jScrollPane1" min="-2" pref="377" max="-2" attributes="0"/>
                               <EmptySpace max="32767" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel9" min="-2" pref="94" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="showMemoriaLibre" min="-2" pref="59" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -170,8 +179,13 @@
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jScrollPane1" min="-2" pref="178" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jScrollPane1" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="showMemoriaLibre" alignment="3" min="-2" pref="16" max="-2" attributes="0"/>
+                                  <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -194,7 +208,7 @@
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="jTable1">
+                        <Component class="javax.swing.JTable" name="tablaParticiones">
                           <Properties>
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="4" rowCount="4">
@@ -211,6 +225,13 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JLabel" name="showMemoriaLibre">
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel9">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Memoria Libre:"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="panel_configuracionMemoria">
@@ -233,36 +254,40 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="radiobtn_worstfit" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="radiobtn_bestfit" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" alignment="0" attributes="0">
                                       <Component id="radiobtn_variables" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Component id="radiobtn_fijas" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Component id="radiobtn_worstfit" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                   <Component id="radiobtn_firstfit" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Component id="radiobtn_bestfit" alignment="0" min="-2" max="-2" attributes="0"/>
-                                  <Group type="102" alignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel_tamparticion" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
                                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="jTextField_tamParticion" pref="72" max="32767" attributes="0"/>
-                                                  <Component id="jTextField_tamMemoria" max="32767" attributes="0"/>
+                                                  <Component id="inputTamParticion" pref="72" max="32767" attributes="0"/>
+                                                  <Component id="inputTamMemoria" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
                                       <EmptySpace type="separate" max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="MemoriaLista" min="-2" max="-2" attributes="0"/>
+                                          </Group>
                                           <Component id="btn_addParticion" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                               </Group>
-                              <EmptySpace pref="86" max="32767" attributes="0"/>
+                              <EmptySpace min="91" pref="18" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -272,16 +297,15 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextField_tamMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inputTamMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="MemoriaLista" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel_tamparticion" min="-2" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="jTextField_tamParticion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      <Component id="btn_addParticion" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  </Group>
+                                  <Component id="btn_addParticion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inputTamParticion" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
@@ -312,12 +336,13 @@
                         <Property name="text" type="java.lang.String" value="Tama&#xf1;o de memoria:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField_tamMemoria">
+                    <Component class="javax.swing.JTextField" name="inputTamMemoria">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_tamMemoriaActionPerformed"/>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_tamMemoriaKeyTyped"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputTamMemoriaActionPerformed"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inputTamMemoriaKeyTyped"/>
                       </Events>
                       <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="Principal_tamMemoria"/>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
                     </Component>
@@ -337,10 +362,10 @@
                         <Property name="text" type="java.lang.String" value="Tama&#xf1;o de particion:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="jTextField_tamParticion">
+                    <Component class="javax.swing.JTextField" name="inputTamParticion">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField_tamParticionActionPerformed"/>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTextField_tamParticionKeyTyped"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputTamParticionActionPerformed"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inputTamParticionKeyTyped"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -459,6 +484,14 @@
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
                       </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="MemoriaLista">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="MemoriaOK"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MemoriaListaActionPerformed"/>
+                      </Events>
                     </Component>
                   </SubComponents>
                 </Container>

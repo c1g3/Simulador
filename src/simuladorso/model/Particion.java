@@ -20,9 +20,9 @@ public class Particion implements Comparable<Particion>{
     private int fragmentacionInterna;
     static int cont = 1;
     
-    //La particion necesita tamaño y direccion inicial.
+    //La particion necesita tamaño y direccion inicial
+    //se debe mostrar en la tabla: dirInicial, tamParticion, 
     public Particion(int tamParticion, int direccionInicial){
-        teclado = new Scanner(System.in);
         this.idParticion = cont;
         cont = cont + 1;
         this.tamParticion = tamParticion;
@@ -30,6 +30,10 @@ public class Particion implements Comparable<Particion>{
         this.estado = false;
         this.proceso = null;    
         this.fragmentacionInterna = 0;
+    }
+
+    public int getDireccionInicial() {
+        return direccionInicial;
     }
     
     //retorna Verdadero si no hay proceso en la particion. Falso en caso contrario.

@@ -14,6 +14,7 @@ import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Iterator;
+import pantallas.Principal;
 /**
  *
  * @author Amadeo
@@ -155,16 +156,14 @@ public class SimuladorSo {
     
     //Selecciona el algoritmo de intercambio a ejecutar.
     private static void intercambio(){
-        if (memoria.getTipoParticion())
-        {
+        if (memoria.getTipoParticion()){
             if (memoria.getMetodoIntercambio() == 1){
                 memoria.BestFit(colaNuevo,colaListo);
             }
             else{
                 memoria.FirstFit(colaNuevo,colaListo);
             }
-        }
-        else{
+        }else{
             if (memoria.getMetodoIntercambio() == 2){
                 memoria.FirstFitVariable(colaNuevo,colaListo);
             }
@@ -278,7 +277,7 @@ public class SimuladorSo {
     }
     
     public static void main(String[] args) {
-        clock = 0;
+       /* clock = 0;
         setUpMemoria();
         setUpParticiones();
         setUpColas();
@@ -307,5 +306,14 @@ public class SimuladorSo {
         tiempoEsperaPromedio /= cantProcesos;
         tiempoRetornoPromedio /= cantProcesos;
         System.out.println("TEP: "+tiempoEsperaPromedio+" TRP: "+tiempoRetornoPromedio);
+    ************************************************/
+  
+      Principal principal = new Principal();
+      principal.setVisible(true);
+
+    
+    
     }
-}
+      
+    }
+
