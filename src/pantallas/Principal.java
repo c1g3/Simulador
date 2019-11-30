@@ -16,7 +16,7 @@ public class Principal extends javax.swing.JFrame {
 
     DefaultTableModel dtm;
     DefaultTableModel ptm;
-    Object[] o = new Object[5];
+    Object[] procesos = new Object[5];
     Object[] part = new Object[3];
     int filaSeleccionada = -1;
     
@@ -44,9 +44,9 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
-        buttonGroup2 = new javax.swing.ButtonGroup();
-        buttonGroup3 = new javax.swing.ButtonGroup();
+        grupoRButtons_tipoParticionamiento = new javax.swing.ButtonGroup();
+        grupoRButtons_algoritmoIntercambio = new javax.swing.ButtonGroup();
+        grupoRButtons_algoritmosPlanificacion = new javax.swing.ButtonGroup();
         jPanelTabs = new javax.swing.JTabbedPane();
         jPanelMemoria = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
@@ -59,11 +59,11 @@ public class Principal extends javax.swing.JFrame {
         tamMemoria = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel_tamparticion = new javax.swing.JLabel();
-        tamParticion = new javax.swing.JTextField();
+        txt_tamParticion = new javax.swing.JTextField();
         btn_addParticion = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        radiobtn_variables = new javax.swing.JRadioButton();
-        radiobtn_fijas = new javax.swing.JRadioButton();
+        radiobtn_partVariables = new javax.swing.JRadioButton();
+        radiobtn_partFijas = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
         radiobtn_firstfit = new javax.swing.JRadioButton();
         radiobtn_bestfit = new javax.swing.JRadioButton();
@@ -90,19 +90,19 @@ public class Principal extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tabla_procesos = new javax.swing.JTable();
-        jBtn_addProceso = new javax.swing.JButton();
+        btn_addProceso = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jTxt_tamanio = new javax.swing.JTextField();
-        jTxt_tiempoArribo = new javax.swing.JTextField();
-        jTxt_cicloVida = new javax.swing.JTextField();
-        jBox_prioridad = new javax.swing.JComboBox<>();
-        jBtn_deleteRow = new javax.swing.JButton();
-        btn_modificar = new javax.swing.JButton();
+        jTxt_tamanioProceso = new javax.swing.JTextField();
+        jTxt_tiempoArriboProceso = new javax.swing.JTextField();
+        jTxt_cicloVidaProceso = new javax.swing.JTextField();
+        jBox_prioridadProceso = new javax.swing.JComboBox<>();
+        btn_eliminarProceso = new javax.swing.JButton();
+        btn_modificarProceso = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
-        jButton1 = new javax.swing.JButton();
+        btn_seleccionarProceso = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         panej_gantt1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -196,14 +196,14 @@ public class Principal extends javax.swing.JFrame {
         jLabel_tamparticion.setForeground(java.awt.Color.white);
         jLabel_tamparticion.setText("Tamaño de particion:");
 
-        tamParticion.addActionListener(new java.awt.event.ActionListener() {
+        txt_tamParticion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tamParticionActionPerformed(evt);
+                txt_tamParticionActionPerformed(evt);
             }
         });
-        tamParticion.addKeyListener(new java.awt.event.KeyAdapter() {
+        txt_tamParticion.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                tamParticionKeyTyped(evt);
+                txt_tamParticionKeyTyped(evt);
             }
         });
 
@@ -228,29 +228,29 @@ public class Principal extends javax.swing.JFrame {
         jLabel4.setForeground(java.awt.Color.white);
         jLabel4.setText("Tipo de particionamiento:");
 
-        buttonGroup1.add(radiobtn_variables);
-        radiobtn_variables.setForeground(java.awt.Color.white);
-        radiobtn_variables.setText("Variables");
-        radiobtn_variables.addActionListener(new java.awt.event.ActionListener() {
+        grupoRButtons_tipoParticionamiento.add(radiobtn_partVariables);
+        radiobtn_partVariables.setForeground(java.awt.Color.white);
+        radiobtn_partVariables.setText("Variables");
+        radiobtn_partVariables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radiobtn_variablesActionPerformed(evt);
+                radiobtn_partVariablesActionPerformed(evt);
             }
         });
 
-        buttonGroup1.add(radiobtn_fijas);
-        radiobtn_fijas.setForeground(new java.awt.Color(255, 255, 255));
-        radiobtn_fijas.setText("Fijas");
-        radiobtn_fijas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        radiobtn_fijas.addActionListener(new java.awt.event.ActionListener() {
+        grupoRButtons_tipoParticionamiento.add(radiobtn_partFijas);
+        radiobtn_partFijas.setForeground(new java.awt.Color(255, 255, 255));
+        radiobtn_partFijas.setText("Fijas");
+        radiobtn_partFijas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        radiobtn_partFijas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                radiobtn_fijasActionPerformed(evt);
+                radiobtn_partFijasActionPerformed(evt);
             }
         });
 
         jLabel5.setForeground(java.awt.Color.white);
         jLabel5.setText("Algoritmo de Intercambio:");
 
-        buttonGroup2.add(radiobtn_firstfit);
+        grupoRButtons_algoritmoIntercambio.add(radiobtn_firstfit);
         radiobtn_firstfit.setForeground(java.awt.Color.white);
         radiobtn_firstfit.setText("First-Fit");
         radiobtn_firstfit.addActionListener(new java.awt.event.ActionListener() {
@@ -259,11 +259,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup2.add(radiobtn_bestfit);
+        grupoRButtons_algoritmoIntercambio.add(radiobtn_bestfit);
         radiobtn_bestfit.setForeground(java.awt.Color.white);
         radiobtn_bestfit.setText("Best-Fit");
 
-        buttonGroup2.add(radiobtn_worstfit);
+        grupoRButtons_algoritmoIntercambio.add(radiobtn_worstfit);
         radiobtn_worstfit.setForeground(java.awt.Color.white);
         radiobtn_worstfit.setText("Worst-Fit");
 
@@ -285,14 +285,14 @@ public class Principal extends javax.swing.JFrame {
                         .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
-                                .addComponent(radiobtn_variables)
+                                .addComponent(radiobtn_partVariables)
                                 .addGap(18, 18, 18)
-                                .addComponent(radiobtn_fijas))
+                                .addComponent(radiobtn_partFijas))
                             .addComponent(radiobtn_worstfit)
                             .addComponent(jLabel5)
                             .addComponent(radiobtn_firstfit)
                             .addComponent(radiobtn_bestfit))
-                        .addContainerGap(228, Short.MAX_VALUE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
                         .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_tamparticion)
@@ -300,16 +300,16 @@ public class Principal extends javax.swing.JFrame {
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(tamParticion, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
+                                    .addComponent(txt_tamParticion, javax.swing.GroupLayout.DEFAULT_SIZE, 72, Short.MAX_VALUE)
                                     .addComponent(tamMemoria))))
                         .addGap(18, 18, 18)
                         .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
                                 .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btn_addParticion))
+                                .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btn_addParticion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btn_removeParticion)))
                         .addGap(35, 35, 35))))
         );
@@ -320,20 +320,20 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tamMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(btn_addParticion))
+                    .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_tamparticion)
                     .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(tamParticion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_removeParticion)))
+                        .addComponent(txt_tamParticion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(btn_removeParticion)
+                        .addComponent(btn_addParticion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(radiobtn_variables)
-                    .addComponent(radiobtn_fijas))
+                    .addComponent(radiobtn_partVariables)
+                    .addComponent(radiobtn_partFijas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel5)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -350,7 +350,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(panel_configuracionMemoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(panel_configuracionMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, 380, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
@@ -384,7 +384,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel7.setText("Algoritmos de planificacion");
 
-        buttonGroup1.add(radioBtn_fcfs);
+        grupoRButtons_algoritmosPlanificacion.add(radioBtn_fcfs);
         radioBtn_fcfs.setText("First-Come,First-Served (FCFS)");
         radioBtn_fcfs.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -397,7 +397,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(radioBtn_roundRobin);
+        grupoRButtons_algoritmosPlanificacion.add(radioBtn_roundRobin);
         radioBtn_roundRobin.setText("Round Robin");
         radioBtn_roundRobin.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -410,7 +410,7 @@ public class Principal extends javax.swing.JFrame {
 
         label_RR.setText("Quantum");
 
-        buttonGroup1.add(radioBtn_Prioridades);
+        grupoRButtons_algoritmosPlanificacion.add(radioBtn_Prioridades);
         radioBtn_Prioridades.setText("Prioridades (cooperativo)");
         radioBtn_Prioridades.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -446,7 +446,7 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel16.setText("Cola de prioridad alta: (Round Robin)");
 
-        buttonGroup1.add(radioBtn_colasMultinivel);
+        grupoRButtons_algoritmosPlanificacion.add(radioBtn_colasMultinivel);
         radioBtn_colasMultinivel.setText("Colas multinivel");
         radioBtn_colasMultinivel.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -460,7 +460,7 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup1.add(jRadiobtn_sjf);
+        grupoRButtons_algoritmosPlanificacion.add(jRadiobtn_sjf);
         jRadiobtn_sjf.setText("SJF");
         jRadiobtn_sjf.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mousePressed(java.awt.event.MouseEvent evt) {
@@ -594,15 +594,15 @@ public class Principal extends javax.swing.JFrame {
 
         jPanel2.add(jScrollPane2, java.awt.BorderLayout.CENTER);
 
-        jBtn_addProceso.setText("AGREGAR PROCESO");
-        jBtn_addProceso.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_addProceso.setText("AGREGAR PROCESO");
+        btn_addProceso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBtn_addProcesoMouseClicked(evt);
+                btn_addProcesoMouseClicked(evt);
             }
         });
-        jBtn_addProceso.addActionListener(new java.awt.event.ActionListener() {
+        btn_addProceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_addProcesoActionPerformed(evt);
+                btn_addProcesoActionPerformed(evt);
             }
         });
 
@@ -614,56 +614,56 @@ public class Principal extends javax.swing.JFrame {
 
         jLabel18.setText("Prioridad: ");
 
-        jTxt_tamanio.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTxt_tamanioProceso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTxt_tamanioKeyTyped(evt);
+                jTxt_tamanioProcesoKeyTyped(evt);
             }
         });
 
-        jTxt_tiempoArribo.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTxt_tiempoArriboProceso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTxt_tiempoArriboKeyTyped(evt);
+                jTxt_tiempoArriboProcesoKeyTyped(evt);
             }
         });
 
-        jTxt_cicloVida.addActionListener(new java.awt.event.ActionListener() {
+        jTxt_cicloVidaProceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTxt_cicloVidaActionPerformed(evt);
+                jTxt_cicloVidaProcesoActionPerformed(evt);
             }
         });
-        jTxt_cicloVida.addKeyListener(new java.awt.event.KeyAdapter() {
+        jTxt_cicloVidaProceso.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTxt_cicloVidaKeyTyped(evt);
+                jTxt_cicloVidaProcesoKeyTyped(evt);
             }
         });
 
-        jBox_prioridad.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BAJA", "MEDIA", "ALTA" }));
+        jBox_prioridadProceso.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "BAJA", "MEDIA", "ALTA" }));
 
-        jBtn_deleteRow.setText("ELIMINAR PROCESO");
-        jBtn_deleteRow.addMouseListener(new java.awt.event.MouseAdapter() {
+        btn_eliminarProceso.setText("ELIMINAR PROCESO");
+        btn_eliminarProceso.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jBtn_deleteRowMouseClicked(evt);
+                btn_eliminarProcesoMouseClicked(evt);
             }
         });
-        jBtn_deleteRow.addActionListener(new java.awt.event.ActionListener() {
+        btn_eliminarProceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBtn_deleteRowActionPerformed(evt);
+                btn_eliminarProcesoActionPerformed(evt);
             }
         });
 
-        btn_modificar.setText("MODIFICAR PROCESO");
-        btn_modificar.addActionListener(new java.awt.event.ActionListener() {
+        btn_modificarProceso.setText("MODIFICAR PROCESO");
+        btn_modificarProceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btn_modificarActionPerformed(evt);
+                btn_modificarProcesoActionPerformed(evt);
             }
         });
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
 
-        jButton1.setText("SELECCIONAR PROCESO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btn_seleccionarProceso.setText("SELECCIONAR PROCESO");
+        btn_seleccionarProceso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btn_seleccionarProcesoActionPerformed(evt);
             }
         });
 
@@ -680,18 +680,18 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBox_prioridad, 0, 90, Short.MAX_VALUE)
-                    .addComponent(jTxt_cicloVida)
-                    .addComponent(jTxt_tamanio)
-                    .addComponent(jTxt_tiempoArribo))
+                    .addComponent(jBox_prioridadProceso, 0, 90, Short.MAX_VALUE)
+                    .addComponent(jTxt_cicloVidaProceso)
+                    .addComponent(jTxt_tamanioProceso)
+                    .addComponent(jTxt_tiempoArriboProceso))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtn_addProceso, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
-                    .addComponent(jBtn_deleteRow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btn_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btn_addProceso, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
+                    .addComponent(btn_eliminarProceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_modificarProceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btn_seleccionarProceso, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -711,28 +711,28 @@ public class Principal extends javax.swing.JFrame {
                                 .addGroup(jPanelProcesosLayout.createSequentialGroup()
                                     .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel10)
-                                        .addComponent(jTxt_tamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTxt_tamanioProceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(19, 19, 19)
                                     .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel11)
-                                        .addComponent(jTxt_tiempoArribo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTxt_tiempoArriboProceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(18, 18, 18)
                                     .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel17)
-                                        .addComponent(jTxt_cicloVida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTxt_cicloVidaProceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGap(22, 22, 22)
                                     .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                         .addComponent(jLabel18)
-                                        .addComponent(jBox_prioridad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(jBox_prioridadProceso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addComponent(jSeparator1))
                             .addGroup(jPanelProcesosLayout.createSequentialGroup()
-                                .addComponent(jButton1)
+                                .addComponent(btn_seleccionarProceso)
                                 .addGap(18, 18, 18)
-                                .addComponent(jBtn_addProceso)
+                                .addComponent(btn_addProceso)
                                 .addGap(18, 18, 18)
-                                .addComponent(btn_modificar)
+                                .addComponent(btn_modificarProceso)
                                 .addGap(18, 18, 18)
-                                .addComponent(jBtn_deleteRow)))
+                                .addComponent(btn_eliminarProceso)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
@@ -810,51 +810,26 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tamMemoriaActionPerformed
     
-    int idPart = 0;
-    int dirIni = 0;
-    
+   
     private void btn_addParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addParticionActionPerformed
-        
-        
-        idPart = idPart +1;
-        
-        if (check_part()){
-          ptm.removeRow(idPart);
-        }
-        
-        part[0] = idPart;
-        part[1] = Integer.parseInt(tamMemoria.getText());
-        part[2] = dirIni + 1;
-        
-        if (idPart == 1){
-            dirIni = 0;
-            part[2] = 0;
-        }
-        
-        dirIni = dirIni + Integer.parseInt(tamParticion.getText());
-        
-        ptm.addRow(part); /* agrega la particion */
-        limpiar(); /* limpia los txt field */
-        
-        
         
     }//GEN-LAST:event_btn_addParticionActionPerformed
 
-    private void radiobtn_variablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_variablesActionPerformed
+    private void radiobtn_partVariablesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_partVariablesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_radiobtn_variablesActionPerformed
+    }//GEN-LAST:event_radiobtn_partVariablesActionPerformed
 
-    private void radiobtn_fijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_fijasActionPerformed
+    private void radiobtn_partFijasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_partFijasActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_radiobtn_fijasActionPerformed
+    }//GEN-LAST:event_radiobtn_partFijasActionPerformed
 
     private void radiobtn_firstfitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radiobtn_firstfitActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_radiobtn_firstfitActionPerformed
 
-    private void tamParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tamParticionActionPerformed
+    private void txt_tamParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_tamParticionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_tamParticionActionPerformed
+    }//GEN-LAST:event_txt_tamParticionActionPerformed
 
     private void radioBtn_fcfsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtn_fcfsActionPerformed
         // TODO add your handling code here:
@@ -865,9 +840,9 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_tamMemoriaKeyTyped
 
-    private void tamParticionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tamParticionKeyTyped
+    private void txt_tamParticionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_tamParticionKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_tamParticionKeyTyped
+    }//GEN-LAST:event_txt_tamParticionKeyTyped
 
     private void txt_quantumRRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_quantumRRKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
@@ -889,31 +864,31 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btn_addParticionKeyTyped
 
-    private void jTxt_cicloVidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxt_cicloVidaActionPerformed
+    private void jTxt_cicloVidaProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxt_cicloVidaProcesoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTxt_cicloVidaActionPerformed
+    }//GEN-LAST:event_jTxt_cicloVidaProcesoActionPerformed
 
-    private void jTxt_tamanioKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_tamanioKeyTyped
+    private void jTxt_tamanioProcesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_tamanioProcesoKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_jTxt_tamanioKeyTyped
+    }//GEN-LAST:event_jTxt_tamanioProcesoKeyTyped
 
-    private void jTxt_tiempoArriboKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_tiempoArriboKeyTyped
+    private void jTxt_tiempoArriboProcesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_tiempoArriboProcesoKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_jTxt_tiempoArriboKeyTyped
+    }//GEN-LAST:event_jTxt_tiempoArriboProcesoKeyTyped
 
-    private void jTxt_cicloVidaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_cicloVidaKeyTyped
+    private void jTxt_cicloVidaProcesoKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxt_cicloVidaProcesoKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_jTxt_cicloVidaKeyTyped
+    }//GEN-LAST:event_jTxt_cicloVidaProcesoKeyTyped
 
-    private void jBtn_addProcesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_addProcesoMouseClicked
+    private void btn_addProcesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addProcesoMouseClicked
          
-    }//GEN-LAST:event_jBtn_addProcesoMouseClicked
+    }//GEN-LAST:event_btn_addProcesoMouseClicked
 
-    private void jBtn_deleteRowMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtn_deleteRowMouseClicked
+    private void btn_eliminarProcesoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_eliminarProcesoMouseClicked
 
-    }//GEN-LAST:event_jBtn_deleteRowMouseClicked
+    }//GEN-LAST:event_btn_eliminarProcesoMouseClicked
 
-    private void jBtn_deleteRowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_deleteRowActionPerformed
+    private void btn_eliminarProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarProcesoActionPerformed
          /* Accion al presionar Eliminar Proceso (deberia eliminarlo de la tabla de 
         procesos) */
         
@@ -924,62 +899,62 @@ public class Principal extends javax.swing.JFrame {
                     + "","Atencion",JOptionPane.INFORMATION_MESSAGE);
         }
             
-    }//GEN-LAST:event_jBtn_deleteRowActionPerformed
+    }//GEN-LAST:event_btn_eliminarProcesoActionPerformed
         
     int item = 0;
     
     
-    private void jBtn_addProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtn_addProcesoActionPerformed
+    private void btn_addProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addProcesoActionPerformed
         /* Accion al presionar Agregar Proceso (deberia agregarlo a la tabla de 
         procesos) */
         
-        if (check()){
+        if (checkCamposProcesos()){
           dtm.removeRow(item);
         }
         
         item = item + 1;
         
         
-        o[0] = String.valueOf(item);
-        o[1] = jTxt_tamanio.getText();
-        o[2] = jTxt_tiempoArribo.getText();
-        o[3] = jTxt_cicloVida.getText();
-        o[4] = jBox_prioridad.getSelectedItem();
+        procesos[0] = String.valueOf(item);
+        procesos[1] = jTxt_tamanioProceso.getText();
+        procesos[2] = jTxt_tiempoArriboProceso.getText();
+        procesos[3] = jTxt_cicloVidaProceso.getText();
+        procesos[4] = jBox_prioridadProceso.getSelectedItem();
         
-        dtm.addRow(o);
-        limpiar();
+        dtm.addRow(procesos);
         
+        limpiarTextFields();        
         
-    }//GEN-LAST:event_jBtn_addProcesoActionPerformed
+    }//GEN-LAST:event_btn_addProcesoActionPerformed
 
-    private void btn_modificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarActionPerformed
+    private void btn_modificarProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_modificarProcesoActionPerformed
          /* Accion al presionar Modificar Proceso (deberia modificarlo en la tabla de 
         procesos) */
         
         if (filaSeleccionada != -1){
-            tabla_procesos.setValueAt(jTxt_tamanio.getText(), filaSeleccionada, 1);
-            tabla_procesos.setValueAt(jTxt_tiempoArribo.getText(), filaSeleccionada, 2);
-            tabla_procesos.setValueAt(jTxt_cicloVida.getText(), filaSeleccionada, 3);
-            tabla_procesos.setValueAt(jBox_prioridad.getSelectedItem(), filaSeleccionada, 4);
-            limpiar();
+            tabla_procesos.setValueAt(jTxt_tamanioProceso.getText(), filaSeleccionada, 1);
+            tabla_procesos.setValueAt(jTxt_tiempoArriboProceso.getText(), filaSeleccionada, 2);
+            tabla_procesos.setValueAt(jTxt_cicloVidaProceso.getText(), filaSeleccionada, 3);
+            tabla_procesos.setValueAt(jBox_prioridadProceso.getSelectedItem(), filaSeleccionada, 4);
+            limpiarTextFields();
             filaSeleccionada = -1;
         } else {
             JOptionPane.showMessageDialog(this, "No se cargo campos", "Error!", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_btn_modificarActionPerformed
+    }//GEN-LAST:event_btn_modificarProcesoActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btn_seleccionarProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_seleccionarProcesoActionPerformed
         filaSeleccionada = tabla_procesos.getSelectedRow();
         if (filaSeleccionada != -1) {
-            limpiar();
-            jTxt_tamanio.setText(tabla_procesos.getValueAt(filaSeleccionada, 1).toString());
-            jTxt_tiempoArribo.setText(tabla_procesos.getValueAt(filaSeleccionada, 2).toString());
-            jTxt_cicloVida.setText(tabla_procesos.getValueAt(filaSeleccionada, 3).toString());
+            limpiarTextFields();
+            jTxt_tamanioProceso.setText(tabla_procesos.getValueAt(filaSeleccionada, 1).toString());
+            jTxt_tiempoArriboProceso.setText(tabla_procesos.getValueAt(filaSeleccionada, 2).toString());
+            jTxt_cicloVidaProceso.setText(tabla_procesos.getValueAt(filaSeleccionada, 3).toString());
         } else {
             JOptionPane.showMessageDialog(null, "No has seleccinado una fila");
         }
     
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btn_seleccionarProcesoActionPerformed
 
     private void radioBtn_roundRobinMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_roundRobinMousePressed
         txt_quantumRR.setEnabled(true);
@@ -1034,17 +1009,17 @@ public class Principal extends javax.swing.JFrame {
         
     }//GEN-LAST:event_btn_removeParticionActionPerformed
     
-    private void limpiar(){
-        jTxt_tamanio.setText("");
-        jTxt_tiempoArribo.setText("");
-        jTxt_cicloVida.setText("");
+    private void limpiarTextFields(){
+        jTxt_tamanioProceso.setText("");
+        jTxt_tiempoArriboProceso.setText("");
+        jTxt_cicloVidaProceso.setText("");
         tamMemoria.setText("");
-        tamParticion.setText("");
+        txt_tamParticion.setText("");
     }
     
-    private boolean check(){
-        if ((jTxt_tamanio.getText().length() == 0) || ( jTxt_tiempoArribo.getText().length() == 0 ) ||
-                (jTxt_cicloVida.getText().length() == 0)){
+    private boolean checkCamposProcesos(){
+        if ((jTxt_tamanioProceso.getText().length() == 0) || ( jTxt_tiempoArriboProceso.getText().length() == 0 ) ||
+                (jTxt_cicloVidaProceso.getText().length() == 0)){
                 JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);
                 return true;
         } else {
@@ -1052,8 +1027,8 @@ public class Principal extends javax.swing.JFrame {
         }    
     }
     
-    private boolean check_part(){
-        if ((tamMemoria.getText().length() == 0) || ( tamParticion.getText().length() == 0 )){
+    private boolean checkCamposParticion(){
+        if ((tamMemoria.getText().length() == 0) || ( txt_tamParticion.getText().length() == 0 )){
                 JOptionPane.showMessageDialog(this, "No dejar campos Vacíos", "Error!", JOptionPane.ERROR_MESSAGE);
                 return true;
         } else {
@@ -1100,15 +1075,15 @@ public class Principal extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btn_addParticion;
-    private javax.swing.JButton btn_modificar;
+    public static javax.swing.JButton btn_addProceso;
+    public static javax.swing.JButton btn_eliminarProceso;
+    private javax.swing.JButton btn_modificarProceso;
     private javax.swing.JButton btn_removeParticion;
-    private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.ButtonGroup buttonGroup3;
-    public static javax.swing.JComboBox<String> jBox_prioridad;
-    public static javax.swing.JButton jBtn_addProceso;
-    public static javax.swing.JButton jBtn_deleteRow;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btn_seleccionarProceso;
+    private javax.swing.ButtonGroup grupoRButtons_algoritmoIntercambio;
+    private javax.swing.ButtonGroup grupoRButtons_algoritmosPlanificacion;
+    private javax.swing.ButtonGroup grupoRButtons_tipoParticionamiento;
+    public static javax.swing.JComboBox<String> jBox_prioridadProceso;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1142,9 +1117,9 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
-    public static javax.swing.JTextField jTxt_cicloVida;
-    public static javax.swing.JTextField jTxt_tamanio;
-    public static javax.swing.JTextField jTxt_tiempoArribo;
+    public static javax.swing.JTextField jTxt_cicloVidaProceso;
+    public static javax.swing.JTextField jTxt_tamanioProceso;
+    public static javax.swing.JTextField jTxt_tiempoArriboProceso;
     private javax.swing.JLabel label_RR;
     public static javax.swing.JPanel panej_gantt1;
     private javax.swing.JPanel panel_configuracionMemoria;
@@ -1153,16 +1128,16 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JRadioButton radioBtn_fcfs;
     public static javax.swing.JRadioButton radioBtn_roundRobin;
     public static javax.swing.JRadioButton radiobtn_bestfit;
-    public static javax.swing.JRadioButton radiobtn_fijas;
     public static javax.swing.JRadioButton radiobtn_firstfit;
-    public static javax.swing.JRadioButton radiobtn_variables;
+    public static javax.swing.JRadioButton radiobtn_partFijas;
+    public static javax.swing.JRadioButton radiobtn_partVariables;
     public static javax.swing.JRadioButton radiobtn_worstfit;
     public static javax.swing.JTable tabla_particiones;
     public static javax.swing.JTable tabla_procesos;
     public static javax.swing.JTextField tamMemoria;
-    public static javax.swing.JTextField tamParticion;
     public static javax.swing.JTextField textField_QuantumColaAlta;
     public static javax.swing.JTextField textField_QuantumColaMedia;
     public static javax.swing.JTextField txt_quantumRR;
+    public static javax.swing.JTextField txt_tamParticion;
     // End of variables declaration//GEN-END:variables
 }
