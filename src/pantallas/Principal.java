@@ -68,8 +68,7 @@ public class Principal extends javax.swing.JFrame {
         radiobtn_firstfit = new javax.swing.JRadioButton();
         radiobtn_bestfit = new javax.swing.JRadioButton();
         radiobtn_worstfit = new javax.swing.JRadioButton();
-        panej_gantt = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        btn_removeParticion = new javax.swing.JButton();
         jPanelAlgoritmos = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         radioBtn_fcfs = new javax.swing.JRadioButton();
@@ -104,6 +103,9 @@ public class Principal extends javax.swing.JFrame {
         btn_modificar = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jButton1 = new javax.swing.JButton();
+        jPanel5 = new javax.swing.JPanel();
+        panej_gantt1 = new javax.swing.JPanel();
+        jLabel8 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_Archivo = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -153,11 +155,14 @@ public class Principal extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,6 +267,13 @@ public class Principal extends javax.swing.JFrame {
         radiobtn_worstfit.setForeground(java.awt.Color.white);
         radiobtn_worstfit.setText("Worst-Fit");
 
+        btn_removeParticion.setText("Eliminar");
+        btn_removeParticion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btn_removeParticionActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panel_configuracionMemoriaLayout = new javax.swing.GroupLayout(panel_configuracionMemoria);
         panel_configuracionMemoria.setLayout(panel_configuracionMemoriaLayout);
         panel_configuracionMemoriaLayout.setHorizontalGroup(
@@ -269,15 +281,18 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel4)
                     .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
-                        .addComponent(radiobtn_variables)
-                        .addGap(18, 18, 18)
-                        .addComponent(radiobtn_fijas))
-                    .addComponent(radiobtn_worstfit)
-                    .addComponent(jLabel5)
-                    .addComponent(radiobtn_firstfit)
-                    .addComponent(radiobtn_bestfit)
+                        .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
+                                .addComponent(radiobtn_variables)
+                                .addGap(18, 18, 18)
+                                .addComponent(radiobtn_fijas))
+                            .addComponent(radiobtn_worstfit)
+                            .addComponent(jLabel5)
+                            .addComponent(radiobtn_firstfit)
+                            .addComponent(radiobtn_bestfit))
+                        .addContainerGap(228, Short.MAX_VALUE))
                     .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
                         .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel_tamparticion)
@@ -289,9 +304,14 @@ public class Principal extends javax.swing.JFrame {
                                     .addComponent(tamMemoria))))
                         .addGap(18, 18, 18)
                         .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel3)
-                            .addComponent(btn_addParticion))))
-                .addContainerGap(86, Short.MAX_VALUE))
+                            .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
+                                .addComponent(jLabel3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btn_addParticion))
+                            .addGroup(panel_configuracionMemoriaLayout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(btn_removeParticion)))
+                        .addGap(35, 35, 35))))
         );
         panel_configuracionMemoriaLayout.setVerticalGroup(
             panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,13 +320,14 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(tamMemoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel3)
+                    .addComponent(btn_addParticion))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel_tamparticion)
                     .addGroup(panel_configuracionMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(tamParticion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(btn_addParticion)))
+                        .addComponent(btn_removeParticion)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -324,23 +345,6 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        panej_gantt.setBackground(new java.awt.Color(102, 102, 102));
-        panej_gantt.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-
-        javax.swing.GroupLayout panej_ganttLayout = new javax.swing.GroupLayout(panej_gantt);
-        panej_gantt.setLayout(panej_ganttLayout);
-        panej_ganttLayout.setHorizontalGroup(
-            panej_ganttLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 902, Short.MAX_VALUE)
-        );
-        panej_ganttLayout.setVerticalGroup(
-            panej_ganttLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 146, Short.MAX_VALUE)
-        );
-
-        jLabel1.setFont(new java.awt.Font("FreeMono", 1, 18)); // NOI18N
-        jLabel1.setText("Diagrama de Gantt");
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -349,10 +353,6 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(panel_configuracionMemoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(panej_gantt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -360,11 +360,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_configuracionMemoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panej_gantt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(205, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelMemoriaLayout = new javax.swing.GroupLayout(jPanelMemoria);
@@ -374,7 +370,7 @@ public class Principal extends javax.swing.JFrame {
             .addGroup(jPanelMemoriaLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+                .addContainerGap(54, Short.MAX_VALUE))
         );
         jPanelMemoriaLayout.setVerticalGroup(
             jPanelMemoriaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -512,7 +508,7 @@ public class Principal extends javax.swing.JFrame {
                                                 .addComponent(jLabel14)
                                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                                 .addComponent(textField_QuantumColaAlta, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
-                        .addGap(0, 548, Short.MAX_VALUE))))
+                        .addGap(0, 590, Short.MAX_VALUE))))
         );
         jPanelAlgoritmosLayout.setVerticalGroup(
             jPanelAlgoritmosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -548,7 +544,7 @@ public class Principal extends javax.swing.JFrame {
                         .addComponent(textField_QuantumColaMedia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(2, 2, 2)
                 .addComponent(jLabel13)
-                .addContainerGap(189, Short.MAX_VALUE))
+                .addContainerGap(199, Short.MAX_VALUE))
         );
 
         jPanelTabs.addTab("Algoritmos", jPanelAlgoritmos);
@@ -692,7 +688,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanelProcesosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtn_addProceso, javax.swing.GroupLayout.DEFAULT_SIZE, 217, Short.MAX_VALUE)
+                    .addComponent(jBtn_addProceso, javax.swing.GroupLayout.DEFAULT_SIZE, 234, Short.MAX_VALUE)
                     .addComponent(jBtn_deleteRow, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btn_modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -741,6 +737,45 @@ public class Principal extends javax.swing.JFrame {
         );
 
         jPanelTabs.addTab("Procesos", jPanelProcesos);
+
+        panej_gantt1.setBackground(new java.awt.Color(102, 102, 102));
+        panej_gantt1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+
+        javax.swing.GroupLayout panej_gantt1Layout = new javax.swing.GroupLayout(panej_gantt1);
+        panej_gantt1.setLayout(panej_gantt1Layout);
+        panej_gantt1Layout.setHorizontalGroup(
+            panej_gantt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        panej_gantt1Layout.setVerticalGroup(
+            panej_gantt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 146, Short.MAX_VALUE)
+        );
+
+        jLabel8.setFont(new java.awt.Font("FreeMono", 1, 18)); // NOI18N
+        jLabel8.setText("Diagrama de Gantt");
+
+        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
+        jPanel5.setLayout(jPanel5Layout);
+        jPanel5Layout.setHorizontalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel8)
+                .addGap(0, 758, Short.MAX_VALUE))
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(panej_gantt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPanel5Layout.setVerticalGroup(
+            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addGap(0, 289, Short.MAX_VALUE)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(panej_gantt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanelTabs.addTab("Simulacion", jPanel5);
 
         jMenuBar1.setToolTipText("");
 
@@ -985,6 +1020,19 @@ public class Principal extends javax.swing.JFrame {
         textField_QuantumColaMedia.setEnabled(false);
         txt_quantumRR.setEnabled(false);
     }//GEN-LAST:event_jRadiobtn_sjfMousePressed
+
+    private void btn_removeParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeParticionActionPerformed
+           
+        
+        if (tabla_particiones.getSelectedRow() != -1){
+            ptm.removeRow(tabla_particiones.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(null, "No ha seleccionado ningun proceso"
+                    + "","Atencion",JOptionPane.INFORMATION_MESSAGE);
+        }
+        
+        
+    }//GEN-LAST:event_btn_removeParticionActionPerformed
     
     private void limpiar(){
         jTxt_tamanio.setText("");
@@ -1053,6 +1101,7 @@ public class Principal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JButton btn_addParticion;
     private javax.swing.JButton btn_modificar;
+    private javax.swing.JButton btn_removeParticion;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -1060,7 +1109,6 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JButton jBtn_addProceso;
     public static javax.swing.JButton jBtn_deleteRow;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
@@ -1076,6 +1124,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel_tamparticion;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1084,6 +1133,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanelAlgoritmos;
     private javax.swing.JPanel jPanelMemoria;
     private javax.swing.JPanel jPanelProcesos;
@@ -1096,7 +1146,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JTextField jTxt_tamanio;
     public static javax.swing.JTextField jTxt_tiempoArribo;
     private javax.swing.JLabel label_RR;
-    public static javax.swing.JPanel panej_gantt;
+    public static javax.swing.JPanel panej_gantt1;
     private javax.swing.JPanel panel_configuracionMemoria;
     public static javax.swing.JRadioButton radioBtn_Prioridades;
     public static javax.swing.JRadioButton radioBtn_colasMultinivel;
