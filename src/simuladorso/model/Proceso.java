@@ -26,24 +26,22 @@ public class Proceso implements Comparable<Proceso>{
         ALTA,MEDIA,BAJA;
     }
     private Prioridad prioridadd;
-    static int cont = 1; 
-    private String estadoProceso;
+    private int seleccionado;
     private int tiempoActual;
     private int tiempoEspera;
     private int tiempoRetorno;
     private boolean primeraEjecucion; //Guarda Falso si el proceso ya se ejecuto una vez. Se utiliza para calcular el tiempo de espera.
     
     //Un proceso necesita tamaño, tiempo de arribo, rafaga y prioridad como entrada.
-    public Proceso(int tamProceso, int tiempoArribo, Integer[] rafaga){
+    public Proceso(int idProceso, int tamProceso, int tiempoArribo, Integer[] rafaga, String prioridad){
         teclado = new Scanner(System.in);
-        idProceso = cont;
-        cont++;
+        this.idProceso = idProceso;
         this.tamProceso = tamProceso;
         this.tiempoArribo = tiempoArribo;
         this.rafaga = new ArrayList<Integer>(Arrays.asList(rafaga));
         this.indice = 0;
         System.out.println("Ingrese la prioridad: ");
-        this.prioridad = teclado.next();
+        this.prioridad = prioridad;
         switch(prioridad){
             case "BAJA": this.prioridadd = Prioridad.BAJA;
                          break;
@@ -53,18 +51,10 @@ public class Proceso implements Comparable<Proceso>{
                          break;           
         }
         this.tiempoActual = this.rafaga.get(indice);
-        this.estadoProceso = "nuevo";
+        this.seleccionado = 0;
         primeraEjecucion = true;
         tiempoEspera = 0;
         tiempoRetorno = 0;
-    }
-    
-    public String getEstadoProceso() {
-        return estadoProceso;
-    }
-
-    public void setEstadoProceso(String estadoProceso) {
-        this.estadoProceso = estadoProceso;
     }
     
     @Override
@@ -96,7 +86,7 @@ public class Proceso implements Comparable<Proceso>{
         this.prioridad = prioridad;
     }
 
-    public int getNombreProceso() {
+    public Integer getNombreProceso() {
         return this.idProceso;
     }
 
@@ -153,5 +143,12 @@ public class Proceso implements Comparable<Proceso>{
     public void incTiempoRetorno(){
         this.tiempoRetorno++; 
     }
-
+    
+    public void setSeleccionado(int seleccionado){
+        this.seleccionado = seleccionado;
+    }
+    
+    public Integer getSeleccionado(){
+        return this.seleccionado;
+    }
 }
