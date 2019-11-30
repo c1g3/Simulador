@@ -231,6 +231,14 @@ public class Principal extends javax.swing.JFrame {
         grupoRButtons_tipoParticionamiento.add(radiobtn_partVariables);
         radiobtn_partVariables.setForeground(java.awt.Color.white);
         radiobtn_partVariables.setText("Variables");
+        radiobtn_partVariables.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                radiobtn_partVariablesMousePressed(evt);
+            }
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                radiobtn_partVariablesMouseClicked(evt);
+            }
+        });
         radiobtn_partVariables.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radiobtn_partVariablesActionPerformed(evt);
@@ -241,6 +249,11 @@ public class Principal extends javax.swing.JFrame {
         radiobtn_partFijas.setForeground(new java.awt.Color(255, 255, 255));
         radiobtn_partFijas.setText("Fijas");
         radiobtn_partFijas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        radiobtn_partFijas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                radiobtn_partFijasMousePressed(evt);
+            }
+        });
         radiobtn_partFijas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 radiobtn_partFijasActionPerformed(evt);
@@ -1008,6 +1021,23 @@ public class Principal extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_btn_removeParticionActionPerformed
+
+    private void radiobtn_partFijasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobtn_partFijasMousePressed
+        radiobtn_worstfit.setEnabled(false);
+        radiobtn_bestfit.setEnabled(true);
+    }//GEN-LAST:event_radiobtn_partFijasMousePressed
+
+    private void radiobtn_partVariablesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobtn_partVariablesMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radiobtn_partVariablesMouseClicked
+
+    private void radiobtn_partVariablesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobtn_partVariablesMousePressed
+        txt_tamParticion.setEnabled(false);
+        btn_addParticion.setEnabled(false);
+        btn_removeParticion.setEnabled(false);
+        radiobtn_bestfit.setEnabled(false);
+        radiobtn_worstfit.setEnabled(true);
+    }//GEN-LAST:event_radiobtn_partVariablesMousePressed
     
     private void limpiarTextFields(){
         jTxt_tamanioProceso.setText("");

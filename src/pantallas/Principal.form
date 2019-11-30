@@ -411,6 +411,8 @@
                         <Property name="text" type="java.lang.String" value="Variables"/>
                       </Properties>
                       <Events>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radiobtn_partVariablesMousePressed"/>
+                        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radiobtn_partVariablesMouseClicked"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiobtn_partVariablesActionPerformed"/>
                       </Events>
                       <AuxValues>
@@ -431,6 +433,7 @@
                         </Property>
                       </Properties>
                       <Events>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radiobtn_partFijasMousePressed"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiobtn_partFijasActionPerformed"/>
                       </Events>
                       <AuxValues>
