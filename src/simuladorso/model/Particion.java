@@ -32,8 +32,15 @@ public class Particion implements Comparable<Particion>{
         this.fragmentacionInterna = 0;
     }
     
+    //Metodos Necesarios para la coneccion de las pantallas
+    public int getDireccionInicial(){    
+        return direccionInicial;
+    }
+
+    
+    //=================================
     //retorna Verdadero si no hay proceso en la particion. Falso en caso contrario.
-    public Boolean procesoIsNull(){
+    public Boolean procesoIsNull() {
         return this.proceso==null;
     }
     

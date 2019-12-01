@@ -159,6 +159,13 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="showMemoriaLibre" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="132" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
@@ -167,6 +174,11 @@
                               <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="jScrollPane1" min="-2" pref="178" max="-2" attributes="0"/>
+                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="showMemoriaLibre" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
                               <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -195,8 +207,8 @@
                             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                               <Table columnCount="3" rowCount="0">
                                 <Column editable="false" title="ID Particion" type="java.lang.Integer"/>
-                                <Column editable="false" title="Tam. Memoria" type="java.lang.Integer"/>
                                 <Column editable="false" title="Dir. Comienzo" type="java.lang.Integer"/>
+                                <Column editable="false" title="Tam. Particion" type="java.lang.Integer"/>
                               </Table>
                             </Property>
                             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -228,6 +240,16 @@
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JLabel" name="jLabel1">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="MemoriaLibre: "/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="showMemoriaLibre">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="memoriaLibre"/>
+                      </Properties>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="panel_configuracionMemoria">
@@ -272,8 +294,8 @@
                                               <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace max="-2" attributes="0"/>
                                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                                  <Component id="txt_tamParticion" pref="72" max="32767" attributes="0"/>
-                                                  <Component id="tamMemoria" max="32767" attributes="0"/>
+                                                  <Component id="inputTamParticion" pref="72" max="32767" attributes="0"/>
+                                                  <Component id="inputTamMemoria" max="32767" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -281,6 +303,8 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" attributes="0">
                                               <Component id="jLabel3" min="-2" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="setTamMemoria" min="-2" max="-2" attributes="0"/>
                                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                           </Group>
                                           <Group type="102" attributes="0">
@@ -301,14 +325,15 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tamMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="inputTamMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="setTamMemoria" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jLabel_tamparticion" min="-2" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="3" attributes="0">
-                                      <Component id="txt_tamParticion" alignment="3" min="-2" max="-2" attributes="0"/>
+                                      <Component id="inputTamParticion" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btn_removeParticion" alignment="3" min="-2" max="-2" attributes="0"/>
                                       <Component id="btn_addParticion" alignment="3" min="-2" max="-2" attributes="0"/>
                                   </Group>
@@ -342,10 +367,10 @@
                         <Property name="text" type="java.lang.String" value="Tama&#xf1;o de memoria:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="tamMemoria">
+                    <Component class="javax.swing.JTextField" name="inputTamMemoria">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tamMemoriaActionPerformed"/>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tamMemoriaKeyTyped"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputTamMemoriaActionPerformed"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inputTamMemoriaKeyTyped"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -367,10 +392,10 @@
                         <Property name="text" type="java.lang.String" value="Tama&#xf1;o de particion:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txt_tamParticion">
+                    <Component class="javax.swing.JTextField" name="inputTamParticion">
                       <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txt_tamParticionActionPerformed"/>
-                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txt_tamParticionKeyTyped"/>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="inputTamParticionActionPerformed"/>
+                        <EventHandler event="keyTyped" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="inputTamParticionKeyTyped"/>
                       </Events>
                       <AuxValues>
                         <AuxValue name="JavaCodeGenerator_VariableModifier" type="java.lang.Integer" value="9"/>
@@ -411,8 +436,8 @@
                         <Property name="text" type="java.lang.String" value="Variables"/>
                       </Properties>
                       <Events>
-                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radiobtn_partVariablesMousePressed"/>
                         <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radiobtn_partVariablesMouseClicked"/>
+                        <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="radiobtn_partVariablesMousePressed"/>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="radiobtn_partVariablesActionPerformed"/>
                       </Events>
                       <AuxValues>
@@ -499,6 +524,14 @@
                       </Properties>
                       <Events>
                         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btn_removeParticionActionPerformed"/>
+                      </Events>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="setTamMemoria">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="tamMemoriaOK"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="setTamMemoriaActionPerformed"/>
                       </Events>
                     </Component>
                   </SubComponents>

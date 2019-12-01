@@ -45,6 +45,41 @@ public class Memoria {
         this.listProceso = new ArrayList<Proceso>();
     }
     
+    //Metodos Necesarios para la coneccion de las pantallas
+       public Memoria(int tamMemoriaEntrada){
+         
+        if (tamMemoriaEntrada > this.tamMaximo){
+            this.tamMemoria = this.tamMaximo;
+        }
+        if (tamMemoriaEntrada < this.tamMinimo){
+            this.tamMemoria = this.tamMinimo;
+        }     
+        this.tamMemoria = tamMemoriaEntrada;
+        this.tamanoSo = (int) (tamMemoriaEntrada * 0.1);
+        this.listParticion = new ArrayList<Particion>();
+        this.listProceso = new ArrayList<Proceso>();
+    }
+
+    public void setTamMemoria(int tamMemoria) {
+        this.tamMemoria = tamMemoria;
+    }
+
+    public void setTipoParticion(boolean tipoParticion) {
+        this.tipoParticion = tipoParticion;
+    }
+
+    public void setMetodo_Intercambio(int metodo_Intercambio) {
+        this.metodo_Intercambio = metodo_Intercambio;
+    }
+
+    public int getTamMemoria() {
+        return tamMemoria;
+    }
+
+    public int getTamanoSo() {
+        return tamanoSo;
+    }
+    //==================================
     //Añade una particion fija a memoria.
     public void addParticion(Particion particion) {
         if (particion.getTamParticion() > calcularMemoriaLibre() && calcularMemoriaLibre() != 0) {
