@@ -1,8 +1,17 @@
 package pantallas;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Scanner;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import simuladorso.model.Connector;
+import simuladorso.model.EntradaSalida;
 import simuladorso.model.Memoria;
+import simuladorso.model.Planificador;
+import simuladorso.model.Procesador;
+import simuladorso.model.Proceso;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -11,7 +20,7 @@ public class Principal extends javax.swing.JFrame {
     Object[] procesos = new Object[5];
     
     int filaSeleccionada = -1;
-    private Memoria memoria;
+    private static Memoria memoria;
     private int contadorParticion;
     //private DefaultTableModel modelParticion = new DefaultTableModel();
     private int contadorMemoriaOK;
@@ -110,6 +119,7 @@ public class Principal extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         panej_gantt1 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
+        ejecutarSimulador = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_Archivo = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -250,11 +260,11 @@ public class Principal extends javax.swing.JFrame {
         radiobtn_partVariables.setForeground(java.awt.Color.white);
         radiobtn_partVariables.setText("Variables");
         radiobtn_partVariables.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mousePressed(java.awt.event.MouseEvent evt) {
-                radiobtn_partVariablesMousePressed(evt);
-            }
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 radiobtn_partVariablesMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                radiobtn_partVariablesMousePressed(evt);
             }
         });
         radiobtn_partVariables.addActionListener(new java.awt.event.ActionListener() {
@@ -796,21 +806,34 @@ public class Principal extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("FreeMono", 1, 18)); // NOI18N
         jLabel8.setText("Diagrama de Gantt");
 
+        ejecutarSimulador.setText("EJECUTAR");
+        ejecutarSimulador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ejecutarSimuladorActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(jLabel8)
-                .addGap(0, 758, Short.MAX_VALUE))
+                .addGap(0, 806, Short.MAX_VALUE))
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addComponent(panej_gantt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(301, 301, 301)
+                .addComponent(ejecutarSimulador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(0, 289, Short.MAX_VALUE)
+                .addGap(55, 55, 55)
+                .addComponent(ejecutarSimulador, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panej_gantt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -900,10 +923,6 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTamParticionActionPerformed
 
-    private void radioBtn_fcfsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtn_fcfsActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_radioBtn_fcfsActionPerformed
-
     private void inputTamMemoriaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTamMemoriaKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
         
@@ -912,18 +931,6 @@ public class Principal extends javax.swing.JFrame {
     private void inputTamParticionKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_inputTamParticionKeyTyped
         char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
     }//GEN-LAST:event_inputTamParticionKeyTyped
-
-    private void txt_quantumRRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_quantumRRKeyTyped
-        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_txt_quantumRRKeyTyped
-
-    private void textField_QuantumColaAltaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaAltaKeyTyped
-        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_textField_QuantumColaAltaKeyTyped
-
-    private void textField_QuantumColaMediaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaMediaKeyTyped
-        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
-    }//GEN-LAST:event_textField_QuantumColaMediaKeyTyped
 
     private void btn_addParticionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btn_addParticionMouseClicked
         
@@ -1025,46 +1032,6 @@ public class Principal extends javax.swing.JFrame {
     
     }//GEN-LAST:event_btn_seleccionarProcesoActionPerformed
 
-    private void radioBtn_roundRobinMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_roundRobinMousePressed
-        txt_quantumRR.setEnabled(true);
-        textField_QuantumColaAlta.setEnabled(false);
-        textField_QuantumColaMedia.setEnabled(false);
-    }//GEN-LAST:event_radioBtn_roundRobinMousePressed
-
-    private void radioBtn_roundRobinMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_roundRobinMouseReleased
-
-    }//GEN-LAST:event_radioBtn_roundRobinMouseReleased
-
-    private void radioBtn_colasMultinivelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_colasMultinivelMousePressed
-        textField_QuantumColaAlta.setEnabled(true);
-        textField_QuantumColaMedia.setEnabled(true);
-        txt_quantumRR.setEnabled(false);
-    }//GEN-LAST:event_radioBtn_colasMultinivelMousePressed
-
-    private void radioBtn_colasMultinivelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_colasMultinivelMouseReleased
-    }//GEN-LAST:event_radioBtn_colasMultinivelMouseReleased
-
-    private void radioBtn_colasMultinivelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_colasMultinivelMouseExited
-    }//GEN-LAST:event_radioBtn_colasMultinivelMouseExited
-
-    private void radioBtn_fcfsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_fcfsMousePressed
-        textField_QuantumColaAlta.setEnabled(false);
-        textField_QuantumColaMedia.setEnabled(false);
-        txt_quantumRR.setEnabled(false);
-    }//GEN-LAST:event_radioBtn_fcfsMousePressed
-
-    private void radioBtn_PrioridadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_PrioridadesMousePressed
-        textField_QuantumColaAlta.setEnabled(false);
-        textField_QuantumColaMedia.setEnabled(false);
-        txt_quantumRR.setEnabled(false);
-    }//GEN-LAST:event_radioBtn_PrioridadesMousePressed
-
-    private void jRadiobtn_sjfMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadiobtn_sjfMousePressed
-        textField_QuantumColaAlta.setEnabled(false);
-        textField_QuantumColaMedia.setEnabled(false);
-        txt_quantumRR.setEnabled(false);
-    }//GEN-LAST:event_jRadiobtn_sjfMousePressed
-
     private void btn_removeParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeParticionActionPerformed
            
         
@@ -1100,6 +1067,7 @@ public class Principal extends javax.swing.JFrame {
         radiobtn_bestfit.setEnabled(false);
         radiobtn_worstfit.setEnabled(true);
         radiobtn_firstfit.setEnabled(true);
+        
     }//GEN-LAST:event_radiobtn_partVariablesMousePressed
 
     private void setTamMemoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTamMemoriaActionPerformed
@@ -1110,6 +1078,78 @@ public class Principal extends javax.swing.JFrame {
             radiobtn_partVariables.setEnabled(true);
         }
     }//GEN-LAST:event_setTamMemoriaActionPerformed
+
+    private void jRadiobtn_sjfMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jRadiobtn_sjfMousePressed
+        textField_QuantumColaAlta.setEnabled(false);
+        textField_QuantumColaMedia.setEnabled(false);
+        txt_quantumRR.setEnabled(false);
+    }//GEN-LAST:event_jRadiobtn_sjfMousePressed
+
+    private void radioBtn_colasMultinivelMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_colasMultinivelMouseExited
+
+    }//GEN-LAST:event_radioBtn_colasMultinivelMouseExited
+
+    private void radioBtn_colasMultinivelMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_colasMultinivelMouseReleased
+
+    }//GEN-LAST:event_radioBtn_colasMultinivelMouseReleased
+
+    private void radioBtn_colasMultinivelMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_colasMultinivelMousePressed
+        textField_QuantumColaAlta.setEnabled(true);
+        textField_QuantumColaMedia.setEnabled(true);
+        txt_quantumRR.setEnabled(false);
+    }//GEN-LAST:event_radioBtn_colasMultinivelMousePressed
+
+    private void textField_QuantumColaAltaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaAltaKeyTyped
+        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_textField_QuantumColaAltaKeyTyped
+
+    private void textField_QuantumColaMediaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textField_QuantumColaMediaKeyTyped
+        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_textField_QuantumColaMediaKeyTyped
+
+    private void txt_quantumRRKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_quantumRRKeyTyped
+        char c = evt.getKeyChar(); if (c<'0'||c>'9') evt.consume();
+    }//GEN-LAST:event_txt_quantumRRKeyTyped
+
+    private void radioBtn_PrioridadesMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_PrioridadesMousePressed
+        textField_QuantumColaAlta.setEnabled(false);
+        textField_QuantumColaMedia.setEnabled(false);
+        txt_quantumRR.setEnabled(false);
+    }//GEN-LAST:event_radioBtn_PrioridadesMousePressed
+
+    private void radioBtn_roundRobinMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_roundRobinMouseReleased
+
+    }//GEN-LAST:event_radioBtn_roundRobinMouseReleased
+
+    private void radioBtn_roundRobinMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_roundRobinMousePressed
+        txt_quantumRR.setEnabled(true);
+        textField_QuantumColaAlta.setEnabled(false);
+        textField_QuantumColaMedia.setEnabled(false);
+    }//GEN-LAST:event_radioBtn_roundRobinMousePressed
+
+    private void radioBtn_fcfsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtn_fcfsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_radioBtn_fcfsActionPerformed
+
+    private void radioBtn_fcfsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_fcfsMousePressed
+        textField_QuantumColaAlta.setEnabled(false);
+        textField_QuantumColaMedia.setEnabled(false);
+        txt_quantumRR.setEnabled(false);
+    }//GEN-LAST:event_radioBtn_fcfsMousePressed
+
+    private void ejecutarSimuladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejecutarSimuladorActionPerformed
+        if(radiobtn_partVariables.isSelected()){
+            crearParticionesVariables();
+        }
+        if(radiobtn_partFijas.isSelected()){
+            if(radiobtn_bestfit.isSelected()){
+                memoria.BestFit(colaNuevo, colaListo);
+            }
+            if(radiobtn_firstfit.isSelected()){
+                memoria.FirstFit(colaNuevo, colaListo);
+            }
+        }
+    }//GEN-LAST:event_ejecutarSimuladorActionPerformed
     
     private void limpiarTextFields(){
         jTxt_tamanioProceso.setText("");
@@ -1139,6 +1179,280 @@ public class Principal extends javax.swing.JFrame {
     }
     
     //==============Desarrolladores===================
+    //==============ClaseMain=======================
+ private static int clock;
+    private static List<Proceso> colaProcesos;
+    private static List<Proceso> colaNuevo;
+    private static List<Proceso> colaListo;
+    private static List<Proceso> colaBloqueado;
+    private static List<Proceso> colaTerminado;
+    private static Procesador procesador;
+    private static EntradaSalida es;
+
+    private static Scanner teclado;
+    private static Planificador planificador;
+    private static Integer cantProcesos;
+    private static int tiempoEsperaPromedio;
+    private static int tiempoRetornoPromedio;
+    private static Connector db;
+    
+    //Inicializa los procesos.
+    private static void initialProcedures() {
+        db.getProcesos(colaProcesos);
+        teclado = new Scanner(System.in);
+        String idProceso;
+        String tamProceso;
+        String tiempoArribo;
+        for(Iterator<Proceso> itr = colaProcesos.iterator();itr.hasNext();){
+            Proceso proceso = itr.next();
+            idProceso = proceso.getNombreProceso().toString();
+            tamProceso = proceso.getTamProceso().toString();
+            tiempoArribo = proceso.getTiempoArribo().toString();
+            System.out.println(idProceso+" "+tamProceso+" "+tiempoArribo+" "+proceso.getRafaga().toString()+" "+" "+proceso.getPrioridad());   
+            System.out.println("Utilizar[1]");
+            if (teclado.nextInt() != 1){
+                itr.remove();
+            }
+        }
+        cantProcesos = colaProcesos.size();
+    }
+    
+    //Crea las particiones fijas.
+    private static void crearParticionesFijas() {
+        int tamanio;
+        int dirComienzo;
+        teclado = new Scanner(System.in);
+        while(memoria.calcularMemoriaLibre() > 0){
+            System.out.println("Ingrese el tamaño de la siguiente particion: ");
+            System.out.println("Memoria libre: " + memoria.calcularMemoriaLibre());
+            tamanio = teclado.nextInt();
+            if (tamanio > memoria.calcularMemoriaLibre()){
+                do {
+                    System.out.println("Ingrese el tamaño de la siguiente particion: ");
+                    System.out.println("Memoria libre: " + memoria.calcularMemoriaLibre());
+                    tamanio = teclado.nextInt();
+                }while (tamanio > memoria.calcularMemoriaLibre());
+            }
+            dirComienzo = memoria.calcularDirComienzo();
+            memoria.crearParticion(tamanio,dirComienzo);
+        }
+    }
+    
+    //Crea la primera particion.
+    private static void crearParticionesVariables(){
+        int tamanio = memoria.calcularMemoriaLibre();
+        int dirComienzo = memoria.calcularDirComienzo();
+        memoria.crearParticion(tamanio,dirComienzo);
+    }
+    
+    //Crea las colas.
+    private static void setUpColas() {
+        colaProcesos = new ArrayList<Proceso>();
+        colaNuevo = new ArrayList<Proceso>();
+        colaListo = new ArrayList<Proceso>();
+        colaBloqueado = new ArrayList<Proceso>();
+        colaTerminado = new ArrayList<Proceso>();
+        procesador = new Procesador();
+        es = new EntradaSalida();
+        planificador = new Planificador();
+    }
+    
+    //Carga la cola de nuevo con los procesos que arriban.
+    private static void cargarColaNuevo(){
+        for(Iterator<Proceso> itr = colaProcesos.iterator(); itr.hasNext();){
+            Proceso proceso = itr.next();
+            if (proceso.getTiempoArribo() == clock){
+                colaNuevo.add(proceso);
+                itr.remove();
+            }
+        }
+    }
+    
+    //Crea la memoria.
+    private static void setUpMemoria() {
+        memoria = new Memoria();
+    }
+    
+    //Carga un proceso en entrada/salida.
+    private static void cargarES(){
+        Proceso proceso;
+        int tiempo;
+        proceso = colaBloqueado.get(0);
+        es.setProceso(proceso);
+        tiempo = proceso.getRafaga().get(proceso.getIndice());
+        es.setTimer(tiempo);
+        colaBloqueado.remove(es.getProceso());
+    }
+    
+    private static void imprimir(){
+        System.out.println("Clock: "+clock);
+        memoria.imprimirProcesoPorConsola();
+        System.out.println("Procesador" + procesador.getProceso());
+        System.out.println("E/S" + es.getProceso());
+        System.out.println("COLA NUEVO: "+colaNuevo);
+        System.out.println("COLA LISTO: "+colaListo);
+        System.out.println("COLA BLOQUEADOS: "+colaBloqueado);
+        System.out.println("COLA TERMINADOS: "+colaTerminado);
+    }
+    
+    //Selecciona el algoritmo de intercambio a ejecutar.
+    private static void intercambio(){
+        if (memoria.getTipoParticion())
+        {
+            if (memoria.getMetodoIntercambio() == 1){
+                memoria.BestFit(colaNuevo,colaListo);
+            }
+            else{
+                memoria.FirstFit(colaNuevo,colaListo);
+            }
+        }
+        else{
+            if (memoria.getMetodoIntercambio() == 2){
+                memoria.FirstFitVariable(colaNuevo,colaListo);
+            }
+            else{
+                memoria.WorstFit(colaNuevo,colaListo);
+            }
+        }
+    }
+    
+    //Controla si termino el proceso en entrada/salida.
+    private static void controlES(){
+        if (es.procesoIsNotNull()){
+            es.ejecutar();
+            if (es.timeout() && clock != 0){
+                es.getProceso().setIndice(es.getProceso().getIndice()+1);
+                es.getProceso().setTiempoActual(es.getProceso().getRafaga().get(es.getProceso().getIndice()));
+                colaListo.add(es.getProceso());
+                es.removeProceso();
+            }
+        }
+    }
+    
+    //Revisa cuando el proceso termina una rafaga y decide que hacer..
+    private static void procesoTermino(){
+        procesador.getProceso().setIndice(procesador.getProceso().getIndice() + 1);
+        if (procesador.getProceso().getRafaga().size() > procesador.getProceso().getIndice()){
+            colaBloqueado.add(procesador.getProceso());
+        }
+        else{
+            memoria.liberarMemoria(procesador.getProceso());
+            colaTerminado.add(procesador.getProceso());
+        }
+        procesador.removeProceso();    
+    }
+    
+    //Revisa cuando el proceso no termino de ejecutarse por un limite de tiempo maximo establecido.
+    private static void procesoNoTermino(int comparativa){
+        procesador.getProceso().setRafaga(procesador.getProceso().getIndice(),comparativa);
+        colaListo.add(procesador.getProceso());
+        procesador.removeProceso();
+    }
+    
+    //Controla si un proceso termino de ejecutarse.
+    public static void controlProcesador(){
+        int comparativa;
+        if (procesador.procesoIsNotNull()){
+            procesador.ejecutar();
+            if (clock != 0){
+                comparativa = procesador.getProceso().getRafaga().get(procesador.getProceso().getIndice()) - procesador.getOriginalTimer();
+                procesador.getProceso().setTiempoActual(procesador.getProceso().getRafaga().get(procesador.getProceso().getIndice()));
+                if (comparativa == 0 && procesador.timeout()){
+                    procesoTermino();
+                }
+                else{
+                    if (procesador.timeout()){
+                        procesoNoTermino(comparativa);
+                    }
+                    if (comparativa == 0){
+                        procesoTermino();
+                    }
+                }
+            }
+        }
+    }
+    
+    //Inicializa las particiones.
+    private static void setUpParticiones(){
+        if (memoria.getTipoParticion())
+        {
+           crearParticionesFijas();
+        }
+        else
+        {
+            crearParticionesVariables();
+        }
+    }
+    
+    //Selecciona el algoritmo de planificacion a ejecutar.
+    public static void planificacion(){
+        if (procesador.procesoIsNull() && colaListo.size()!=0){
+            switch (planificador.getAlgoritmoPlanificacion()){
+                case 1: planificador.FCFS(colaListo,procesador); 
+                        break;
+                case 2: planificador.roundRobin(colaListo, procesador, planificador.getQuantum());
+                        break;
+                case 3: planificador.prioridades(colaListo, procesador);
+                        break;
+                case 4: planificador.SJF(colaListo, procesador);
+                        break;
+                case 5: planificador.colasMultinivel(colaListo, procesador);
+                        break;
+            }              
+        }
+    }
+    
+    //Incrementa el tiempo de retorno y espera de los procesos en estado listo.
+    public static void tiempoColaListo(){
+        for (Proceso proceso : colaListo){
+            proceso.incTiempoRetorno();
+            if (proceso.getPrimeraEjecucion()){
+                proceso.incTiempoEspera();  
+            }
+        }
+    }
+    
+    //Incrementa el tiempo de retorno de los procesos en estado bloqueado.
+    public static void tiempoColaBloqueado(){
+        for (Proceso proceso : colaBloqueado){
+            proceso.incTiempoRetorno();
+        }
+    }
+    
+    public static void mainEjecutor() {
+        db = new Connector();
+        db.crearTabla();
+        clock = 0;
+        setUpMemoria();
+        setUpParticiones();
+        setUpColas();
+        initialProcedures();
+        db.closeConnection();
+        tiempoEsperaPromedio = 0;
+        tiempoRetornoPromedio = 0;
+        while (colaTerminado.size() != cantProcesos){
+            cargarColaNuevo(); 
+            intercambio();
+            controlES();
+            controlProcesador();
+            planificacion();
+            if (es.procesoIsNull() && colaBloqueado.size()!=0){
+               cargarES(); 
+            }
+            tiempoColaListo();
+            tiempoColaBloqueado();
+            imprimir();
+            clock++;
+        }
+        for (Proceso proceso : colaTerminado){
+            System.out.println("TE:  "+proceso.getTiempoEspera()+" TR:  "+proceso.getTiempoRetorno());
+            tiempoEsperaPromedio += proceso.getTiempoEspera();
+            tiempoRetornoPromedio += proceso.getTiempoRetorno();
+        }
+        tiempoEsperaPromedio /= cantProcesos;
+        tiempoRetornoPromedio /= cantProcesos;
+        System.out.println("TEP: "+tiempoEsperaPromedio+" TRP: "+tiempoRetornoPromedio);
+    }
     //==============AutoGenerado===================
     /**
      * @param args the command line arguments
@@ -1183,6 +1497,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton btn_modificarProceso;
     private javax.swing.JButton btn_removeParticion;
     private javax.swing.JButton btn_seleccionarProceso;
+    private javax.swing.JButton ejecutarSimulador;
     private javax.swing.ButtonGroup grupoRButtons_algoritmoIntercambio;
     private javax.swing.ButtonGroup grupoRButtons_algoritmosPlanificacion;
     private javax.swing.ButtonGroup grupoRButtons_tipoParticionamiento;
