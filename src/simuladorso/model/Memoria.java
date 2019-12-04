@@ -177,6 +177,16 @@ public class Memoria {
         this.listParticion.add(new Particion(tamParticion, direccionInicial));
     }
     
+    public void eliminarParticion(int idParticion){
+        for(Iterator<Particion> itr = this.listParticion.iterator(); itr.hasNext();){
+            Particion particion = itr.next();
+            if (particion.getIdParticion() == idParticion){
+                itr.remove();
+                break;
+            }
+        }
+    }
+    
     //Crea particiones variables.
     public void crearParticionVariable(Particion particion,Proceso proceso){
         int indice = listParticion.indexOf(particion);

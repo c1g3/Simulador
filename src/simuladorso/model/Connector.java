@@ -35,8 +35,7 @@ public class Connector {
         try{
             this.stmt = c.createStatement();
             stmt.executeUpdate("Create table if not exists proceso(idProceso integer primary key,"+
-            "tamProceso integer not null, tiempoArribo integer not null, rafaga text not null, prioridad text not null,"+
-            "seleccionado integer not null default 0)");
+            "tamProceso integer not null, tiempoArribo integer not null, rafaga text not null, prioridad text not null)");
         }catch(Exception e){
             System.out.println("Error: "+e.getMessage());
         }
@@ -73,7 +72,8 @@ public class Connector {
                 int[] numbers = Arrays.stream(rafaga.split("-")).mapToInt(Integer::parseInt).toArray();
                 Integer[] raffaga = intToInteger(numbers);
                 Proceso proceso = new Proceso(idProceso,tamProceso,tiempoArribo,raffaga,prioridad);
-                colaProcesos.add(proceso);}
+                colaProcesos.add(proceso);
+            }
         }catch(Exception e){
             System.out.println("Error: "+e.getMessage());
         }

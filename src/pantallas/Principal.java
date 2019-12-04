@@ -33,7 +33,6 @@ public class Principal extends javax.swing.JFrame {
         txt_quantumRR.setEnabled(false);
         textField_QuantumColaAlta.setEnabled(false);
         textField_QuantumColaMedia.setEnabled(false);
-        
         this.contadorMemoriaOK=0;
         this.contadorParticion = 0;
         inputTamParticion.setEnabled(false);
@@ -45,8 +44,19 @@ public class Principal extends javax.swing.JFrame {
         radiobtn_partFijas.setEnabled(false);
         radiobtn_partVariables.setEnabled(false);
         inputTamParticion.setEnabled(false);
-        
-        
+        //
+        db = new Connector();
+        db.crearTabla();
+        db.insertarProceso(1, 10, 0, "2-1-2", "BAJA");
+        db.insertarProceso(2, 5, 0, "1-1-1", "MEDIA");
+        db.insertarProceso(3, 60, 1, "3-1-2", "ALTA");
+        db.insertarProceso(4, 15, 1, "1-2-1", "ALTA");
+        db.insertarProceso(5, 3, 1, "2-1-1", "MEDIA");
+        db.insertarProceso(6, 30, 2, "1-2-3", "BAJA");
+        db.insertarProceso(7, 21, 2, "1-1-1", "MEDIA");
+        setUpColas();
+        //
+        initialProcedures();
         setTitle("Simulador SO");
     }
 //==============AutoGenerado===================sss
@@ -235,7 +245,6 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        btn_addParticion.setForeground(java.awt.Color.black);
         btn_addParticion.setText("Agregar");
         btn_addParticion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -411,7 +420,7 @@ public class Principal extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(panel_configuracionMemoria, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(205, Short.MAX_VALUE))
+                .addContainerGap(217, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout jPanelMemoriaLayout = new javax.swing.GroupLayout(jPanelMemoria);
@@ -469,6 +478,11 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        txt_quantumRR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_quantumRRActionPerformed(evt);
+            }
+        });
         txt_quantumRR.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_quantumRRKeyTyped(evt);
@@ -824,16 +838,16 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(panej_gantt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(301, 301, 301)
+                .addGap(88, 88, 88)
                 .addComponent(ejecutarSimulador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
-                .addGap(55, 55, 55)
+                .addGap(50, 50, 50)
                 .addComponent(ejecutarSimulador, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 229, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 234, Short.MAX_VALUE)
                 .addComponent(jLabel8)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(panej_gantt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -876,7 +890,21 @@ public class Principal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputTamMemoriaActionPerformed
     
-   
+    private void cargarProcesos(){
+        int fila = 0; 
+        for (Iterator<Proceso> itr = colaProcesos.iterator(); itr.hasNext();){
+            Proceso proceso = itr.next();
+            if (!tablaProcesos.getValueAt(fila, 5).equals(true)){
+                itr.remove();
+            }
+            fila++;
+        }
+        cantProcesos = colaProcesos.size();
+        for (Proceso proceso : colaProcesos){
+            System.out.println(proceso);
+        }
+    }
+    
     private void btn_addParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_addParticionActionPerformed
           if(radiobtn_partFijas.isSelected()){
             Object[] datoTablaparticion = new Object[3];
@@ -885,7 +913,7 @@ public class Principal extends javax.swing.JFrame {
             int tamMemoriaLibre =0;
             tamParticion = Integer.parseInt(inputTamParticion.getText());
             tamMemoriaLibre = memoria.calcularMemoriaLibre();
-            if(tamMemoriaLibre>=tamParticion){
+            if(tamMemoriaLibre>=tamParticion && tamParticion > 0 ){
                 this.contadorParticion+=1;
                 dirComienzo = memoria.calcularDirComienzo();
                 memoria.crearParticion(tamParticion,dirComienzo);
@@ -966,15 +994,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void btn_eliminarProcesoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_eliminarProcesoActionPerformed
          /* Accion al presionar Eliminar Proceso (deberia eliminarlo de la tabla de 
-        procesos) */
-        
+        procesos)*/
         if (tabla_procesos.getSelectedRow() != -1){
             tablaProcesos.removeRow(tabla_procesos.getSelectedRow());
         } else {
             JOptionPane.showMessageDialog(null, "No ha seleccionado ningun proceso"
                     + "","Atencion",JOptionPane.INFORMATION_MESSAGE);
-        }
-            
+        }        
     }//GEN-LAST:event_btn_eliminarProcesoActionPerformed
         
     int item = 0;
@@ -1033,16 +1059,12 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_btn_seleccionarProcesoActionPerformed
 
     private void btn_removeParticionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_removeParticionActionPerformed
-           
-        
         if (tabla_particiones.getSelectedRow() != -1){
+            //CORREGIR
             modelTablaParticiones.removeRow(tabla_particiones.getSelectedRow());
         } else {
-            JOptionPane.showMessageDialog(null, "No ha seleccionado ningun proceso"
-                    + "","Atencion",JOptionPane.INFORMATION_MESSAGE);
-        }
-        
-        
+            JOptionPane.showMessageDialog(null, "No ha seleccionado ninguna particion"+ "","Atencion",JOptionPane.INFORMATION_MESSAGE);
+        }  
     }//GEN-LAST:event_btn_removeParticionActionPerformed
 
     private void radiobtn_partFijasMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobtn_partFijasMousePressed
@@ -1052,6 +1074,7 @@ public class Principal extends javax.swing.JFrame {
         radiobtn_worstfit.setEnabled(false);
         radiobtn_bestfit.setEnabled(true);
         radiobtn_firstfit.setEnabled(true);
+        
     }//GEN-LAST:event_radiobtn_partFijasMousePressed
 
     private void radiobtn_partVariablesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radiobtn_partVariablesMouseClicked
@@ -1067,7 +1090,12 @@ public class Principal extends javax.swing.JFrame {
         radiobtn_bestfit.setEnabled(false);
         radiobtn_worstfit.setEnabled(true);
         radiobtn_firstfit.setEnabled(true);
-        
+        memoria.getListParticion().removeAll(memoria.getListParticion());
+        int rowCount = modelTablaParticiones.getRowCount();
+        //Remove rows one by one from the end of the table
+        for (int i = rowCount - 1; i >= 0; i--) {
+            modelTablaParticiones.removeRow(i);
+        }
     }//GEN-LAST:event_radiobtn_partVariablesMousePressed
 
     private void setTamMemoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_setTamMemoriaActionPerformed
@@ -1128,7 +1156,7 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_radioBtn_roundRobinMousePressed
 
     private void radioBtn_fcfsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_radioBtn_fcfsActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_radioBtn_fcfsActionPerformed
 
     private void radioBtn_fcfsMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_radioBtn_fcfsMousePressed
@@ -1138,18 +1166,64 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_radioBtn_fcfsMousePressed
 
     private void ejecutarSimuladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejecutarSimuladorActionPerformed
+        clock = 0;
         if(radiobtn_partVariables.isSelected()){
             crearParticionesVariables();
         }
-        if(radiobtn_partFijas.isSelected()){
-            if(radiobtn_bestfit.isSelected()){
-                memoria.BestFit(colaNuevo, colaListo);
+        tiempoEsperaPromedio = 0;
+        tiempoRetornoPromedio = 0;
+        cargarProcesos();
+        inicializarPlanificador();
+        while (colaTerminado.size() != cantProcesos){
+            cargarColaNuevo(); 
+            intercambio();
+            controlES();
+            controlProcesador();
+            planificacion();
+            if (es.procesoIsNull() && colaBloqueado.size()!=0){
+               cargarES(); 
             }
-            if(radiobtn_firstfit.isSelected()){
-                memoria.FirstFit(colaNuevo, colaListo);
-            }
+            tiempoColaListo();
+            tiempoColaBloqueado();
+            imprimir();
+            clock++;
         }
+        for (Proceso proceso : colaTerminado){
+            System.out.println("TE:  "+proceso.getTiempoEspera()+" TR:  "+proceso.getTiempoRetorno());
+            tiempoEsperaPromedio += proceso.getTiempoEspera();
+            tiempoRetornoPromedio += proceso.getTiempoRetorno();
+        }
+        tiempoEsperaPromedio /= cantProcesos;
+        tiempoRetornoPromedio /= cantProcesos;
+        System.out.println("TEP: "+tiempoEsperaPromedio+" TRP: "+tiempoRetornoPromedio);
     }//GEN-LAST:event_ejecutarSimuladorActionPerformed
+    
+    private void inicializarPlanificador(){
+        planificador = new Planificador();
+        if(radioBtn_roundRobin.isSelected()){
+            Integer q = Integer.parseInt(txt_quantumRR.getText());
+            if (q == null){
+                q = 1;
+            }
+            planificador.setQuantum(q);
+        }
+        if(radioBtn_colasMultinivel.isSelected()){
+            Integer qAlta = Integer.parseInt(textField_QuantumColaAlta.getText());
+            Integer qMedia = Integer.parseInt(textField_QuantumColaMedia.getText());
+            if (qAlta == null){
+                qAlta = 2;
+            }
+            if (qMedia == null){
+                qMedia = 1;
+            }
+            planificador.setQuantumAlta(qAlta);
+            planificador.setQuantumMedia(qMedia);
+        }
+    }
+    
+    private void txt_quantumRRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_quantumRRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txt_quantumRRActionPerformed
     
     private void limpiarTextFields(){
         jTxt_tamanioProceso.setText("");
@@ -1180,7 +1254,7 @@ public class Principal extends javax.swing.JFrame {
     
     //==============Desarrolladores===================
     //==============ClaseMain=======================
- private static int clock;
+    private static int clock;
     private static List<Proceso> colaProcesos;
     private static List<Proceso> colaNuevo;
     private static List<Proceso> colaListo;
@@ -1197,24 +1271,19 @@ public class Principal extends javax.swing.JFrame {
     private static Connector db;
     
     //Inicializa los procesos.
-    private static void initialProcedures() {
+    private void initialProcedures() {
         db.getProcesos(colaProcesos);
-        teclado = new Scanner(System.in);
-        String idProceso;
-        String tamProceso;
-        String tiempoArribo;
-        for(Iterator<Proceso> itr = colaProcesos.iterator();itr.hasNext();){
-            Proceso proceso = itr.next();
-            idProceso = proceso.getNombreProceso().toString();
-            tamProceso = proceso.getTamProceso().toString();
-            tiempoArribo = proceso.getTiempoArribo().toString();
-            System.out.println(idProceso+" "+tamProceso+" "+tiempoArribo+" "+proceso.getRafaga().toString()+" "+" "+proceso.getPrioridad());   
-            System.out.println("Utilizar[1]");
-            if (teclado.nextInt() != 1){
-                itr.remove();
-            }
+        Object[] datoTablaProceso = new Object[6];
+        datoTablaProceso[5] = false;
+        for (Proceso proceso : colaProcesos){
+            datoTablaProceso[0]=proceso.getNombreProceso();
+            datoTablaProceso[1]=proceso.getTamProceso();
+            datoTablaProceso[2]=proceso.getTiempoArribo();
+            datoTablaProceso[3]=proceso.getRafaga();
+            datoTablaProceso[4]=proceso.getPrioridad();
+            this.tablaProcesos.addRow(datoTablaProceso);
         }
-        cantProcesos = colaProcesos.size();
+        db.closeConnection();
     }
     
     //Crea las particiones fijas.
@@ -1254,7 +1323,6 @@ public class Principal extends javax.swing.JFrame {
         colaTerminado = new ArrayList<Proceso>();
         procesador = new Procesador();
         es = new EntradaSalida();
-        planificador = new Planificador();
     }
     
     //Carga la cola de nuevo con los procesos que arriban.
@@ -1297,21 +1365,20 @@ public class Principal extends javax.swing.JFrame {
     
     //Selecciona el algoritmo de intercambio a ejecutar.
     private static void intercambio(){
-        if (memoria.getTipoParticion())
-        {
-            if (memoria.getMetodoIntercambio() == 1){
-                memoria.BestFit(colaNuevo,colaListo);
+        if(radiobtn_partFijas.isSelected()){
+            if(radiobtn_bestfit.isSelected()){
+                memoria.BestFit(colaNuevo, colaListo);
             }
-            else{
-                memoria.FirstFit(colaNuevo,colaListo);
+            if(radiobtn_firstfit.isSelected()){
+                memoria.FirstFit(colaNuevo, colaListo);
             }
         }
-        else{
-            if (memoria.getMetodoIntercambio() == 2){
-                memoria.FirstFitVariable(colaNuevo,colaListo);
+        if(radiobtn_partVariables.isSelected()){
+            if(radiobtn_worstfit.isSelected()){
+                memoria.WorstFit(colaNuevo, colaListo);
             }
-            else{
-                memoria.WorstFit(colaNuevo,colaListo);
+            if(radiobtn_firstfit.isSelected()){
+                memoria.FirstFitVariable(colaNuevo, colaListo);
             }
         }
     }
@@ -1387,18 +1454,21 @@ public class Principal extends javax.swing.JFrame {
     //Selecciona el algoritmo de planificacion a ejecutar.
     public static void planificacion(){
         if (procesador.procesoIsNull() && colaListo.size()!=0){
-            switch (planificador.getAlgoritmoPlanificacion()){
-                case 1: planificador.FCFS(colaListo,procesador); 
-                        break;
-                case 2: planificador.roundRobin(colaListo, procesador, planificador.getQuantum());
-                        break;
-                case 3: planificador.prioridades(colaListo, procesador);
-                        break;
-                case 4: planificador.SJF(colaListo, procesador);
-                        break;
-                case 5: planificador.colasMultinivel(colaListo, procesador);
-                        break;
-            }              
+            if (radioBtn_fcfs.isSelected()){
+                planificador.FCFS(colaListo,procesador); 
+            }
+            if (radioBtn_roundRobin.isSelected()){
+                planificador.roundRobin(colaListo, procesador, planificador.getQuantum());
+            }
+            if (radioBtn_Prioridades.isSelected()){
+                planificador.prioridades(colaListo, procesador);
+            }
+            if (jRadiobtn_sjf.isSelected()){
+                planificador.SJF(colaListo, procesador);
+            }
+            if (radioBtn_colasMultinivel.isSelected()){
+                planificador.colasMultinivel(colaListo, procesador);
+            }             
         }
     }
     
@@ -1420,7 +1490,7 @@ public class Principal extends javax.swing.JFrame {
     }
     
     public static void mainEjecutor() {
-        db = new Connector();
+        /*db = new Connector();
         db.crearTabla();
         clock = 0;
         setUpMemoria();
@@ -1451,7 +1521,7 @@ public class Principal extends javax.swing.JFrame {
         }
         tiempoEsperaPromedio /= cantProcesos;
         tiempoRetornoPromedio /= cantProcesos;
-        System.out.println("TEP: "+tiempoEsperaPromedio+" TRP: "+tiempoRetornoPromedio);
+        System.out.println("TEP: "+tiempoEsperaPromedio+" TRP: "+tiempoRetornoPromedio);*/
     }
     //==============AutoGenerado===================
     /**
@@ -1494,10 +1564,10 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JButton btn_addParticion;
     public static javax.swing.JButton btn_addProceso;
     public static javax.swing.JButton btn_eliminarProceso;
-    private javax.swing.JButton btn_modificarProceso;
-    private javax.swing.JButton btn_removeParticion;
-    private javax.swing.JButton btn_seleccionarProceso;
-    private javax.swing.JButton ejecutarSimulador;
+    public javax.swing.JButton btn_modificarProceso;
+    public javax.swing.JButton btn_removeParticion;
+    public javax.swing.JButton btn_seleccionarProceso;
+    public javax.swing.JButton ejecutarSimulador;
     private javax.swing.ButtonGroup grupoRButtons_algoritmoIntercambio;
     private javax.swing.ButtonGroup grupoRButtons_algoritmosPlanificacion;
     private javax.swing.ButtonGroup grupoRButtons_tipoParticionamiento;
@@ -1553,7 +1623,7 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JRadioButton radiobtn_partFijas;
     public static javax.swing.JRadioButton radiobtn_partVariables;
     public static javax.swing.JRadioButton radiobtn_worstfit;
-    private javax.swing.JButton setTamMemoria;
+    public javax.swing.JButton setTamMemoria;
     private javax.swing.JLabel showMemoriaLibre;
     public static javax.swing.JTable tabla_particiones;
     public static javax.swing.JTable tabla_procesos;

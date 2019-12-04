@@ -22,31 +22,20 @@ public class Planificador {
     private List<Proceso> colaBaja;
     private int quantumAlta;
     private int quantumMedia;
-    private Scanner teclado;
+    //private Scanner teclado;
     
     //El planificador necesita el algoritmo de planificacion. Y opcionalmente los quantums.
     public Planificador(){
-        teclado = new Scanner(System.in);
-        System.out.println("[1] FCFS [2] Round Robin [3] Prioridades [4] SJF [5] Colas Multinivel");
-        this.algoritmoPlanificacion = teclado.nextInt();
+        //teclado = new Scanner(System.in);
+        //System.out.println("[1] FCFS [2] Round Robin [3] Prioridades [4] SJF [5] Colas Multinivel");
+        //this.algoritmoPlanificacion = teclado.nextInt();
         if (this.algoritmoPlanificacion == 2){
-            System.out.println("Ingrese el quantum: ");
-            this.quantum = teclado.nextInt();
+            //System.out.println("Ingrese el quantum: ");
+            //this.quantum = teclado.nextInt();
         }
-        else{
-            this.quantum = 0;
-        }
-        if (this.algoritmoPlanificacion == 5){
-            colaAlta = new ArrayList<Proceso>();
-            colaMedia = new ArrayList<Proceso>();
-            colaBaja = new ArrayList<Proceso>();
-            System.out.println("Ingrese el quantum de la cola de alta prioridad: ");
-            this.quantumAlta = teclado.nextInt();
-            do{
-                System.out.println("Ingrese el quantum de la cola de media prioridad: ");
-                this.quantumMedia = teclado.nextInt();
-            }while(this.quantumAlta < this.quantumMedia);
-        }
+        colaAlta = new ArrayList<Proceso>();
+        colaMedia = new ArrayList<Proceso>();
+        colaBaja = new ArrayList<Proceso>();
     }
     
     //Ejecuta el algoritmo FCFS cargando un proceso de la cola de listo a procesador.
@@ -131,6 +120,22 @@ public class Planificador {
             FCFS(colaBaja, procesador);
             colaListo.remove(proceso);
         }
+    }
+    
+    public void setAlgoritmoPlanificacion(int algoritmoPlanificacion){
+        this.algoritmoPlanificacion = algoritmoPlanificacion;
+    }
+    
+    public void setQuantum(int q){
+        this.quantum = q;
+    }
+    
+    public void setQuantumAlta(int q){
+        this.quantumAlta = q;
+    }
+    
+    public void setQuantumMedia(int q){
+        this.quantumMedia = q;
     }
     
     public int getAlgoritmoPlanificacion(){

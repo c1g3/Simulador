@@ -40,7 +40,7 @@ public class Proceso implements Comparable<Proceso>{
         this.tiempoArribo = tiempoArribo;
         this.rafaga = new ArrayList<Integer>(Arrays.asList(rafaga));
         this.indice = 0;
-        System.out.println("Ingrese la prioridad: ");
+        //System.out.println("Ingrese la prioridad: ");
         this.prioridad = prioridad;
         switch(prioridad){
             case "BAJA": this.prioridadd = Prioridad.BAJA;
