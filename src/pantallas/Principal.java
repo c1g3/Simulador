@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Scanner;
+import javafx.application.Platform;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Group;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import simuladorso.model.Connector;
@@ -13,10 +16,20 @@ import simuladorso.model.Planificador;
 import simuladorso.model.Procesador;
 import simuladorso.model.Proceso;
 
+import javafx.scene.Scene;
+import javafx.scene.chart.*;
+import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
+import javafx.stage.Stage;
+import javax.swing.JFrame;
+
 public class Principal extends javax.swing.JFrame {
 
     DefaultTableModel tablaProcesos;
     DefaultTableModel modelTablaParticiones=new DefaultTableModel();
+    DefaultTableModel tablaPromedios;
     Object[] procesos = new Object[5];
     
     int filaSeleccionada = -1;
@@ -29,6 +42,7 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         tablaProcesos = (DefaultTableModel) tabla_procesos.getModel();
         modelTablaParticiones = (DefaultTableModel) tabla_particiones.getModel();
+        tablaPromedios = (DefaultTableModel) tabla_promedios.getModel();
         this.tabla_particiones.setModel(modelTablaParticiones);
         txt_quantumRR.setEnabled(false);
         textField_QuantumColaAlta.setEnabled(false);
@@ -127,12 +141,9 @@ public class Principal extends javax.swing.JFrame {
         jSeparator1 = new javax.swing.JSeparator();
         btn_seleccionarProceso = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        panej_gantt1 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
         ejecutarSimulador = new javax.swing.JButton();
-        panej_gantt2 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        tabla_promedios = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu_Archivo = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
@@ -806,40 +817,6 @@ public class Principal extends javax.swing.JFrame {
 
         jPanelTabs.addTab("Procesos", jPanelProcesos);
 
-        panej_gantt1.setBackground(new java.awt.Color(102, 102, 102));
-        panej_gantt1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 12, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 72, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout panej_gantt1Layout = new javax.swing.GroupLayout(panej_gantt1);
-        panej_gantt1.setLayout(panej_gantt1Layout);
-        panej_gantt1Layout.setHorizontalGroup(
-            panej_gantt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panej_gantt1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        panej_gantt1Layout.setVerticalGroup(
-            panej_gantt1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panej_gantt1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-
-        jLabel8.setFont(new java.awt.Font("FreeMono", 1, 18)); // NOI18N
-        jLabel8.setText("Diagrama de Gantt");
-
         ejecutarSimulador.setText("EJECUTAR");
         ejecutarSimulador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -847,22 +824,40 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
-        panej_gantt2.setBackground(new java.awt.Color(102, 102, 102));
-        panej_gantt2.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(255, 255, 255), 2, true));
+        tabla_promedios.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        javax.swing.GroupLayout panej_gantt2Layout = new javax.swing.GroupLayout(panej_gantt2);
-        panej_gantt2.setLayout(panej_gantt2Layout);
-        panej_gantt2Layout.setHorizontalGroup(
-            panej_gantt2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        panej_gantt2Layout.setVerticalGroup(
-            panej_gantt2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 96, Short.MAX_VALUE)
-        );
+            },
+            new String [] {
+                "Id Proceso", "Tamaño", "Tiempo Arribo", "Ciclo de vida", "Prioridad", "Tiempo Espera", "Tiempo Retorno"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
 
-        jLabel9.setFont(new java.awt.Font("FreeMono", 1, 18)); // NOI18N
-        jLabel9.setText("Bloques de memoria");
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tabla_promedios.getTableHeader().setReorderingAllowed(false);
+        jScrollPane3.setViewportView(tabla_promedios);
+        if (tabla_promedios.getColumnModel().getColumnCount() > 0) {
+            tabla_promedios.getColumnModel().getColumn(0).setResizable(false);
+            tabla_promedios.getColumnModel().getColumn(1).setResizable(false);
+            tabla_promedios.getColumnModel().getColumn(2).setResizable(false);
+            tabla_promedios.getColumnModel().getColumn(3).setResizable(false);
+            tabla_promedios.getColumnModel().getColumn(4).setResizable(false);
+            tabla_promedios.getColumnModel().getColumn(5).setResizable(false);
+            tabla_promedios.getColumnModel().getColumn(6).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -870,31 +865,22 @@ public class Principal extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(panej_gantt1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(408, 408, 408)
                         .addComponent(ejecutarSimulador, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(panej_gantt2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel8))
-                        .addGap(0, 783, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addGap(125, 125, 125)
+                        .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 692, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(158, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(ejecutarSimulador, javax.swing.GroupLayout.PREFERRED_SIZE, 83, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 192, Short.MAX_VALUE)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panej_gantt1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel9)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(panej_gantt2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 50, Short.MAX_VALUE)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
         );
 
         jPanelTabs.addTab("Simulacion", jPanel5);
@@ -938,7 +924,7 @@ public class Principal extends javax.swing.JFrame {
         int fila = 0; 
         for (Iterator<Proceso> itr = colaProcesos.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
-            if (!tablaProcesos.getValueAt(fila, 5).equals(true)){
+            if (!tablaProcesos.getValueAt(fila, 5).equals(true) || Integer.parseInt(tablaProcesos.getValueAt(fila, 1).toString())>memoria.maximoTamaño()){
                 itr.remove();
             }
             fila++;
@@ -963,9 +949,9 @@ public class Principal extends javax.swing.JFrame {
                 memoria.crearParticion(tamParticion,dirComienzo);
                 tamMemoriaLibre = memoria.calcularMemoriaLibre();
                 JOptionPane.showMessageDialog(null, "La particion fue creada con EXITO, tamaño memoria disponible: " + tamMemoriaLibre, "Congratulation", JOptionPane.PLAIN_MESSAGE);
-                datoTablaparticion[0]=memoria.getListParticion().get(contadorParticion-1).getIdParticion();
-                datoTablaparticion[1]=memoria.getListParticion().get(contadorParticion-1).getDireccionInicial();
-                datoTablaparticion[2]=memoria.getListParticion().get(contadorParticion-1).getTamParticion();
+                datoTablaparticion[0]= memoria.getListParticion().get(contadorParticion-1).getIdParticion();
+                datoTablaparticion[1]= memoria.getListParticion().get(contadorParticion-1).getDireccionInicial();
+                datoTablaparticion[2]= memoria.getListParticion().get(contadorParticion-1).getTamParticion();
                 this.modelTablaParticiones.addRow(datoTablaparticion);
                 this.showMemoriaLibre.setText(""+tamMemoriaLibre);
                 System.out.println("TAMAÑO MEMORIA: "+memoria.getTamMemoria());
@@ -1209,7 +1195,9 @@ public class Principal extends javax.swing.JFrame {
         txt_quantumRR.setEnabled(false);
     }//GEN-LAST:event_radioBtn_fcfsMousePressed
 
+    
     private void ejecutarSimuladorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ejecutarSimuladorActionPerformed
+        DiagramaMemoria diagramaMemoria = new DiagramaMemoria();
         clock = 0;
         if(radiobtn_partVariables.isSelected()){
             crearParticionesVariables();
@@ -1221,12 +1209,15 @@ public class Principal extends javax.swing.JFrame {
         while (colaTerminado.size() != cantProcesos){
             cargarColaNuevo(); 
             intercambio();
+            diagramaMemoria.cargarListaDiagrama(memoria.getListParticion(),clock);
             controlES();
             controlProcesador();
             planificacion();
             if (es.procesoIsNull() && colaBloqueado.size()!=0){
                cargarES(); 
             }
+            listaCPU.add(procesador.getProceso());
+            listaES.add(es.getProceso());
             tiempoColaListo();
             tiempoColaBloqueado();
             imprimir();
@@ -1237,9 +1228,13 @@ public class Principal extends javax.swing.JFrame {
             tiempoEsperaPromedio += proceso.getTiempoEspera();
             tiempoRetornoPromedio += proceso.getTiempoRetorno();
         }
+        mostrarTiempos(colaTerminado);
         tiempoEsperaPromedio /= cantProcesos;
         tiempoRetornoPromedio /= cantProcesos;
         System.out.println("TEP: "+tiempoEsperaPromedio+" TRP: "+tiempoRetornoPromedio);
+        prubea gantt = new prubea(listaCPU,listaES);
+        diagramaMemoria.construirDiagrama(memoria,clock);
+        DiagramaUsoCPU diagramaUsoCPU = new DiagramaUsoCPU(procesador.getUsoCPU(),clock);
     }//GEN-LAST:event_ejecutarSimuladorActionPerformed
     
     private void inicializarPlanificador(){
@@ -1304,6 +1299,8 @@ public class Principal extends javax.swing.JFrame {
     private static List<Proceso> colaListo;
     private static List<Proceso> colaBloqueado;
     private static List<Proceso> colaTerminado;
+    private static List<Proceso> listaCPU;
+    private static List<Proceso> listaES;
     private static Procesador procesador;
     private static EntradaSalida es;
 
@@ -1328,6 +1325,28 @@ public class Principal extends javax.swing.JFrame {
             this.tablaProcesos.addRow(datoTablaProceso);
         }
         db.closeConnection();
+    }
+    
+    private void mostrarTiempos(List<Proceso> listProcesos){
+        Object[] datoTablaProceso = new Object[7];
+        for (Proceso proceso : listProcesos){
+            datoTablaProceso[0]=proceso.getNombreProceso();
+            datoTablaProceso[1]=proceso.getTamProceso();
+            datoTablaProceso[2]=proceso.getTiempoArribo();
+            datoTablaProceso[3]=proceso.getRafaga();
+            datoTablaProceso[4]=proceso.getPrioridad();
+            datoTablaProceso[5]=proceso.getTiempoEspera();
+            datoTablaProceso[6]=proceso.getTiempoRetorno();
+            this.tablaPromedios.addRow(datoTablaProceso);
+        }
+        datoTablaProceso[0]="-";
+        datoTablaProceso[1]="-";
+        datoTablaProceso[2]="-";
+        datoTablaProceso[3]="-";
+        datoTablaProceso[4]="-";
+        datoTablaProceso[5]="TEP="+this.tiempoEsperaPromedio;
+        datoTablaProceso[6]="TRP="+this.tiempoRetornoPromedio;
+        this.tablaPromedios.addRow(datoTablaProceso);
     }
     
     //Crea las particiones fijas.
@@ -1365,6 +1384,8 @@ public class Principal extends javax.swing.JFrame {
         colaListo = new ArrayList<Proceso>();
         colaBloqueado = new ArrayList<Proceso>();
         colaTerminado = new ArrayList<Proceso>();
+        listaCPU = new ArrayList<Proceso>();
+        listaES = new ArrayList<Proceso>();
         procesador = new Procesador();
         es = new EntradaSalida();
     }
@@ -1410,6 +1431,7 @@ public class Principal extends javax.swing.JFrame {
     //Selecciona el algoritmo de intercambio a ejecutar.
     private static void intercambio(){
         if(radiobtn_partFijas.isSelected()){
+            memoria.setTipoParticion(true);
             if(radiobtn_bestfit.isSelected()){
                 memoria.BestFit(colaNuevo, colaListo);
             }
@@ -1418,6 +1440,7 @@ public class Principal extends javax.swing.JFrame {
             }
         }
         if(radiobtn_partVariables.isSelected()){
+            memoria.setTipoParticion(false);
             if(radiobtn_worstfit.isSelected()){
                 memoria.WorstFit(colaNuevo, colaListo);
             }
@@ -1533,40 +1556,6 @@ public class Principal extends javax.swing.JFrame {
         }
     }
     
-    public static void mainEjecutor() {
-        /*db = new Connector();
-        db.crearTabla();
-        clock = 0;
-        setUpMemoria();
-        setUpParticiones();
-        setUpColas();
-        initialProcedures();
-        db.closeConnection();
-        tiempoEsperaPromedio = 0;
-        tiempoRetornoPromedio = 0;
-        while (colaTerminado.size() != cantProcesos){
-            cargarColaNuevo(); 
-            intercambio();
-            controlES();
-            controlProcesador();
-            planificacion();
-            if (es.procesoIsNull() && colaBloqueado.size()!=0){
-               cargarES(); 
-            }
-            tiempoColaListo();
-            tiempoColaBloqueado();
-            imprimir();
-            clock++;
-        }
-        for (Proceso proceso : colaTerminado){
-            System.out.println("TE:  "+proceso.getTiempoEspera()+" TR:  "+proceso.getTiempoRetorno());
-            tiempoEsperaPromedio += proceso.getTiempoEspera();
-            tiempoRetornoPromedio += proceso.getTiempoRetorno();
-        }
-        tiempoEsperaPromedio /= cantProcesos;
-        tiempoRetornoPromedio /= cantProcesos;
-        System.out.println("TEP: "+tiempoEsperaPromedio+" TRP: "+tiempoRetornoPromedio);*/
-    }
     //==============AutoGenerado===================
     /**
      * @param args the command line arguments
@@ -1634,8 +1623,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabel_tamparticion;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
@@ -1645,7 +1632,6 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelAlgoritmos;
     private javax.swing.JPanel jPanelMemoria;
     private javax.swing.JPanel jPanelProcesos;
@@ -1653,13 +1639,12 @@ public class Principal extends javax.swing.JFrame {
     public static javax.swing.JRadioButton jRadiobtn_sjf;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JSeparator jSeparator1;
     public static javax.swing.JTextField jTxt_cicloVidaProceso;
     public static javax.swing.JTextField jTxt_tamanioProceso;
     public static javax.swing.JTextField jTxt_tiempoArriboProceso;
     private javax.swing.JLabel label_RR;
-    public static javax.swing.JPanel panej_gantt1;
-    public static javax.swing.JPanel panej_gantt2;
     private javax.swing.JPanel panel_configuracionMemoria;
     public static javax.swing.JRadioButton radioBtn_Prioridades;
     public static javax.swing.JRadioButton radioBtn_colasMultinivel;
@@ -1674,6 +1659,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JLabel showMemoriaLibre;
     public static javax.swing.JTable tabla_particiones;
     public static javax.swing.JTable tabla_procesos;
+    private static javax.swing.JTable tabla_promedios;
     public static javax.swing.JTextField textField_QuantumColaAlta;
     public static javax.swing.JTextField textField_QuantumColaMedia;
     public static javax.swing.JTextField txt_quantumRR;

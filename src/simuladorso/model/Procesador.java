@@ -13,11 +13,13 @@ public class Procesador {
     private Proceso procesoEnEjecucion;
     private int timer; //Descontador que sirve calcular el tiempo remanente del proceso en ejecucion
     private int originalTimer; //Contador que cuenta el tiempo de ejecucion de un proceso. Se necesita en otra parte.
+    private int usoCPU;
     
     public Procesador(){
         procesoEnEjecucion = null;
         timer = 0;
         originalTimer = 0;
+        usoCPU = 0;
     }
     
     public void setProceso(Proceso proceso){
@@ -66,6 +68,11 @@ public class Procesador {
         originalTimer++;
         //Incrementa el tiempo de retorno.
         procesoEnEjecucion.incTiempoRetorno(); 
+        this.usoCPU++;
+    }
+    
+    public int getUsoCPU(){
+        return this.usoCPU;
     }
     
     public int getOriginalTimer(){

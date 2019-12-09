@@ -76,7 +76,7 @@ public class Memoria {
         return tamMemoria;
     }
 
-    public int getTamanoSo() {
+    public Integer getTamanoSo() {
         return tamanoSo;
     }
     //==================================
@@ -271,6 +271,16 @@ public class Memoria {
             index++;
         }
         Collections.reverse(this.listParticion);
+    }
+    
+    public int maximoTamaño(){
+        int tam = 0;
+        for (Particion particion : listParticion){
+            if(tam<particion.getTamParticion()){
+                tam = particion.getTamParticion();
+            }    
+        }
+        return tam;
     }
     
 }

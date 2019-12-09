@@ -65,11 +65,11 @@ public class Particion implements Comparable<Particion>{
     //Carga el proceso en la particion.
     public void addProceso(Proceso proceso) {
         this.proceso = proceso;
-        this.calcularFragmentacion(proceso);
+        this.calcularFragmentacion();
     }
 
     //Calcula la fragmentacion interna.
-    public void calcularFragmentacion(Proceso proceso){
+    public void calcularFragmentacion(){
         this.fragmentacionInterna = this.tamParticion - proceso.getTamProceso();
     }
     
@@ -106,4 +106,7 @@ public class Particion implements Comparable<Particion>{
         this.estado = estado;
     }
     
+    public Integer getFragmentacion(){
+        return this.fragmentacionInterna;
+    }
 }
