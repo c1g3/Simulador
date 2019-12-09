@@ -30,10 +30,10 @@ import simuladorso.model.Proceso;
  *
  * @author Juan
  */
-public class prubea {
+public class DiagramaGantt {
     private static StackedBarChart<Number,String> stackedBarChart;
     
-    public prubea(List<Proceso> listaCPU,List<Proceso> listaES){
+    public DiagramaGantt(List<Proceso> listaCPU,List<Proceso> listaES){
         SwingUtilities.invokeLater(new Runnable(){
             @Override
             public void run(){

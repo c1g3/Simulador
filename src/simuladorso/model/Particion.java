@@ -4,14 +4,12 @@
  * and open the template in the editor.
  */
 package simuladorso.model;
-import java.util.Scanner;
 //import java.util.Comparator;
 /**
  *
  * @author Amadeo
  */
 public class Particion implements Comparable<Particion>{
-    private Scanner teclado;
     private int idParticion;
     private int tamParticion; //Tamaño de la particion.
     private int direccionInicial;
@@ -22,7 +20,6 @@ public class Particion implements Comparable<Particion>{
     
     //La particion necesita tamaño y direccion inicial.
     public Particion(int tamParticion, int direccionInicial){
-        teclado = new Scanner(System.in);
         this.idParticion = cont;
         cont = cont + 1;
         this.tamParticion = tamParticion;

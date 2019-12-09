@@ -6,7 +6,6 @@
 package simuladorso.model;
 
 import java.util.List;
-import java.util.Scanner;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.ArrayList;
@@ -22,17 +21,9 @@ public class Planificador {
     private List<Proceso> colaBaja;
     private int quantumAlta;
     private int quantumMedia;
-    //private Scanner teclado;
     
     //El planificador necesita el algoritmo de planificacion. Y opcionalmente los quantums.
     public Planificador(){
-        //teclado = new Scanner(System.in);
-        //System.out.println("[1] FCFS [2] Round Robin [3] Prioridades [4] SJF [5] Colas Multinivel");
-        //this.algoritmoPlanificacion = teclado.nextInt();
-        if (this.algoritmoPlanificacion == 2){
-            //System.out.println("Ingrese el quantum: ");
-            //this.quantum = teclado.nextInt();
-        }
         colaAlta = new ArrayList<Proceso>();
         colaMedia = new ArrayList<Proceso>();
         colaBaja = new ArrayList<Proceso>();
@@ -101,9 +92,6 @@ public class Planificador {
                              break;
             }
         }
-        System.out.println("COLA ALTA " +colaAlta);
-        System.out.println("COLA MEDIA " +colaMedia);
-        System.out.println("COLA BAJA " +colaBaja);
         Proceso proceso;
         if (colaAlta.isEmpty()==false){
             proceso = colaAlta.get(0);

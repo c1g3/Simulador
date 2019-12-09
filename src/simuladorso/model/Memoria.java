@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package simuladorso.model;
-import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,7 +14,6 @@ import java.util.Collections;
  * @author Amadeo
  */
 public class Memoria {
-    private Scanner teclado;
     private int tamMemoria;
     private boolean tipoParticion;//true=fijas, false=variables
     private int metodo_Intercambio;
@@ -26,36 +24,15 @@ public class Memoria {
     private final int tamanoSo;
             
     //La memoria necesita tamaño, tipo de particionamiento y algortimo de intercambio.
-    public Memoria(){
-        teclado=new Scanner(System.in);
-        System.out.print("ingrese tamanio de la memoria: ");
-        tamMemoria = teclado.nextInt();
-        if (tamMemoria > this.tamMaximo){
+    public Memoria(int tamano){
+        tamMemoria = tamano;
+        if (tamano > this.tamMaximo){
             this.tamMemoria = this.tamMaximo;
         }
-        if (tamMemoria < this.tamMinimo){
+        if (tamano < this.tamMinimo){
             this.tamMemoria = this.tamMinimo;
         }
-        System.out.print("ingrese el tipo de particion: ");
-        tipoParticion = teclado.nextBoolean();
-        System.out.print("Ingrese el metodo de Intercambio: ");
-        metodo_Intercambio = teclado.nextInt();
         this.tamanoSo = (int) (this.tamMemoria * 0.1);
-        this.listParticion = new ArrayList<Particion>();
-        this.listProceso = new ArrayList<Proceso>();
-    }
-    
-    //Metodos Necesarios para la coneccion de las pantallas
-       public Memoria(int tamMemoriaEntrada){
-         
-        if (tamMemoriaEntrada > this.tamMaximo){
-            this.tamMemoria = this.tamMaximo;
-        }
-        if (tamMemoriaEntrada < this.tamMinimo){
-            this.tamMemoria = this.tamMinimo;
-        }     
-        this.tamMemoria = tamMemoriaEntrada;
-        this.tamanoSo = (int) (tamMemoriaEntrada * 0.1);
         this.listParticion = new ArrayList<Particion>();
         this.listProceso = new ArrayList<Proceso>();
     }
@@ -143,7 +120,6 @@ public class Memoria {
             Proceso proceso = itr.next();
             Collections.sort(listaPart);
             Collections.reverse(listaPart);
-            //System.out.println("Lista Particiones: " + this.listParticion);
             for (Particion particion : listaPart){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
                     crearParticionVariable(particion, proceso);
@@ -160,7 +136,6 @@ public class Memoria {
     public void FirstFitVariable(List<Proceso> colaNuevo,List<Proceso> colaListo){
         for (Iterator<Proceso> itr = colaNuevo.iterator(); itr.hasNext();){
             Proceso proceso = itr.next();
-            //System.out.println("Lista Particiones: " + this.listParticion);
             for (Particion particion : listParticion){
                 if (particion.getEstado()==false && particion.getTamParticion() >= proceso.getTamProceso() ){
                     crearParticionVariable(particion, proceso);
@@ -224,18 +199,7 @@ public class Memoria {
     
     public boolean getTipoParticion(){
         return tipoParticion;
-    }
-    
-    public void imprimirProcesoPorConsola() {
-        this.listParticion.forEach((particion) -> {
-            if (particion.procesoIsNull()) {
-                System.out.println(particion.getTamParticion() + " = [ ]");
-            } else {
-                System.out.println(particion.getTamParticion() + " = " + " " + particion.getProceso().getTamProceso());
-  
-            }
-        });
-    }
+    }   
     
     //Remueve los procesos de memoria.
     public void liberarMemoria(Proceso proceso){

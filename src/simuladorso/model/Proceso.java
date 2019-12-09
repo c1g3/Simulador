@@ -4,7 +4,6 @@
  * and open the template in the editor.
  */
 package simuladorso.model;
-import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -15,7 +14,6 @@ import java.util.Collections;
  */
 
 public class Proceso implements Comparable<Proceso>{
-    private Scanner teclado;
     private int idProceso;
     private int tamProceso; //Tamaño del proceso.
     private int tiempoArribo; 
@@ -34,13 +32,11 @@ public class Proceso implements Comparable<Proceso>{
     
     //Un proceso necesita tamaño, tiempo de arribo, rafaga y prioridad como entrada.
     public Proceso(int idProceso, int tamProceso, int tiempoArribo, Integer[] rafaga, String prioridad){
-        teclado = new Scanner(System.in);
         this.idProceso = idProceso;
         this.tamProceso = tamProceso;
         this.tiempoArribo = tiempoArribo;
         this.rafaga = new ArrayList<Integer>(Arrays.asList(rafaga));
         this.indice = 0;
-        //System.out.println("Ingrese la prioridad: ");
         this.prioridad = prioridad;
         switch(prioridad){
             case "BAJA": this.prioridadd = Prioridad.BAJA;

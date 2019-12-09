@@ -25,9 +25,9 @@ public class Connector {
         try {
             Class.forName("org.sqlite.JDBC");
             c = DriverManager.getConnection("jdbc:sqlite:SimuladorDB.sqlite");
-            System.out.println("Connected to DB OK...");
+            //System.out.println("Connected to DB OK...");
         }catch(Exception e){
-            System.out.println("Error: "+e.getMessage());
+            //System.out.println("Error: "+e.getMessage());
         }
     }
     
@@ -37,16 +37,16 @@ public class Connector {
             stmt.executeUpdate("Create table if not exists proceso(idProceso integer primary key,"+
             "tamProceso integer not null, tiempoArribo integer not null, rafaga text not null, prioridad text not null)");
         }catch(Exception e){
-            System.out.println("Error: "+e.getMessage());
+            //System.out.println("Error: "+e.getMessage());
         }
     }
     
     public void eliminarProceso(Integer idProceso){
         try{
             this.stmt = c.createStatement();
-            stmt.executeUpdate("delete from proceso where proceso.idProceso ="+idProceso);
+            stmt.executeUpdate("delete from proceso where proceso.idProceso ="+idProceso.toString());
         }catch(Exception e){
-            System.out.println("Error: "+e.getMessage());
+            //System.out.println("Error: "+e.getMessage());
         }
     }
     
@@ -55,7 +55,7 @@ public class Connector {
             this.stmt = c.createStatement();
             stmt.executeUpdate("insert into proceso(idProceso,tamProceso,tiempoArribo,rafaga,prioridad) values("+idProceso.toString()+","+tamProceso.toString()+","+tiempoArribo.toString()+",'"+rafaga+"','"+prioridad+"') ON CONFLICT(idProceso) DO NOTHING ");
         }catch(Exception e){
-            System.out.println("Error: "+e.getMessage());
+            //System.out.println("Error: "+e.getMessage());
         }
     }
     
@@ -75,7 +75,7 @@ public class Connector {
                 colaProcesos.add(proceso);
             }
         }catch(Exception e){
-            System.out.println("Error: "+e.getMessage());
+            //System.out.println("Error: "+e.getMessage());
         }
     }
     
@@ -89,7 +89,7 @@ public class Connector {
         try{
             c.close();
         }catch(Exception e){
-            System.out.println("Error: "+e.getMessage());
+            //System.out.println("Error: "+e.getMessage());
         }
     }
     
